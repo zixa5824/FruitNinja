@@ -1,3 +1,4 @@
+    
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +11,7 @@ public class FruitRun extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        GuiNinjaMainMenu guiNinjaMainMenu = new GuiNinjaMainMenu(primaryStage);
+        GuiMainMenu guiNinjaMainMenu = new GuiMainMenu(primaryStage);
         primaryStage.setScene(guiNinjaMainMenu.getScene());
         primaryStage.setTitle("Ninja Fruit");
         primaryStage.centerOnScreen();
