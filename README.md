@@ -1,2 +1,0 @@
-# FruitNinja
-FruitNinja Team Work
