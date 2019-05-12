@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class GuiMainMenu{
 
     private Scene scene;
+    Controller controller = Controller.getInstance();
 
     GuiMainMenu(Stage stage)
     {
@@ -64,13 +65,21 @@ public class GuiMainMenu{
         scoreBoard.setTextFill(Paint.valueOf("White"));
         //-------
 
-        //-----
         classicBtn.setOnAction(e->{
+            GameModeStrategy mode= new GameMode1();
+            controller.newGame(mode);
             GuiGamePlay guiGameplay = new GuiGamePlay(stage);
             stage.setScene(guiGameplay.getScene());
             stage.centerOnScreen();
         });
         //-----
+        arcadeBtn.setOnAction(e->{
+            GameModeStrategy mode= new GameMode2();
+            controller.newGame(mode);
+            GuiGamePlay guiGameplay = new GuiGamePlay(stage);
+            stage.setScene(guiGameplay.getScene());
+            stage.centerOnScreen();
+        });
 
         Pane pane = new Pane();
         Image cursor1 = new Image("file:cursor.gif");

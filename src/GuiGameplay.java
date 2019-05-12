@@ -32,8 +32,6 @@ public class GuiGamePlay {
 
         //GAME CONTROLLER
         Controller controller = Controller.getInstance();
-        GameMode1 gameMode1 = new GameMode1();
-        controller.newGame(gameMode1);
         //-------
         Image image = new Image("file:backgroundClassic.jpg");
         ImageView ivBackGround = new ImageView(image);
