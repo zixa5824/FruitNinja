@@ -7,6 +7,7 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Light;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,18 +18,26 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.util.Random;
 
 
-public class GuiGameplay{
+public class GuiGamePlay {
 
     private Scene scene;
     private AnimationTimer timer;
     private double velocityY;
-    GuiGameplay(Stage stage)
+    private double velocityX;
+    private Random random = new Random();
+   //THIS IS ONLY FOR TRIAL SCORE LOOK
+    private int score = 0;
+    private Boolean scoreFlag = false;
+
+    GuiGamePlay(Stage stage)
     {
 
         //-------
@@ -39,6 +48,19 @@ public class GuiGameplay{
         ivBackGround.setFitWidth(1220);
         ivBackGround.setFitHeight(820);
         //-------
+        Label scoreLabel = new Label("Current Score:  " + score);
+        scoreLabel.setFont(Font.font("Bradley Hand ITC", 22));
+        scoreLabel.setTextFill(Color.GOLDENROD);
+        scoreLabel.setPrefHeight(49);
+        scoreLabel.setPrefWidth(200);
+        scoreLabel.setLayoutX(523);
+        scoreLabel.setLayoutY(40);
+        //-------
+        Ellipse ellipse = new Ellipse(120, 50);
+        ellipse.setFill(Color.DARKRED);
+        ellipse.setLayoutX(601);
+        ellipse.setLayoutY(64);
+        ellipse.setOpacity(0.5);
         // ------
         Image apple = new Image("file:apple.png");
         ImageView ivApple = new ImageView(apple);
@@ -65,66 +87,36 @@ public class GuiGameplay{
         Path path = new Path();
         path.getElements().add (new MoveTo(1200, 800));
 
-        // path.getElements().add (new LineTo(200, 200));
-        /*CubicCurveTo cubicTo = new CubicCurveTo();
-        cubicTo.setControlX1(730f);
-        cubicTo.setControlY1(107f);
-        cubicTo.setControlX2(362f);
-        cubicTo.setControlY2(107f);
-        cubicTo.setX(53);
-        cubicTo.setY(608);
-        path.getElements().add(cubicTo);
-        PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.millis(4000));
-        pathTransition.setNode(ivApple);
-        pathTransition.setPath(path);
-        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
-        RotateTransition appleRotate = new RotateTransition(Duration.millis(2000), ivApple);
-        appleRotate.setCycleCount(3);
-        appleRotate.setFromAngle(0);
-        appleRotate.setToAngle(360);
-        appleRotate.play();
-        pathTransition.play();
-        */
-
-        /*QuadCurveTo quadTo = new QuadCurveTo();
-        quadTo.setX(0);
-        quadTo.setY(800);
-        quadTo.setControlX(535);
-        quadTo.setControlY(-650);
-        path.getElements().add(quadTo);
-        PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.millis(4000));
-        pathTransition.setNode(ivApple);
-        pathTransition.setPath(path);
-        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
-        RotateTransition appleRotate = new RotateTransition(Duration.millis(2000), ivApple);
-        appleRotate.setCycleCount(3);
-        appleRotate.setFromAngle(0);
-        appleRotate.setToAngle(360);
-        appleRotate.play();
-        pathTransition.play();
-
-        ivApple.setOnMouseMoved(e-> {
-            ivApple.setImage(appleCut);
-        });
-        */
-
-
         velocityY = 10;
         RotateTransition appleRotate = new RotateTransition(Duration.millis(4500), ivApple);
         appleRotate.setCycleCount(3);
         appleRotate.setFromAngle(0);
         appleRotate.setToAngle(360);
 
+        //ANIMATION TIMER , MAIN MOVEMENT
+
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 appleRotate.play();
-                ivApple.setLayoutX(ivApple.getLayoutX() + 1.5);
-                ivApple.setLayoutY(ivApple.getLayoutY() - (velocityY -= 0.075));
-                if(ivApple.getLayoutY() < 100)
-                    timer.stop();
+                ivApple.setLayoutX(ivApple.getLayoutX() + velocityX);
+                ivApple.setLayoutY(ivApple.getLayoutY() - (velocityY -= random.nextDouble() * 0.0775 + 0.075));
+                if(ivApple.getImage() == appleCut && scoreFlag == false){  score+=30; scoreFlag = true;}
+                scoreLabel.setText("Current Score: " + score);
+                if(ivApple.getLayoutY() > 800)
+                {
+                    ivApple.setImage(apple);
+                    ivApple.setLayoutX(random.nextDouble() * 750 + 310);
+                    ivApple.setLayoutY(800);
+                    velocityY = 10;
+                    scoreFlag = false;
+                    if(ivApple.getLayoutX() > 530)
+                    {
+                        velocityX = -(1.5);
+                    }
+                    else if(ivApple.getLayoutX() < 530)
+                        velocityX = 1.5;
+                }
             }
         };
         timer.start();
@@ -137,7 +129,7 @@ public class GuiGameplay{
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200,800);
-        pane.getChildren().addAll(ivBackGround, ivApple, ivAppleCut);
+        pane.getChildren().addAll(ivBackGround, ivApple, ivAppleCut,ellipse,scoreLabel);
     }
 
     public Scene getScene() {

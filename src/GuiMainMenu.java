@@ -1,5 +1,3 @@
-import javafx.animation.PathTransition;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
@@ -13,11 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 public class GuiMainMenu{
@@ -72,7 +66,7 @@ public class GuiMainMenu{
 
         //-----
         classicBtn.setOnAction(e->{
-            GuiGameplay guiGameplay = new GuiGameplay(stage);
+            GuiGamePlay guiGameplay = new GuiGamePlay(stage);
             stage.setScene(guiGameplay.getScene());
             stage.centerOnScreen();
         });
