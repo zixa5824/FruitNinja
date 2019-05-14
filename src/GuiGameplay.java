@@ -24,12 +24,13 @@ public class GuiGamePlay {
     //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
     private Boolean scoreFlag = false;
-    private double velocityY,velocityX;
+    private double[] velocityY = new double[4],velocityX = new double[4];
     private List<GameObject> currentObjects;
-    private ImageView[][] ivRandomFruits = new ImageView[6][2];
-    private RotateTransition[] fruitsRotation;
+    private ImageView[][] ivRandomFruits = new ImageView[4][2];
+    private RotateTransition[] fruitsRotation = new RotateTransition[4];
     private boolean allFruitsAreDown =false;
     private int size;
+    private int ui;
 
     GuiGamePlay(Stage stage)
     {
@@ -59,12 +60,18 @@ public class GuiGamePlay {
         ellipse.setOpacity(0.5);
         //------
 
-        currentObjects = controller.createGameObject(0);
+        Pane pane = new Pane();
+        Image cursor1 = new Image("file:cursor.gif");
+        ImageCursor cursor = new ImageCursor(cursor1);
 
+        pane.setCursor(cursor);
+        scene = new Scene(pane, 1200,800);
+        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel);
+        currentObjects = controller.createGameObject(0);
         for (int i = 0; i < currentObjects.size() ; i++) {
             for (int j = 0; j < 2 ; j++)
             {
-                ivRandomFruits[i][j].setImage(currentObjects.get(i).getImages()[j]);
+                ivRandomFruits[i][j] = new ImageView(currentObjects.get(i).getImages()[j]);
                 ivRandomFruits[i][j].setFitHeight(150);
                 ivRandomFruits[i][j].setFitWidth(131);
                 ivRandomFruits[i][j].setPreserveRatio(false);
@@ -75,10 +82,12 @@ public class GuiGamePlay {
             fruitsRotation[i].setCycleCount(3);
             fruitsRotation[i].setFromAngle(0);
             fruitsRotation[i].setToAngle(360);
-        }
 
-        velocityY = currentObjects.get(0).getYVelocity();
-        velocityX = currentObjects.get(0).getXVelocity();
+
+            velocityY[i] = currentObjects.get(0).getYVelocity();
+            velocityX[i] = currentObjects.get(0).getXVelocity();
+            pane.getChildren().add(ivRandomFruits[i][0]);
+        }
 
         //ANIMATION TIMER , MAIN MOVEMENT
 
@@ -122,23 +131,24 @@ public class GuiGamePlay {
                             ivRandomFruits[j][z].setLayoutX(random.nextInt() * 750 + 300);
                         }
 
-                    }
-                    velocityY = currentObjects.get(0).getYVelocity();
 
-                        /*if(ivRandomFruits.getLayoutX() > 530)
+                        velocityY[j] = currentObjects.get(0).getYVelocity();
+
+                        if(ivRandomFruits[j][0].getLayoutX() > 530)
                         {
-                            velocityX = -velocityX;
+                            velocityX[j] = -velocityX[j];
                         }
-                        else if(ivRandomFruits.getLayoutX() < 530)
-                            if(velocityX < 0)   velocityX = -velocityX;
-                        */
+                        else if(ivRandomFruits[j][0].getLayoutX() < 530)
+                            if(velocityX[j] < 0)   velocityX[j] = -velocityX[j];
+
+                    }
                     size = currentObjects.size();
                 }
 
                 for (int i = 0; i < currentObjects.size(); i++) {
                     fruitsRotation[i].play();
-                    ivRandomFruits[i][0].setLayoutX(ivRandomFruits[i][0].getLayoutX() + velocityX);
-                    ivRandomFruits[i][0].setLayoutY(ivRandomFruits[i][0].getLayoutY() - (velocityY -= random.nextDouble() * 0.0775 + 0.065));
+                    ivRandomFruits[i][0].setLayoutX(ivRandomFruits[i][0].getLayoutX() + velocityX[i]);
+                    ivRandomFruits[i][0].setLayoutY(ivRandomFruits[i][0].getLayoutY() - (velocityY[i] -= random.nextDouble() * 0.0775 + 0.065));
                     if(ivRandomFruits[i][0].getImage() == currentObjects.get(i).getImages()[1] && scoreFlag == false){controller.scoreEdit(30); scoreFlag = true;}
                 }
                 scoreLabel.setText("Current Score: " + controller.getScore());
@@ -148,17 +158,13 @@ public class GuiGamePlay {
         timer.start();
 
 
-        ivRandomFruits.setOnMouseMoved(e-> {
-            ivRandomFruits.setImage(appleCut);
-        });
+        for (ui = 0; ui < currentObjects.size() ; ui++) {
 
+            ivRandomFruits[ui][0].setOnMouseMoved(e-> {
+                ivRandomFruits[ui][0].setImage(currentObjects.get(ui).getImages()[1]);
+            });
+        }
 
-        Image cursor1 = new Image("file:cursor.gif");
-        ImageCursor cursor = new ImageCursor(cursor1);
-        Pane pane = new Pane();
-        pane.setCursor(cursor);
-        scene = new Scene(pane, 1200,800);
-        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel);
     }
 
     public Scene getScene() {

@@ -11,7 +11,7 @@ public class Fruit4 extends Fruit {
 
     @Override
     public Image[] getImages() {
-        Image[] view= new Image[3];
+        Image[] view= new Image[2];
         view[0] = new Image("file:strawberry.png");
         view[1] = new Image("file:strawberryCUT.png");
         return view;
