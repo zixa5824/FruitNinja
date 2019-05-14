@@ -15,6 +15,9 @@ public class FruitFactory {
                 return new Fruit3();
 
             case 3:
+                return new Fruit4();
+
+            case 4:
                 return new DangerousBomb();
 
             case 5:

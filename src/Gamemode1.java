@@ -14,11 +14,12 @@ public class GameMode1 implements GameModeStrategy{
 
         List<GameObject> localList = new ArrayList<>();
         FruitFactory fruitFactory = new FruitFactory();
-        int x,y;
-        x = new Random().nextInt(6)+1;
-        for(int i = 0;i < x; i++) {
-            y = new Random().nextInt(1);//reduced to 1 for testing
-            localList.add(fruitFactory.getFruits(y));
+        int randomizedSizeOfFruit, randomFruit;
+        randomizedSizeOfFruit = new Random().nextInt() * 4 + 1;
+        for(int i = 0;i < randomizedSizeOfFruit; i++)
+        {
+            randomFruit = new Random().nextInt(3);
+            localList.add(fruitFactory.getFruits(randomFruit));
         }
         return localList;
     }

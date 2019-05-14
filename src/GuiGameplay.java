@@ -21,11 +21,15 @@ public class GuiGamePlay {
     private Scene scene;
     private AnimationTimer timer;
     private Random random = new Random();
-   //THIS IS ONLY FOR TRIAL SCORE LOOK
+    //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
     private Boolean scoreFlag = false;
     private double velocityY,velocityX;
     private List<GameObject> currentObjects;
+    private ImageView[][] ivRandomFruits = new ImageView[6][2];
+    private RotateTransition[] fruitsRotation;
+    private boolean allFruitsAreDown =false;
+    private int size;
 
     GuiGamePlay(Stage stage)
     {
@@ -56,63 +60,105 @@ public class GuiGamePlay {
         //------
 
         currentObjects = controller.createGameObject(0);
-        Image apple = currentObjects.get(0).getImages()[0];
-        ImageView ivApple = new ImageView(apple);
-        ivApple.setFitHeight(150);
-        ivApple.setFitWidth(131);
-        ivApple.setPreserveRatio(false);
-        //STARTING LOCATION
-        ivApple.setLayoutY(800);
-        ivApple.setLayoutX(300);
-        Image appleCut = currentObjects.get(0).getImages()[1];
 
-        Path path = new Path();
-        path.getElements().add (new MoveTo(1200, 800));
+        for (int i = 0; i < currentObjects.size() ; i++) {
+            for (int j = 0; j < 2 ; j++)
+            {
+                ivRandomFruits[i][j].setImage(currentObjects.get(i).getImages()[j]);
+                ivRandomFruits[i][j].setFitHeight(150);
+                ivRandomFruits[i][j].setFitWidth(131);
+                ivRandomFruits[i][j].setPreserveRatio(false);
+                ivRandomFruits[i][j].setLayoutY(800);
+                ivRandomFruits[i][j].setLayoutX(random.nextInt() * 750 + 300);
+            }
+            fruitsRotation[i] = new RotateTransition(Duration.millis(4500), ivRandomFruits[i][0]);
+            fruitsRotation[i].setCycleCount(3);
+            fruitsRotation[i].setFromAngle(0);
+            fruitsRotation[i].setToAngle(360);
+        }
 
         velocityY = currentObjects.get(0).getYVelocity();
         velocityX = currentObjects.get(0).getXVelocity();
-        RotateTransition appleRotate = new RotateTransition(Duration.millis(4500), ivApple);
-        appleRotate.setCycleCount(3);
-        appleRotate.setFromAngle(0);
-        appleRotate.setToAngle(360);
 
         //ANIMATION TIMER , MAIN MOVEMENT
 
+        size = currentObjects.size();
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                appleRotate.play();
-                ivApple.setLayoutX(ivApple.getLayoutX() + velocityX);
-                ivApple.setLayoutY(ivApple.getLayoutY() - (velocityY -= random.nextDouble() * 0.0775 + 0.065));
-                if(ivApple.getImage() == appleCut && scoreFlag == false){controller.scoreEdit(30); scoreFlag = true;}
-                scoreLabel.setText("Current Score: " + controller.getScore());
-                if(ivApple.getLayoutY() > 800)
+
+
+
+                for (int i = 0; i < currentObjects.size(); i++)
                 {
-                    ivApple.setImage(apple);
-                    ivApple.setLayoutX(random.nextDouble() * 725 + 310);
-                    ivApple.setLayoutY(800);
-                    velocityY = currentObjects.get(0).getYVelocity();
-                    scoreFlag = false;
-                    if(ivApple.getLayoutX() > 530)
+                    if(ivRandomFruits[i][0].getLayoutY() > 800)
                     {
-                        velocityX = -velocityX;
+                        size--;
+                        ivRandomFruits[i][0].setLayoutX(random.nextDouble() * 725 + 310);
+                        ivRandomFruits[i][0].setLayoutY(800);
+                        scoreFlag = false;
                     }
-                    else if(ivApple.getLayoutX() < 530)
-                        if(velocityX < 0)   velocityX = -velocityX;
                 }
+
+                if(size == 0)
+                {
+                    allFruitsAreDown = true;
+                }
+
+                if(allFruitsAreDown)
+                {
+                    allFruitsAreDown = false;
+                    currentObjects = controller.createGameObject(0);
+
+                    for (int j = 0; j < currentObjects.size(); j++)
+                    {
+                        for (int z = 0; z < 2; z++)
+                        {
+                            ivRandomFruits[j][z].setImage(currentObjects.get(j).getImages()[z]);
+                            ivRandomFruits[j][z].setFitHeight(150);
+                            ivRandomFruits[j][z].setFitWidth(131);
+                            ivRandomFruits[j][z].setPreserveRatio(false);
+                            ivRandomFruits[j][z].setLayoutY(800);
+                            ivRandomFruits[j][z].setLayoutX(random.nextInt() * 750 + 300);
+                        }
+
+                    }
+                    velocityY = currentObjects.get(0).getYVelocity();
+
+                        /*if(ivRandomFruits.getLayoutX() > 530)
+                        {
+                            velocityX = -velocityX;
+                        }
+                        else if(ivRandomFruits.getLayoutX() < 530)
+                            if(velocityX < 0)   velocityX = -velocityX;
+                        */
+                    size = currentObjects.size();
+                }
+
+                for (int i = 0; i < currentObjects.size(); i++) {
+                    fruitsRotation[i].play();
+                    ivRandomFruits[i][0].setLayoutX(ivRandomFruits[i][0].getLayoutX() + velocityX);
+                    ivRandomFruits[i][0].setLayoutY(ivRandomFruits[i][0].getLayoutY() - (velocityY -= random.nextDouble() * 0.0775 + 0.065));
+                    if(ivRandomFruits[i][0].getImage() == currentObjects.get(i).getImages()[1] && scoreFlag == false){controller.scoreEdit(30); scoreFlag = true;}
+                }
+                scoreLabel.setText("Current Score: " + controller.getScore());
+
             }
         };
         timer.start();
-        ivApple.setOnMouseMoved(e-> {
-            ivApple.setImage(appleCut);
+
+
+        ivRandomFruits.setOnMouseMoved(e-> {
+            ivRandomFruits.setImage(appleCut);
         });
 
-        Pane pane = new Pane();
+
         Image cursor1 = new Image("file:cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
+        Pane pane = new Pane();
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200,800);
-        pane.getChildren().addAll(ivBackGround, ivApple, ellipse, scoreLabel);
+        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel);
     }
 
     public Scene getScene() {
