@@ -1,4 +1,4 @@
 package SliceableObjects;
 
-public class LifeFruit extends  Fruit {
+public class LifeFruit extends Fruit {
 }

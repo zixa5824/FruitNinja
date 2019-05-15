@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Fruit-Ninja-Knockoff.iml" filepath="$PROJECT_DIR$/Fruit-Ninja-Knockoff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FruitNinja-SharsheraMaster.iml" filepath="$PROJECT_DIR$/.idea/FruitNinja-SharsheraMaster.iml" />
     </modules>
   </component>
 </project>

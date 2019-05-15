@@ -1,34 +1,33 @@
 import SliceableObjects.ISliceableObject;
 
-public class GameActions implements IGameActions {
+import java.util.List;
 
+public interface GameActions {
+    /*
+     *@return created game object
+     */
+    public List<ISliceableObject> createGameObject(int time);
+    /*
+     * update moving objects locations
+     * */
+    public void updateObjectsLocations();
+    /*
+    * it is used to slice fruits located in your swiping region
+    This method can take your swiping region as parameters (they
+    depend on how you calculate it).
+    */
+    public void sliceObjects();
+    /*
+     *saves the current state of the game
+     */
+    public void saveGame();
+    /*
+     *loads the last saved state of the game
+     */
+    public void loadGame();
+    /*
+     *resets the game to its initial state
+     */
+    public void resetGame();
 
-
-
-
-
-
-
-
-
-
-    @Override
-    public ISliceableObject createGameObject() {
-        return null;
-    }
-
-    @Override
-    public void updateObjectsLocations() {
-
-    }
-
-    @Override
-    public void sliceObjects() {
-
-    }
-
-    @Override
-    public void ResetGame() {
-
-    }
 }

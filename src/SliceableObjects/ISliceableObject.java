@@ -1,6 +1,9 @@
 package SliceableObjects;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public interface ISliceableObject {
 
 
@@ -12,14 +15,14 @@ public interface ISliceableObject {
 
 
 
-
+    public Image[] getImages();
 
 
 
     /*
      *@return X location of game object
      */
-    int getXlocation();
+    double getXlocation();
 
 
 
@@ -29,7 +32,7 @@ public interface ISliceableObject {
     /*
      *@return Y location of game object
      */
-    int getYlocation();
+    double getYlocation();
 
 
 
@@ -38,18 +41,22 @@ public interface ISliceableObject {
     /*
      *@return max Y location that the object can reach on the screen
      */
-    int getMaxHeight();
+    double getMaxHeight();
 
 
 
+    public double getXVelocity();
 
+    public double getYVelocity();
+
+    ImageView[] getImageView();
 
 
 
     /*
      *@return velocity at which game object is thrown
      */
-    int getInitialVelocity();
+    double getInitialVelocity();
 
 
 
@@ -60,7 +67,7 @@ public interface ISliceableObject {
     /*
      *@return failing velocity of game object
      */
-    int getFallingVelocity();
+    double getFallingVelocity();
 
 
 
@@ -92,7 +99,7 @@ public interface ISliceableObject {
 
     /*
     *it is used to move the object on the screen
-    @param deltaTime: time elapsed since the object is thrown
+    @param deltaT   ime: time elapsed since the object is thrown
     it is used calculate the new position of
     fruit object.
     */

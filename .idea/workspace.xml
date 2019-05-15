@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46ec3c4e-0c85-4544-ab49-7fe389063489" name="Default Changelist" comment="Decided for the outline of the game modes.">
+    <list default="true" id="46ec3c4e-0c85-4544-ab49-7fe389063489" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,111 +15,69 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#151#152#0" expanded="true" />
-                <element signature="e#179#180#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="527">
+              <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MainMenuController.java">
+        <entry file="file://$PROJECT_DIR$/src/GameModes/ClassicMode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Fruit-Ninja-knockoff.puml">
+        <entry file="file://$PROJECT_DIR$/src/GuiGamePlayView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="-308">
+              <caret line="108" column="42" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
+              <folding>
+                <element signature="e#3666#4830#0" expanded="true" />
+                <element signature="e#4829#4830#0" expanded="true" />
+                <element signature="e#4992#4993#0" expanded="true" />
+                <element signature="e#5020#5021#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/MainMenu.fxml">
+        <entry file="file://$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IGameActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="323">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameModes/IGameMode.java">
+        <entry file="file://$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SliceableObjects/LifeFruit.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameScene.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="117" selection-start-line="7" selection-start-column="117" selection-end-line="7" selection-end-column="117" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameModes/DifficultyDecorator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameModes/EasyDiff.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="5" selection-start-line="5" selection-start-column="4" selection-end-line="7" selection-end-column="5" />
-              <folding>
-                <element signature="e#141#142#0" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameModes/HardDiff.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="e#116#117#0" expanded="true" />
-                <element signature="e#156#157#0" expanded="true" />
-              </folding>
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -140,6 +97,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>IGame</find>
+      <find>NormalFruit</find>
+      <find>getImages</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,50 +107,64 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Main/c.java" />
-        <option value="$PROJECT_DIR$/src/ThrowableObjects/ThrowableObject.java" />
-        <option value="$PROJECT_DIR$/src/ThrowableObjects/SlicableObject.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/Bomb.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/GameActions.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/SlowFruit.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/NormalFruit.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/FastFruit.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/LifeFruit.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/FatalBomb.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/DangerousBomb.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/ExtraBonusFruit.java" />
-        <option value="$PROJECT_DIR$/src/SlicableObjects/Fruit.java" />
         <option value="$PROJECT_DIR$/src/SlicableObjects/IThrowableObject.java" />
         <option value="$PROJECT_DIR$/src/SlicableObjects/ISlicableObject.java" />
         <option value="$PROJECT_DIR$/src/SlicableObjects/ISliceableObject.java" />
         <option value="$PROJECT_DIR$/src/SlicableObjects/SlicableObject.java" />
         <option value="$PROJECT_DIR$/src/SlicableObjects/SliceableObject.java" />
-        <option value="$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java" />
         <option value="$PROJECT_DIR$/src/Fruit-Ninja-knockoff.puml" />
-        <option value="$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java" />
-        <option value="$PROJECT_DIR$/src/SliceableObjects/Fruit.java" />
-        <option value="$PROJECT_DIR$/src/IGameActions.java" />
         <option value="$PROJECT_DIR$/src/GameSceneView.java" />
         <option value="$PROJECT_DIR$/src/GameActions.java" />
         <option value="$PROJECT_DIR$/src/ClassicMode.java" />
         <option value="$PROJECT_DIR$/src/HardDiff.java" />
         <option value="$PROJECT_DIR$/src/EasyDiff.java" />
-        <option value="$PROJECT_DIR$/src/GameModes/ClassicMode.java" />
         <option value="$PROJECT_DIR$/src/GameModes/IGameMode.java" />
+        <option value="$PROJECT_DIR$/src/MainMenuController.java" />
+        <option value="$PROJECT_DIR$/src/MainMenu.fxml" />
+        <option value="$PROJECT_DIR$/src/GameScene.fxml" />
+        <option value="$PROJECT_DIR$/src/GameActionsController.java" />
+        <option value="$PROJECT_DIR$/Fruit-Ninja-knockoff.puml" />
+        <option value="$PROJECT_DIR$/src/IGameActions.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/GuiMainMenu.java" />
+        <option value="$PROJECT_DIR$/src/Gamemode2.java" />
+        <option value="$PROJECT_DIR$/src/Gamemode1.java" />
+        <option value="$PROJECT_DIR$/src/NormalFruit.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/Fruit3.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/SpecialFruits.java" />
+        <option value="$PROJECT_DIR$/src/FruitFactory.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/Bomb.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/LiveBomb.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/FatalBomb.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/ExtraBonusFruit.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/Fruit.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/FastFruit.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/FruitFactory.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/LifeFruit.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/SlowFruit.java" />
+        <option value="$PROJECT_DIR$/src/GameModes/Gamemode1.java" />
+        <option value="$PROJECT_DIR$/src/GameModes/ClassicMode.java" />
+        <option value="$PROJECT_DIR$/src/GameModes/GameModeStrategy.java" />
+        <option value="$PROJECT_DIR$/src/GameModes/HardDiff.java" />
+        <option value="$PROJECT_DIR$/src/GameModes/IGameModeStrategy.java" />
+        <option value="$PROJECT_DIR$/src/GuiGamePlay.java" />
         <option value="$PROJECT_DIR$/src/GameModes/EasyDiff.java" />
         <option value="$PROJECT_DIR$/src/GameModes/DifficultyDecorator.java" />
-        <option value="$PROJECT_DIR$/src/GameModes/HardDiff.java" />
-        <option value="$PROJECT_DIR$/src/GameScene.fxml" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/MainMenu.fxml" />
-        <option value="$PROJECT_DIR$/src/MainMenuController.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/DangerousBomb.java" />
+        <option value="$PROJECT_DIR$/src/Controller.java" />
+        <option value="$PROJECT_DIR$/src/GameController.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java" />
+        <option value="$PROJECT_DIR$/src/GuiGamePlayView.java" />
+        <option value="$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
-    <option name="y" value="40" />
-    <option name="width" value="980" />
+    <option name="y" value="50" />
+    <option name="width" value="600" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -200,31 +173,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Fruit-Ninja-Knockoff" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Fruit-Ninja-Knockoff" type="462c0819:PsiDirectoryNode" />
+              <item name="Sharshera-overhauled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sharshera-overhauled" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sharshera-overhauled" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sharshera-overhauled" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557405964374" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557961130531" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\karim\IdeaProjects\Fruit-Ninja-Knockoff\src" />
       <recent name="C:\Users\karim\IdeaProjects\Fruit-Ninja-Knockoff" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="GameModes" />
+      <recent name="SliceableObjects" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\karim\IdeaProjects\Fruit Ninja Group\FruitNinja-SharsheraMaster\FruitNinja-SharsheraMaster\src" />
+      <recent name="C:\Users\karim\IdeaProjects\Fruit Ninja Group\FruitNinja-SharsheraMaster\FruitNinja-SharsheraMaster\src\GameModes" />
+      <recent name="C:\Users\karim\IdeaProjects\Fruit-Ninja-Knockoff\src\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -240,18 +228,13 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Fruit-Ninja-Knockoff" />
+    <configuration name="FruitRun" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FruitRun" />
+      <module name="FruitNinja-SharsheraMaster" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -278,22 +261,39 @@
       <option name="project" value="LOCAL" />
       <updated>1557390061957</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fruits ready">
+      <created>1557612342682</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557612342682</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="33" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="33" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="Image Layers" order="1" />
-      <window_info id="DB Browser" order="2" />
+      <window_info id="DB Browser" order="2" weight="0.3295302" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="simpleUML" order="6" />
       <window_info id="Learn" order="7" />
       <window_info id="Structure" order="8" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="9" visible="true" weight="0.19463088" />
+      <window_info content_ui="combo" id="Project" order="9" visible="true" weight="0.22147651" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Sequence" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
@@ -301,47 +301,12 @@
       <window_info anchor="bottom" id="Messages" order="4" weight="0.3286119" />
       <window_info anchor="bottom" id="DB Execution Console" order="5" />
       <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="8" visible="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.32719547" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="right" id="PlantUML" order="0" visible="true" weight="0.3295302" />
-      <window_info anchor="right" id="Palette" order="1" />
-      <window_info anchor="right" id="Capture Analysis" order="2" />
-      <window_info anchor="right" id="Key Promoter X" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Designer" order="0" />
-      <window_info id="Image Layers" order="1" />
-      <window_info id="DB Browser" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="simpleUML" order="6" />
-      <window_info id="Learn" order="7" />
-      <window_info id="Structure" order="8" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="9" visible="true" weight="0.19463088" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.3286119" />
-      <window_info anchor="bottom" id="Sequence" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.3286119" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.3286119" />
-      <window_info anchor="bottom" id="DB Execution Console" order="5" />
-      <window_info anchor="bottom" id="Message" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="8" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.3286119" />
       <window_info anchor="right" id="PlantUML" order="0" weight="0.3295302" />
       <window_info anchor="right" id="Palette" order="1" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -352,7 +317,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -379,227 +344,302 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created new UML class Diagram" />
     <MESSAGE value="Decided for the outline of the game modes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Decided for the outline of the game modes." />
+    <MESSAGE value="fruits ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="fruits ready" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GuiGamePlayView.java</url>
+          <line>128</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Main/c.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/pagefile.sys">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Fruit-Ninja-Knockoff.iml" />
+    <entry file="file://$PROJECT_DIR$/src/GameSceneView.java" />
+    <entry file="file://$PROJECT_DIR$/src/MainMenu.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/MainMenuController.java" />
+    <entry file="file://$PROJECT_DIR$/src/GameScene.fxml" />
+    <entry file="file://$PROJECT_DIR$/Fruit-Ninja-knockoff.puml" />
+    <entry file="file://$PROJECT_DIR$/src/resources/orange.png" />
+    <entry file="file://$PROJECT_DIR$/src/resources/cutWatermelon.png" />
+    <entry file="file://$PROJECT_DIR$/src/GameActionsController.java" />
+    <entry file="file://$PROJECT_DIR$/src/IGameActions.java" />
+    <entry file="file://$PROJECT_DIR$/.idea/codeStyles/Project.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/FastFruit.java">
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/LiveBomb.java" />
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/SpecialFruits.java" />
+    <entry file="file://$PROJECT_DIR$/src/FruitRun.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/LifeFruit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/FatalBomb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/DangerousBomb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="85">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SliceableObjects/SlowFruit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        <state relative-caret-position="306">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/FatalBomb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SliceableObjects/ExtraBonusFruit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Fruit-Ninja-Knockoff.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="e#187#188#0" expanded="true" />
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#688#689#0" expanded="true" />
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#1037#1038#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SliceableObjects/Bomb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/Fruit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameSceneView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameActions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameModes/ArcadeMode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="e#154#155#0" expanded="true" />
-            <element signature="e#181#182#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameModes/ClassicMode.java">
+    <entry file="file://$PROJECT_DIR$/src/GameModes/IGameModeStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="3" selection-end-line="6" />
+        <state relative-caret-position="204">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IGameActions.java">
+    <entry file="file://$PROJECT_DIR$/src/resources/cutApple.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/cutOrange.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/apple.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/DangerousBomb.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        <state relative-caret-position="238">
+          <caret line="15" column="20" selection-start-line="8" selection-start-column="3" selection-end-line="16" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameModes/IGameMode.java">
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/FruitFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameModes/DifficultyDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameModes/EasyDiff.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="5" selection-start-column="4" selection-end-line="7" selection-end-column="5" />
-          <folding>
-            <element signature="e#141#142#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameModes/HardDiff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#116#117#0" expanded="true" />
-            <element signature="e#156#157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameScene.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="117" selection-start-line="7" selection-start-column="117" selection-end-line="7" selection-end-column="117" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="221">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#151#152#0" expanded="true" />
-            <element signature="e#179#180#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#295#296#0" expanded="true" />
+            <element signature="e#339#340#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainMenu.fxml">
+    <entry file="file://$PROJECT_DIR$/src/GameModes/EasyDiff.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        <state relative-caret-position="204">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Fruit-Ninja-knockoff.puml">
+    <entry file="file://$PROJECT_DIR$/src/GameModes/DifficultyDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+        <state relative-caret-position="204">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#244#245#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/FastFruit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/ISliceableObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/stage/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="529" column="42" selection-start-line="529" selection-start-column="42" selection-end-line="529" selection-end-column="42" />
+          <folding>
+            <element signature="e#41729#41730#0" expanded="true" />
+            <element signature="e#41775#41776#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/stage/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="252" selection-start-line="252" selection-end-line="252" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/animation/AnimationTimer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/Fruit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiMainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameModes/ClassicMode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/SliceableObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/NormalFruit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SliceableObjects/LifeFruit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiGamePlayView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-308">
+          <caret line="108" column="42" selection-start-line="108" selection-start-column="42" selection-end-line="108" selection-end-column="42" />
+          <folding>
+            <element signature="e#3666#4830#0" expanded="true" />
+            <element signature="e#4829#4830#0" expanded="true" />
+            <element signature="e#4992#4993#0" expanded="true" />
+            <element signature="e#5020#5021#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,12 +695,23 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Fruit-Ninja-Knockoff</last-edited>
+          <last-edited>FruitNinja-SharsheraMaster</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>

@@ -1,13 +1,15 @@
 package GameModes;
 
+import SliceableObjects.ISliceableObject;
+
+import java.util.List;
+
 public class EasyDiff extends DifficultyDecorator{
 
 
-    public EasyDiff(IGameMode gameMode) {
+    public EasyDiff(IGameModeStrategy gameMode) {
         this.gameMode = gameMode;
     }
-
-
 
 
 

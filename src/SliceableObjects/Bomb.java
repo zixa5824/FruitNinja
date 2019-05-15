@@ -1,4 +1,6 @@
 package SliceableObjects;
 
-public class Bomb extends SliceableObject {
+public abstract class Bomb extends SliceableObject{
+
+
 }

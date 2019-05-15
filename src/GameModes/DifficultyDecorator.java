@@ -1,8 +1,25 @@
 package GameModes;
 
-public abstract class DifficultyDecorator implements IGameMode {
+import SliceableObjects.ISliceableObject;
 
-    protected IGameMode gameMode;
+import java.util.List;
 
+public abstract class DifficultyDecorator implements IGameModeStrategy {
 
+    protected IGameModeStrategy gameMode;
+
+    @Override
+    public int getLives() {
+        return 0;
+    }
+
+    @Override
+    public int timerType() {
+        return 0;
+    }
+
+    @Override
+    public List<ISliceableObject> NewBatch(int time) {
+        return null;
+    }
 }

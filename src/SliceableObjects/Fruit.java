@@ -1,7 +1,11 @@
 package SliceableObjects;
 
-public class Fruit extends SliceableObject {
+import java.util.Random;
 
-    private int associatedScore;
+public abstract class Fruit extends SliceableObject {
+
+    protected int associatedScore;
+
+
 
 }
