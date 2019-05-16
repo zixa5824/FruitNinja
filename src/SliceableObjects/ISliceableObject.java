@@ -15,7 +15,7 @@ public interface ISliceableObject {
 
 
 
-    public Image[] getImages();
+    public Image[] getMyImage();
 
 
 
@@ -49,7 +49,7 @@ public interface ISliceableObject {
 
     public double getYVelocity();
 
-    ImageView[] getImageView();
+    ImageView getImageView();
 
 
 

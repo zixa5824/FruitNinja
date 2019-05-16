@@ -1,6 +1,5 @@
 package SliceableObjects;
 
-import SliceableObjects.Fruit;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -9,23 +8,36 @@ import java.util.Random;
 public class FastFruit extends Fruit {
 
     public FastFruit() {
+
         Random i = new Random();
-        this.yLocation = 1;
-        this.xLocation = i.nextInt(1200);
-        this.associatedScore = 200;
+        this.yLocation = 800;
+        this.xLocation = i.nextInt(900);
+        this.associatedScore = 100;
         this.ObjectType = "FastFruit";
-        this.initialVelocity = 50;
-        this.fallingVelocity = 40;
-//        images[0] = new ImageView(new Image("resources/apple.png"));
-//        images[1] = new ImageView(new Image("resources/cutApple.png"));
+        this.initialVelocity = 35;
+        this.fallingVelocity = 10;
+
+        if (i.nextBoolean()) {
+            this.currentXVelocity = initialVelocity;
+        } else {
+            this.currentXVelocity = -initialVelocity;
+        }
+
+        this.currentYVelocity = initialVelocity/5;
+
+        this.myImageView = new ImageView(this.getMyImage()[0]);
+        this.myImageView.setLayoutX(xLocation);
+        this.myImageView.setLayoutY(yLocation);
+        this.myImageView.setFitWidth(standardPrefSize);
+        this.myImageView.setFitHeight(standardPrefSize);
     }
 
 
-    @Override
-    public Image[] getImages() {
+    public Image[] getMyImage() {
         Image[] view= new Image[3];
-        view[0] = new Image("file:watermelon.png");
-        view[1] = new Image("file:watermelonCUT.png");
+        view[0] = new Image("file:resources/orange.png");
+        view[1] = new Image("file:orangeCUT.png");
+
         return view;
     }
 

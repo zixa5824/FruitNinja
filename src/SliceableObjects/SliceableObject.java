@@ -16,7 +16,8 @@ public abstract class SliceableObject implements ISliceableObject {
     protected boolean isSliced;
     protected boolean hasMovedOffScreen;
     protected String ObjectType;
-    protected ImageView[] images = new ImageView[3];
+    protected ImageView myImageView = new ImageView();
+    protected double standardPrefSize = 100;
 
 
 
@@ -66,8 +67,8 @@ public abstract class SliceableObject implements ISliceableObject {
     }
 
     @Override
-    public ImageView[] getImageView() {
-        return this.images;
+    public ImageView getImageView() {
+        return this.myImageView;
     }
 
     @Override
@@ -87,7 +88,7 @@ public abstract class SliceableObject implements ISliceableObject {
     }
 
     @Override
-    public Image[] getImages() {
+    public Image[] getMyImage() {
         return new Image[0];
     }
 

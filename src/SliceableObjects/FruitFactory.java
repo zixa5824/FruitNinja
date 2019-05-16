@@ -18,13 +18,13 @@ public class FruitFactory {
             case 3:
                 return new DangerousBomb();
 
-            case 5:
+            case 4:
                 return new FatalBomb();
 
-	  /*   case 6:
+	  /*   case 5:
 		         return new SliceableObjects.LiveBomb();
 		         break;
-	     case 7:
+	     case 6:
 		         return new SpecialBomb();
 		         break;*/
             default:

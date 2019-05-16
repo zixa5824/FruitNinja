@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 
 public class GuiGamePlayView {
@@ -29,7 +30,6 @@ public class GuiGamePlayView {
    //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
     private Boolean scoreFlag = false;
-    private double velocityY,velocityX;
     private List<ISliceableObject> currentObjects;
 
     GuiGamePlayView(Stage stage)
@@ -70,7 +70,7 @@ public class GuiGamePlayView {
 
 
         currentObjects = gameController.createGameObject(0);
-        ImageView ivApple = currentObjects.get(0).getImageView()[0];
+        ImageView ivApple = currentObjects.get(0).getImageView();
         ivApple.setFitHeight(150);
         ivApple.setFitWidth(131);
         ivApple.setPreserveRatio(false);
@@ -101,30 +101,26 @@ public class GuiGamePlayView {
 
         for (ISliceableObject object:myObjects
         ) {
-            pane.getChildren().add(object.getImageView()[0]);
+            pane.getChildren().add(object.getImageView());
         }
 
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (myObjects.size() < 1) {
-//                    ISliceableObject newFruit = new NormalFruit();
-//                    myObjects.add(newFruit);
                     List<ISliceableObject> newMyObjects = gameController.createGameObject(1);
                     myObjects.addAll(newMyObjects);
 
                     for (ISliceableObject object:myObjects
                          ) {
-                        pane.getChildren().add(object.getImageView()[0]);
+                        pane.getChildren().add(object.getImageView());
                     }
-
-
                 }
                 for (ISliceableObject fruit:myObjects
                      ) {
                     fruit.move(3);
-                    fruit.getImageView()[0].setLayoutY(fruit.getYlocation());
-                    fruit.getImageView()[0].setLayoutX(fruit.getXlocation());
+                    fruit.getImageView().setLayoutY(fruit.getYlocation());
+                    fruit.getImageView().setLayoutX(fruit.getXlocation());
                 }
                 for (ISliceableObject fruit:myObjects
                      ) {
@@ -132,6 +128,7 @@ public class GuiGamePlayView {
                         objectsToRemove.add(fruit);
                 }
                 myObjects.removeAll(objectsToRemove);
+                objectsToRemove.clear();
             }
         };
         timer.start();

@@ -22,7 +22,7 @@ public class ClassicMode implements IGameModeStrategy {
         int x,y;
         x = new Random().nextInt(6)+1;
         for(int i = 0;i < x; i++) {
-            y = new Random().nextInt(1);//reduced to 1 for testing
+            y = new Random().nextInt(3);//reduced to 1 for testing
             localList.add(fruitFactory.getFruits(y));
         }
         return localList;
