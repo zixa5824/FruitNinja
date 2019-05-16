@@ -1,5 +1,9 @@
+package Game;
+
 import GameModes.IGameModeStrategy;
 import SliceableObjects.ISliceableObject;
+
+
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -13,24 +17,24 @@ import java.util.List;
 public class GameController implements GameActions {
 	private int score = 0;
 	private int lives = 0;
-	private IGameModeStrategy IGameModeStrategy;
+	private IGameModeStrategy gameModeStrategy;
 	//private
 	private String[] srcbrd1;
 	private String[] srcbrd2;
-	private static GameController A;
+	private static GameController instance;
 	private GameController() {}
 
 
 
 	public static GameController getInstance() {
-		if (A == null)
-			A = new GameController();
-		return A; }
+		if (instance == null)
+			instance = new GameController();
+		return instance; }
 
 
 
 	public void newGame(IGameModeStrategy IGameModeStrategy) {
-		this.IGameModeStrategy = IGameModeStrategy;
+		this.gameModeStrategy = IGameModeStrategy;
 	}
 	public void scoreEdit(int change) {
 		score += change;
@@ -49,7 +53,7 @@ public class GameController implements GameActions {
 
 	@Override
 	public List<ISliceableObject> createGameObject(int time) {
-		return IGameModeStrategy.NewBatch(time);
+		return gameModeStrategy.NewBatch(time);
 	}
 
 	@Override
@@ -59,8 +63,19 @@ public class GameController implements GameActions {
 	}
 
 	@Override
-	public void sliceObjects() {
-		// TODO Auto-generated method stub
+	public void sliceObjects(List<ISliceableObject> objectsToSlice) {
+		gameModeStrategy.sliceObjects(objectsToSlice);
+	}
+
+	public void increaseScore(int score) {
+		this.score += score;
+	}
+
+	public void decreaseLives(int penalty) {
+
+	}
+
+	public void increaseLives(int boost) {
 
 	}
 
@@ -108,7 +123,7 @@ public class GameController implements GameActions {
 
 	@Override
 	public void resetGame() {
-		lives = IGameModeStrategy.getLives();
+		lives = gameModeStrategy.getInitialLives();
 		score = 0;
 	}
 

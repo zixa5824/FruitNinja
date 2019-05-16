@@ -1,3 +1,6 @@
+import Game.GameController;
+import GameModes.ClassicMode;
+import GameModes.IGameModeStrategy;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
@@ -67,6 +70,8 @@ public class GuiMainMenu{
         //-----
         classicBtn.setOnAction(e->{
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+            IGameModeStrategy gameMode = new ClassicMode();
+            GameController.getInstance().newGame(gameMode);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
         });

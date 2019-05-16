@@ -12,5 +12,8 @@ public class EasyDiff extends DifficultyDecorator{
     }
 
 
+    @Override
+    public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 
+    }
 }

@@ -12,7 +12,7 @@ public class HardDiff extends DifficultyDecorator{
 
 
     @Override
-    public int getLives() {
+    public int getInitialLives() {
         return 0;
     }
 
@@ -24,5 +24,10 @@ public class HardDiff extends DifficultyDecorator{
     @Override
     public List<ISliceableObject> NewBatch(int time) {
         return null;
+    }
+
+    @Override
+    public void sliceObjects(List<ISliceableObject> objectsToSlice) {
+
     }
 }

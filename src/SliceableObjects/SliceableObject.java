@@ -1,6 +1,5 @@
 package SliceableObjects;
 
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class SliceableObject implements ISliceableObject {
@@ -17,7 +16,38 @@ public abstract class SliceableObject implements ISliceableObject {
     protected boolean hasMovedOffScreen;
     protected String ObjectType;
     protected ImageView myImageView = new ImageView();
-    protected double standardPrefSize = 100;
+    protected double standardPrefSize = 130;
+    protected double localPrefSize;
+
+
+
+    public void move(double time) {
+
+        xLocation = xLocation + currentXVelocity*time/10;
+
+        yLocation = yLocation - currentYVelocity*time*1.5;
+
+        currentYVelocity -= fallingVelocity/170;
+
+        if (yLocation < 0) {
+            currentYVelocity = -currentYVelocity*time/10;
+        }
+
+        if (xLocation > 1200 - localPrefSize) {
+            currentXVelocity= -currentXVelocity*time/30;
+        } else if (xLocation < 0) {
+            currentXVelocity = -currentXVelocity*time/30;
+        }
+
+    }
+
+    @Override
+    public Boolean hasMovedOffScreen() {
+        if (this.yLocation < 810) {
+            return true;
+        }
+        else return false;
+    }
 
 
 
@@ -53,17 +83,13 @@ public abstract class SliceableObject implements ISliceableObject {
 
     @Override
     public Boolean isSliced() {
-        return null;
+
+        return this.isSliced;
     }
 
     @Override
-    public Boolean hasMovedOffScreen() {
-        return null;
-    }
-
-    @Override
-    public void slice() {
-
+    public int slice() {
+        return 0;
     }
 
     @Override
@@ -71,11 +97,6 @@ public abstract class SliceableObject implements ISliceableObject {
         return this.myImageView;
     }
 
-    @Override
-    public void move(double time) {
-
-
-    }
 
     @Override
     public double getXVelocity() {
@@ -87,10 +108,6 @@ public abstract class SliceableObject implements ISliceableObject {
         return this.yVelocity;
     }
 
-    @Override
-    public Image[] getMyImage() {
-        return new Image[0];
-    }
 
 
 

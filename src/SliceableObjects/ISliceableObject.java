@@ -92,7 +92,7 @@ public interface ISliceableObject {
     /*
      *it is used to slice the object
      */
-    void slice();
+    int slice();
 
 
 
@@ -104,7 +104,6 @@ public interface ISliceableObject {
     fruit object.
     */
     void move(double time);
-
 
 
 

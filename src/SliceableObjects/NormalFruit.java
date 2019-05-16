@@ -13,8 +13,9 @@ public class NormalFruit extends Fruit {
         this.xLocation = i.nextInt(900);
         this.associatedScore = 100;
         this.ObjectType = "NormalFruit";
-        this.initialVelocity = 30;
-        this.fallingVelocity = 20;
+        this.isSliced = false;
+        this.initialVelocity = 25;
+        this.fallingVelocity = 18;
         if (i.nextBoolean()) {
             this.currentXVelocity = initialVelocity;
         } else {
@@ -25,13 +26,14 @@ public class NormalFruit extends Fruit {
         this.myImageView = new ImageView(this.getMyImage()[0]);
         this.myImageView.setLayoutX(xLocation);
         this.myImageView.setLayoutY(yLocation);
-        this.myImageView.setFitWidth(standardPrefSize);
-        this.myImageView.setFitHeight(standardPrefSize);
+        localPrefSize = standardPrefSize;
+        this.myImageView.setFitWidth(localPrefSize);
+        this.myImageView.setFitHeight(localPrefSize);
     }
     public Image[] getMyImage() {
         Image[] view= new Image[2];
         view[0] = new Image("file:resources/apple.png");
-        view[1] = new Image("file:appleCUT.png");
+        view[1] = new Image("file:resources/cutApple.png");
         return view;
     }
 

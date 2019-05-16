@@ -1,25 +1,23 @@
-import GameModes.ClassicMode;
+import Game.GameController;
 import SliceableObjects.ISliceableObject;
-import SliceableObjects.NormalFruit;
 import javafx.animation.AnimationTimer;
-import javafx.animation.RotateTransition;
+import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 
 public class GuiGamePlayView {
@@ -31,18 +29,19 @@ public class GuiGamePlayView {
     //private int score = 0;
     private Boolean scoreFlag = false;
     private List<ISliceableObject> currentObjects;
+    GameController gameController = GameController.getInstance();
+
 
     GuiGamePlayView(Stage stage)
     {
-            //GAME CONTROLLER
-            GameController gameController = GameController.getInstance();
-            ClassicMode gameMode = new ClassicMode();
-            gameController.newGame(gameMode);
-            currentObjects = gameController.createGameObject(0);
+        //GAME CONTROLLER
+//            ClassicMode gameMode = new ClassicMode();
+//            gameController.newGame(gameMode);
             ////////////////////////////////////////////////////
             //-------
-            Image image = new Image("file:backgroundClassic.jpg");
+            Image image = new Image("file:background.jpg");
             ImageView ivBackGround = new ImageView(image);
+            ivBackGround.setMouseTransparent(true);
             ivBackGround.setPreserveRatio(false);
             ivBackGround.setFocusTraversable(false);
             ivBackGround.setFitWidth(1220);
@@ -57,6 +56,7 @@ public class GuiGamePlayView {
             scoreLabel.setLayoutY(40);
             //-------
             Ellipse ellipse = new Ellipse(120, 50);
+            ellipse.setMouseTransparent(true);
             ellipse.setFill(Color.DARKRED);
             ellipse.setLayoutX(601);
             ellipse.setLayoutY(64);
@@ -65,26 +65,10 @@ public class GuiGamePlayView {
         //////////////////////////////////////////////////////////////////////
 
 
-
-
-
-
-        currentObjects = gameController.createGameObject(0);
-        ImageView ivApple = currentObjects.get(0).getImageView();
-        ivApple.setFitHeight(150);
-        ivApple.setFitWidth(131);
-        ivApple.setPreserveRatio(false);
-        //STARTING LOCATION
-        ivApple.setLayoutY(800);
-        ivApple.setLayoutX(300);
-
-        Path path = new Path();
-        path.getElements().add (new MoveTo(1200, 800));
-
-        RotateTransition appleRotate = new RotateTransition(Duration.millis(4500), ivApple);
-        appleRotate.setCycleCount(3);
-        appleRotate.setFromAngle(0);
-        appleRotate.setToAngle(360);
+//        RotateTransition appleRotate = new RotateTransition(Duration.millis(4500), ivApple);
+//        appleRotate.setCycleCount(3);
+//        appleRotate.setFromAngle(0);
+//        appleRotate.setToAngle(360);
 
         //ANIMATION TIMER , MAIN MOVEMENT
 
@@ -96,6 +80,8 @@ public class GuiGamePlayView {
 
         ArrayList<ISliceableObject> myObjects = new ArrayList<>();
         ArrayList<ISliceableObject> objectsToRemove = new ArrayList<>();
+        ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
+        HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
         pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel);
 
@@ -113,6 +99,15 @@ public class GuiGamePlayView {
 
                     for (ISliceableObject object:myObjects
                          ) {
+                        objectsOnScreen.put(object.getImageView(), object);
+                        object.getImageView().setOnMouseMoved(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                if (objectsOnScreen.get(event.getTarget()).isSliced() == false) {
+                                    objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
+                                }
+                            }
+                        });
                         pane.getChildren().add(object.getImageView());
                     }
                 }
@@ -127,18 +122,38 @@ public class GuiGamePlayView {
                     if(fruit.getYlocation() > 900)
                         objectsToRemove.add(fruit);
                 }
+                slice(objectsToSlice);
+                objectsToSlice.clear();
                 myObjects.removeAll(objectsToRemove);
                 objectsToRemove.clear();
+                scoreLabel.setText("Current Score: "+ gameController.getScore());
+            ///////////////////////////////////////////////////////////////////////////////
+
+
+
+
             }
         };
         timer.start();
 
-//
-//        ivApple.setOnMouseMoved(e-> {
-//            ivApple.setImage(appleCut);
-//        });
 
 
+
+
+    }
+
+    public void prepareForSlice(ImageView imageView)
+    {
+
+    }
+
+    public void slice(List<ISliceableObject> objectsToSlice) {
+
+        gameController.sliceObjects(objectsToSlice);
+        for (ISliceableObject object:objectsToSlice
+             ) {
+            object.getImageView().setImage(object.getMyImage()[1]);
+        }
     }
 
     public Scene getScene() {

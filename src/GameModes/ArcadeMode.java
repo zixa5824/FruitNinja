@@ -28,7 +28,12 @@ public class ArcadeMode implements IGameModeStrategy {
     }
 
     @Override
-    public int getLives() {
+    public void sliceObjects(List<ISliceableObject> objectsToSlice) {
+
+    }
+
+    @Override
+    public int getInitialLives() {
         // TODO Auto-generated method stub
         return 0;
     }

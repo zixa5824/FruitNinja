@@ -12,10 +12,11 @@ public class FastFruit extends Fruit {
         Random i = new Random();
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
-        this.associatedScore = 100;
+        this.associatedScore = 200;
+        this.isSliced = false;
         this.ObjectType = "FastFruit";
-        this.initialVelocity = 35;
-        this.fallingVelocity = 10;
+        this.initialVelocity = 30;
+        this.fallingVelocity = 15;
 
         if (i.nextBoolean()) {
             this.currentXVelocity = initialVelocity;
@@ -28,15 +29,16 @@ public class FastFruit extends Fruit {
         this.myImageView = new ImageView(this.getMyImage()[0]);
         this.myImageView.setLayoutX(xLocation);
         this.myImageView.setLayoutY(yLocation);
-        this.myImageView.setFitWidth(standardPrefSize);
-        this.myImageView.setFitHeight(standardPrefSize);
+        localPrefSize = standardPrefSize*0.9;
+        this.myImageView.setFitWidth(localPrefSize);
+        this.myImageView.setFitHeight(localPrefSize);
     }
 
 
     public Image[] getMyImage() {
         Image[] view= new Image[3];
         view[0] = new Image("file:resources/orange.png");
-        view[1] = new Image("file:orangeCUT.png");
+        view[1] = new Image("file:resources/cutOrange.png");
 
         return view;
     }

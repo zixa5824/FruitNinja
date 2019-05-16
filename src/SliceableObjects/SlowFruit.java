@@ -12,7 +12,8 @@ public class SlowFruit extends Fruit {
         Random i = new Random();
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
-        this.associatedScore = 100;
+        this.associatedScore = 50;
+        this.isSliced = false;
         this.ObjectType = "SlowFruit";
         this.initialVelocity = 17;
         this.fallingVelocity = 6;
@@ -23,11 +24,12 @@ public class SlowFruit extends Fruit {
         }
         this.currentYVelocity = initialVelocity/5;
 
+        localPrefSize = standardPrefSize*1.5;
         this.myImageView = new ImageView(this.getMyImage()[0]);
         this.myImageView.setLayoutX(xLocation);
         this.myImageView.setLayoutY(yLocation);
-        this.myImageView.setFitWidth(standardPrefSize*1.5);
-        this.myImageView.setFitHeight(standardPrefSize*1.5);
+        this.myImageView.setFitWidth(localPrefSize);
+        this.myImageView.setFitHeight(localPrefSize);
     }
 
 
@@ -35,7 +37,7 @@ public class SlowFruit extends Fruit {
     public Image[] getMyImage() {
         Image[] view= new Image[3];
         view[0] = new Image("file:resources/watermelon.png");
-        view[1] = new Image("file:watermelonCUT.png");
+        view[1] = new Image("file:resources/cutWatermelon.png");
         return view;
     }
 

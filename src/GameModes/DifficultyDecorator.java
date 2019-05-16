@@ -9,7 +9,7 @@ public abstract class DifficultyDecorator implements IGameModeStrategy {
     protected IGameModeStrategy gameMode;
 
     @Override
-    public int getLives() {
+    public int getInitialLives() {
         return 0;
     }
 
