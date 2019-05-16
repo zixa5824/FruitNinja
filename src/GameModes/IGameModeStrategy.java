@@ -12,6 +12,7 @@ public interface IGameModeStrategy {
 
     public List<ISliceableObject> NewBatch(int time);
 
-
+    public void goOffScreen(List<ISliceableObject> objectsOffScreen);
+    
     void sliceObjects(List<ISliceableObject> objectsToSlice);
 }

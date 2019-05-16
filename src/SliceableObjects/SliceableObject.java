@@ -33,10 +33,10 @@ public abstract class SliceableObject implements ISliceableObject {
             currentYVelocity = -currentYVelocity*time/10;
         }
 
-        if (xLocation > 1200 - localPrefSize) {
-            currentXVelocity= -currentXVelocity*time/30;
+        if (xLocation >= 1200 - localPrefSize) {
+            currentXVelocity= -currentXVelocity*time/30 -5;
         } else if (xLocation < 0) {
-            currentXVelocity = -currentXVelocity*time/30;
+            currentXVelocity = -currentXVelocity*time/30 +5;
         }
 
     }

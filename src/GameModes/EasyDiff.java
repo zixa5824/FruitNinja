@@ -13,6 +13,11 @@ public class EasyDiff extends DifficultyDecorator{
 
 
     @Override
+    public void goOffScreen(List<ISliceableObject> objectsOffScreen) {
+
+    }
+
+    @Override
     public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 
     }

@@ -11,5 +11,10 @@ public class FatalBomb extends Bomb {
         return view;
     }
 
+	@Override
+	public int offscreen() {
+		return 0;
+	}
+
 
 }

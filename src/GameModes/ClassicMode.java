@@ -12,8 +12,8 @@ import java.util.Random;
 
 public class ClassicMode implements IGameModeStrategy {
 
-
-    int initialLives = 3;
+    private GameController gameController = GameController.getInstance();
+    private int initialLives = 3;
 
     @Override
     public int timerType() {
@@ -36,24 +36,34 @@ public class ClassicMode implements IGameModeStrategy {
 
     @Override
     public void sliceObjects(List<ISliceableObject> objectsToSlice) {
-        GameController gameController = GameController.getInstance();
         for (ISliceableObject object:objectsToSlice
         ) {
             int x = object.slice();
             if (object instanceof Fruit) {
-                gameController.increaseScore(x);
+                gameController.scoreEdit(x);
             }
             else if(object instanceof Bomb){
-                gameController.decreaseLives(x);
+                gameController.livesEdit(-x);
             }
             //ToDo: increase score by associated score if fruit, kill if bomb
         }
     }
-
+    @Override
+    public void goOffScreen(List<ISliceableObject> objectsOffScreen) {//bisho: new method for when objects go of screen 
+    	 for (ISliceableObject object:objectsOffScreen ) {
+    		            int x = object.offscreen();
+    		            if (object instanceof Fruit) 
+    		                gameController.livesEdit(-x);
+ 
+    		            }
+    		            
+        
+    }
+    
     @Override
     public int getInitialLives() {
 
-        return this.initialLives;
+        return initialLives;
     }
 
 

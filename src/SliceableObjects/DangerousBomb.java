@@ -15,4 +15,10 @@ public class DangerousBomb extends Bomb {
         return view;
     }
 
+	@Override
+	public int offscreen() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

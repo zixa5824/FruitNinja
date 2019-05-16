@@ -13,7 +13,7 @@ public interface ISliceableObject {
      */
     String getObjectType();
 
-
+    public int offscreen();
 
     public Image[] getMyImage();
 

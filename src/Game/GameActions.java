@@ -12,6 +12,7 @@ public interface GameActions {
     /*
      * update moving objects locations
      * */
+    public void throwOffScreen(List<ISliceableObject> objects);
     public void updateObjectsLocations();
     /*
     * it is used to slice fruits located in your swiping region

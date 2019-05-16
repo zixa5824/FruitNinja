@@ -1,5 +1,5 @@
 import Game.GameController;
-import GameModes.ClassicMode;
+import GameModes.*;
 import GameModes.IGameModeStrategy;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
@@ -69,14 +69,30 @@ public class GuiMainMenu{
 
         //-----
         classicBtn.setOnAction(e->{
-            GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             IGameModeStrategy gameMode = new ClassicMode();
             GameController.getInstance().newGame(gameMode);
+            GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
         });
         //-----
-
+        arcadeBtn.setOnAction(e->{
+            IGameModeStrategy gameMode = new ArcadeMode();
+            GameController.getInstance().newGame(gameMode);
+            GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+            stage.setScene(guiGameplayView.getScene());
+            stage.centerOnScreen();
+        });
+        //-----
+        
+        
+        scoreBoard.setOnAction(e->{
+            // bisho; when scoreboard scene is finished should be wired later
+        });
+        
+        
+        
+        
         Pane pane = new Pane();
         Image cursor1 = new Image("file:cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
