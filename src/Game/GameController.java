@@ -104,6 +104,7 @@ public class GameController implements GameActions {
 
 	@Override
 	public void sliceObjects(List<ISliceableObject> objectsToSlice) {
+
 		gameModeStrategy.sliceObjects(objectsToSlice);
 	}
 

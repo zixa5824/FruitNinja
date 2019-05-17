@@ -12,7 +12,7 @@ public class NormalFruit extends Fruit {
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
         this.associatedScore = 100;
-        this.associatedfallLiveloss=1;
+        this.associatedFallLiveLoss =1;
         this.ObjectType = "NormalFruit";
         this.isSliced = false;
         this.initialVelocity = 29;

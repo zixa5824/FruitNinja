@@ -4,6 +4,9 @@ import javafx.scene.image.ImageView;
 
 public abstract class SliceableObject implements ISliceableObject {
 
+
+    protected int associatedScore;
+    protected int associatedFallLiveLoss;
     protected double xLocation;
     protected double yLocation;
     private double yVelocity = 5, xVelocity = 5;

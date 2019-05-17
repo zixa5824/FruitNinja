@@ -13,7 +13,7 @@ public class FastFruit extends Fruit {
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
         this.associatedScore = 200;
-        this.associatedfallLiveloss = 1;
+        this.associatedFallLiveLoss = 1;
         this.isSliced = false;
         this.ObjectType = "FastFruit";
         this.initialVelocity = 30;
