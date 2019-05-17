@@ -3,6 +3,8 @@ package GameModes;
 import SliceableObjects.FastFruit;
 import SliceableObjects.ISliceableObject;
 
+import java.time.chrono.IsoChronology;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,13 +30,16 @@ public class EasyDiff extends DifficultyDecorator{
     public List<ISliceableObject> NewBatch() {
         Random i = new Random();
         List<ISliceableObject> thisList = gameMode.NewBatch();
-
+        List<ISliceableObject> toRemove = new ArrayList<>();
         for (ISliceableObject object:thisList
              ) {
             if (object instanceof FastFruit) {
-                thisList.remove(object);
+                toRemove.add(object);
             }
         }
+
+        thisList.removeAll(toRemove);
+
         if (thisList.size() > 4) {
             thisList.remove(i.nextInt(4));
         }
