@@ -2,7 +2,7 @@ package Game;
 
 import GameModes.IGameModeStrategy;
 import SliceableObjects.ISliceableObject;
-
+import javafx.scene.control.Label;
 
 
 import java.beans.XMLDecoder;
@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,6 +25,7 @@ public class GameController implements GameActions {
 	private String[] srcbrd2;
 	private static GameController instance;
 	private GameController() {}
+	private ArrayList<Label> observerLabels = new ArrayList<>();
 
 
 
@@ -32,7 +34,16 @@ public class GameController implements GameActions {
 			instance = new GameController();
 		return instance; }
 
+	public void addObserver(Label label) {
+		observerLabels.add(label);
+	}
 
+	public void updateObservers() {
+		for (Label label:observerLabels
+			 ) {
+			label.setText("Current Score: "+ score);
+		}
+	}
 
 	public void newGame(IGameModeStrategy IGameModeStrategy) {
 		this.gameModeStrategy = IGameModeStrategy;
