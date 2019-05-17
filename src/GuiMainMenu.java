@@ -70,7 +70,7 @@ public class GuiMainMenu{
         //-----
         classicBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ClassicMode();
-            IGameModeStrategy hard = new HardDiff(gameMode);
+            IGameModeStrategy hard = new EasyDiff(gameMode);
             GameController.getInstance().newGame(hard);
 //            GameController.getInstance().newGame(gameMode);
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);

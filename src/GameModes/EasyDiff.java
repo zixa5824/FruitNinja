@@ -1,8 +1,10 @@
 package GameModes;
 
+import SliceableObjects.FastFruit;
 import SliceableObjects.ISliceableObject;
 
 import java.util.List;
+import java.util.Random;
 
 public class EasyDiff extends DifficultyDecorator{
 
@@ -14,31 +16,47 @@ public class EasyDiff extends DifficultyDecorator{
 
     @Override
     public int getInitialLives() {
-        return 0;
+        return gameMode.getInitialLives();
     }
 
     @Override
     public int timerType() {
-        return 0;
+        return gameMode.timerType();
     }
 
     @Override
     public List<ISliceableObject> NewBatch() {
-        return null;
+        Random i = new Random();
+        List<ISliceableObject> thisList = gameMode.NewBatch();
+
+        for (ISliceableObject object:thisList
+             ) {
+            if (object instanceof FastFruit) {
+                thisList.remove(object);
+            }
+        }
+        if (thisList.size() > 4) {
+            thisList.remove(i.nextInt(4));
+        }
+        if(thisList.size() > 3)
+        {
+            thisList.remove(i.nextInt(3));
+        }
+        return thisList;
     }
 
     @Override
     public void goOffScreen(List<ISliceableObject> objectsOffScreen) {
-
+        gameMode.goOffScreen(objectsOffScreen);
     }
 
     @Override
     public void sliceObjects(List<ISliceableObject> objectsToSlice) {
-
+        gameMode.sliceObjects(objectsToSlice);
     }
 
     @Override
     public boolean isGameOver(int score, double timeS, int lives) {
-        return false;
+        return gameMode.isGameOver(score, timeS, lives);
     }
 }
