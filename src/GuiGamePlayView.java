@@ -5,8 +5,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -36,13 +39,11 @@ public class GuiGamePlayView {
     private Boolean scoreFlag = false;
     private List<ISliceableObject> currentObjects;
     GameController gameController = GameController.getInstance();
-
+    private boolean flag=false;
 
     GuiGamePlayView(Stage stage)
     {
-        //GAME CONTROLLER
-//            ClassicMode gameMode = new ClassicMode();
-//            gameController.newGame(gameMode);
+            //BISHO: KNOW PROBS FRUITS OVERLAY BUTTONS DURING PAUSE , FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
             ////////////////////////////////////////////////////
             //-------
             Image image = new Image("file:background.jpg");
@@ -54,35 +55,68 @@ public class GuiGamePlayView {
             ivBackGround.setFitHeight(820);
             //-------
             Label scoreLabel = new Label("Current Score:  " + gameController.getScore());
-            scoreLabel.setFont(Font.font("Calibri (Body)", 22));
+            scoreLabel.setFont(Font.font("Bradley Hand ITC", 22));
             scoreLabel.setTextFill(Color.GOLDENROD);
             scoreLabel.setPrefHeight(49);
             scoreLabel.setPrefWidth(200);
             scoreLabel.setLayoutX(523);
             scoreLabel.setLayoutY(40);
-            //-------
            
+            //------
+         
+            Label livesLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new live counter
+            livesLabel.setFont(Font.font("", 22));
+            livesLabel.setTextFill(Color.RED);
+            livesLabel.setPrefHeight(49);
+            livesLabel.setPrefWidth(200);
+            livesLabel.setLayoutX(900);
+            livesLabel.setLayoutY(40);
+            if(gameController.getLives()<0) {
+            	livesLabel.setVisible(false);
+            }
+            
+            
+          
+            Label timerLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new timer for arcade
+            timerLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
+            timerLabel.setTextFill(Color.YELLOW);
+            timerLabel.setPrefHeight(49);
+            timerLabel.setPrefWidth(200);
+            timerLabel.setLayoutX(900);
+            timerLabel.setLayoutY(40);
+            if(gameController.getTime()<0) {
+              	timerLabel.setVisible(false);
+                }
+            
+            
+            
+            
+            //-------
             Ellipse ellipse = new Ellipse(120, 50);
             ellipse.setMouseTransparent(true);
             ellipse.setFill(Color.DARKRED);
             ellipse.setLayoutX(601);
             ellipse.setLayoutY(64);
             ellipse.setOpacity(0.5);
-            //------
- Label livesLabel = new Label("LIVES:  " + gameController.getLives());
-            livesLabel.setFont(Font.font("Calibri (Body)", 22));
-            livesLabel.setTextFill(Color.RED);
-            livesLabel.setPrefHeight(49);
-            livesLabel.setPrefWidth(200);
-            livesLabel.setLayoutX(900);
-            livesLabel.setLayoutY(40);
             //-------
             Ellipse ellipse1 = new Ellipse(80, 30);
             ellipse1.setFill(Color.YELLOW);
             ellipse1.setLayoutX(940);
             ellipse1.setLayoutY(64);
             ellipse1.setOpacity(0.5);
+            if(gameController.getLives()<0) {
+              	ellipse1.setVisible(false);
+                }
             //------
+            Ellipse ellipse2 = new Ellipse(120, 30);
+            ellipse2.setFill(Color.GREEN);
+            ellipse2.setLayoutX(985);
+            ellipse2.setLayoutY(64);
+            ellipse2.setOpacity(0.5);
+            if(gameController.getTime()<0) {
+              	ellipse2.setVisible(false);
+                }
+            //-------
             Circle circle = new Circle(50);
             Button pauseBtn = new Button("PAUSE");
             pauseBtn.setPrefWidth(90);
@@ -125,6 +159,8 @@ public class GuiGamePlayView {
             returntomainBtn.setShape(circle);
             returntomainBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
             returntomainBtn.setTextFill(Paint.valueOf("White"));
+            
+            
             //--------
             contuineBtn.setVisible(false);
             saveBtn.setVisible(false);
@@ -165,7 +201,7 @@ public class GuiGamePlayView {
         ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
         HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
-        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,pauseBtn,contuineBtn,resetBtn,saveBtn,returntomainBtn);
+        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,contuineBtn,resetBtn,saveBtn,returntomainBtn,timerLabel);
 
         for (ISliceableObject object:myObjects
         ) {
@@ -206,16 +242,26 @@ public class GuiGamePlayView {
                 myObjects.removeAll(objectsToRemove);
                 moveOffScreen(objectsToRemove);
                 objectsToRemove.clear();
+                gameController.timeEdit((double)-1/30); //bisho: NOT IN SYNC WITH ANIMATION TIMER YET TO FIX LATER
                 scoreLabel.setText("Current Score: "+ gameController.getScore());
                 livesLabel.setText("LIVES: "+ gameController.getLives());
+                timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
+                if(gameController.checkGameOver()) {
+                	timer.stop();
+                	Alert Alert1 = new Alert(AlertType.INFORMATION);
+        			Alert1.setTitle("GAME OVER");
+        			Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
+        			Alert1.setHeaderText(null);
+        			Alert1.show();
+        
+    			}
             ///////////////////////////////////////////////////////////////////////////////
-
-
-
 
             }
         };
         timer.start();
+        
+    
 
         pauseBtn.setOnAction(e->{
         	returntomainBtn.setVisible(true);
@@ -237,9 +283,9 @@ public class GuiGamePlayView {
         timer.start();
         }); 
 
+ }
 
-    }
-
+  
   
     public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen 
         for (ISliceableObject object:objectsToRemove) {
@@ -247,10 +293,7 @@ public class GuiGamePlayView {
         }
     }
 
-    public void prepareForSlice(ImageView imageView)
-    {
 
-    }
 
     public void slice(List<ISliceableObject> objectsToSlice) {
 
@@ -259,7 +302,6 @@ public class GuiGamePlayView {
              ) {
             object.getImageView().setImage(object.getMyImage()[1]);
         }
-        objectsToSlice.clear();
     }
 
     public Scene getScene() {

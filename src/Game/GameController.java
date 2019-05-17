@@ -17,6 +17,7 @@ import java.util.List;
 public class GameController implements GameActions {
 	private int score;
 	private int lives ;
+	private double timeS;
 	private IGameModeStrategy gameModeStrategy;
 	//private
 	private String[] srcbrd1;
@@ -26,54 +27,61 @@ public class GameController implements GameActions {
 
 
 
-    public static GameController getInstance() {
-        if (instance == null)
-		instance = new GameController();
-		return instance; 
+	public static GameController getInstance() {
+		if (instance == null)
+			instance = new GameController();
+		return instance; }
+
+
+
+	public void newGame(IGameModeStrategy IGameModeStrategy) {
+		this.gameModeStrategy = IGameModeStrategy;
+		lives=gameModeStrategy.getInitialLives();//bisho: we must set initial lives at the start and set the score to 0;
+		timeS=gameModeStrategy.timerType();	
+		score=0;
+	}
+	public void scoreEdit(int change) {
+		score += change;
+	}
+	public void livesEdit(int change) {
+		lives += change;
+	}
+	public int getScore() {
+		return score;
+	}
+	public int getLives() {
+		
+		return lives;
+	}
+	public double getTime() {
+		return timeS;
+	}
+	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
+		timeS += change;
 	}
 
-    public void newGame(IGameModeStrategy gameModeStrategy) {
-        this.gameModeStrategy = gameModeStrategy;
-        lives = gameModeStrategy.getInitialLives();//bisho: we must set initial lives at the start and set the score to 0;
+	@Override
+	public boolean checkGameOver() {
+		return gameModeStrategy.isGameOver(score,timeS, lives);
 
-        score = 0;
-    }
-
-
-    public void scoreEdit(int change) {
-        score += change;
-    }
-
-    public void livesEdit(int change) {
-        lives += change;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getLives() {
-        return lives;
-    }
-
+	}
 
 	@Override
 	public List<ISliceableObject> createGameObject(int time) {
 		return gameModeStrategy.NewBatch(time); 
+		
 	}
+
 	@Override
 	public void updateObjectsLocations() {
 		// TODO Auto-generated method stub
-	}
 
+	}
 
 	@Override
 	public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 		gameModeStrategy.sliceObjects(objectsToSlice);
 	}
-
-
-
 	@Override
 	public void throwOffScreen(List<ISliceableObject> objects) {
 		gameModeStrategy.goOffScreen(objects);
@@ -126,6 +134,13 @@ public class GameController implements GameActions {
 	public void resetGame() {
 		lives = gameModeStrategy.getInitialLives();
 		score = 0;
-	}    
+	}
+
+
+
+
+
+
+
 
 }

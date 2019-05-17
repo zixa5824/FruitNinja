@@ -20,13 +20,12 @@ public class ArcadeMode implements IGameModeStrategy {
 
     @Override
     public List<ISliceableObject> NewBatch(int time) {
-
-        List<ISliceableObject> localList=new ArrayList<ISliceableObject>();
-        FruitFactory fruitFactory= new FruitFactory();
+        List<ISliceableObject> localList = new ArrayList<>();
+        FruitFactory fruitFactory = new FruitFactory();
         int x,y;
-        x=new Random().nextInt(6);
-        for(int i=0;i<x;i++) {
-            y=new Random().nextInt(4);//no bomb in arcade
+        x = new Random().nextInt(4)+1;
+        for(int i = 0;i < x; i++) {
+            y = new Random().nextInt(3);//BISHO : NO BOMBS IN ARCADE
             localList.add(fruitFactory.getFruits(y));
         }
         return localList;
@@ -54,6 +53,14 @@ public class ArcadeMode implements IGameModeStrategy {
 	@Override
 	public void goOffScreen(List<ISliceableObject> objectsOffScreen) {
 		// do nothing at all
+		
+	}
+
+	@Override
+	public boolean isGameOver(int score, double timeS, int lives) {
+		if(timeS<0)
+			return true;
+		else return false;
 		
 	}
 

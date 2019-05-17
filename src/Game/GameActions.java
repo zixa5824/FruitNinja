@@ -5,6 +5,8 @@ import SliceableObjects.ISliceableObject;
 import java.util.List;
 
 public interface GameActions {
+    boolean checkGameOver();
+
     /*
      *@return created game object
      */

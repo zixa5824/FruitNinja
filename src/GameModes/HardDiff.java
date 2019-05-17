@@ -35,4 +35,9 @@ public class HardDiff extends DifficultyDecorator{
     public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 
     }
+
+    @Override
+    public boolean isGameOver(int score, double timeS, int lives) {
+        return false;
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class ClassicMode implements IGameModeStrategy {
 
-    private GameController gameController = GameController.getInstance();
+	private GameController gameController = GameController.getInstance();
     private int initialLives = 3;
 
     @Override
@@ -26,9 +26,9 @@ public class ClassicMode implements IGameModeStrategy {
         List<ISliceableObject> localList = new ArrayList<>();
         FruitFactory fruitFactory = new FruitFactory();
         int x,y;
-        x = new Random().nextInt(3)+1;
+        x = new Random().nextInt(4)+1;
         for(int i = 0;i < x; i++) {
-            y = new Random().nextInt(3);//reduced to 1 for testing
+            y = new Random().nextInt(3);
             localList.add(fruitFactory.getFruits(y));
         }
         return localList;
@@ -65,6 +65,13 @@ public class ClassicMode implements IGameModeStrategy {
 
         return initialLives;
     }
+
+	@Override
+	public boolean isGameOver(int score, double timeS, int lives) {
+		if(lives<=0)
+			return true;
+		else return false;
+	}
 
 
 
