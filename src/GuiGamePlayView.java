@@ -228,15 +228,9 @@ public class GuiGamePlayView {
                         pane.getChildren().add(object.getImageView());
                     }
                 }
-                for (ISliceableObject fruit:myObjects) {
-                    fruit.move(3);
-                    fruit.getImageView().setLayoutY(fruit.getYlocation());
-                    fruit.getImageView().setLayoutX(fruit.getXlocation());
-                }
-                for (ISliceableObject fruit:myObjects) {
-                    if(fruit.getYlocation() > 900)
-                        objectsToRemove.add(fruit);
-                }
+                gameController.updateObjectsLocations(myObjects, objectsToRemove);
+
+
                 slice(objectsToSlice);
                 objectsToSlice.clear();
                 myObjects.removeAll(objectsToRemove);

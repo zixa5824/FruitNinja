@@ -15,7 +15,7 @@ public interface GameActions {
      * update moving objects locations
      * */
     public void throwOffScreen(List<ISliceableObject> objects);
-    public void updateObjectsLocations();
+    public void updateObjectsLocations(List<ISliceableObject> myObjects, List<ISliceableObject> objectsToRemove);
     /*
     * it is used to slice fruits located in your swiping region
     This method can take your swiping region as parameters (they

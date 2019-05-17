@@ -87,8 +87,18 @@ public class GameController implements GameActions {
 	}
 
 	@Override
-	public void updateObjectsLocations() {
-		// TODO Auto-generated method stub
+	public void updateObjectsLocations(List<ISliceableObject> myObjects,
+									   List<ISliceableObject> objectsToRemove) {
+
+		for (ISliceableObject fruit:myObjects) {
+			fruit.move(3);
+			fruit.getImageView().setLayoutY(fruit.getYlocation());
+			fruit.getImageView().setLayoutX(fruit.getXlocation());
+		}
+		for (ISliceableObject fruit:myObjects) {
+			if(fruit.getYlocation() > 900)
+				objectsToRemove.add(fruit);
+		}
 
 	}
 
