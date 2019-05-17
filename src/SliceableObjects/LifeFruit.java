@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class LifeFruit extends Fruit {
-	
+	private int lifechange=1;
 	 public LifeFruit() {
 
 	        Random i = new Random();
@@ -39,7 +39,7 @@ public class LifeFruit extends Fruit {
 	    	if(!isSliced) {
 	    		isSliced=true;
 	    	 GameController c = GameController.getInstance();
-	    	 c.livesEdit(1);
+	    	 c.livesEdit(lifechange);
 		    	}	
 		    	return 0;
 		    }
