@@ -287,10 +287,8 @@ public class GuiGamePlayView {
 
   
   
-    public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen 
-        for (ISliceableObject object:objectsToRemove) {
-        	 gameController.throwOffScreen(objectsToRemove);
-        }
+    public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen
+        gameController.throwOffScreen(objectsToRemove);
     }
 
 

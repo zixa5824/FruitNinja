@@ -19,7 +19,7 @@ public class ArcadeMode implements IGameModeStrategy {
     }
 
     @Override
-    public List<ISliceableObject> NewBatch(int time) {
+    public List<ISliceableObject> NewBatch() {
         List<ISliceableObject> localList = new ArrayList<>();
         FruitFactory fruitFactory = new FruitFactory();
         int x,y;

@@ -13,6 +13,21 @@ public class EasyDiff extends DifficultyDecorator{
 
 
     @Override
+    public int getInitialLives() {
+        return 0;
+    }
+
+    @Override
+    public int timerType() {
+        return 0;
+    }
+
+    @Override
+    public List<ISliceableObject> NewBatch() {
+        return null;
+    }
+
+    @Override
     public void goOffScreen(List<ISliceableObject> objectsOffScreen) {
 
     }

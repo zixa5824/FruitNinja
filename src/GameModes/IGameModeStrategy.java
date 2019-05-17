@@ -10,7 +10,7 @@ public interface IGameModeStrategy {
 
     public int timerType () ;
 
-    public List<ISliceableObject> NewBatch(int time);
+    public List<ISliceableObject> NewBatch();
 
     public void goOffScreen(List<ISliceableObject> objectsOffScreen);
     

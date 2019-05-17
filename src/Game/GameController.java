@@ -41,6 +41,7 @@ public class GameController implements GameActions {
 		score=0;
 	}
 	public void scoreEdit(int change) {
+
 		score += change;
 	}
 	public void livesEdit(int change) {
@@ -54,9 +55,11 @@ public class GameController implements GameActions {
 		return lives;
 	}
 	public double getTime() {
+
 		return timeS;
 	}
 	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
+
 		timeS += change;
 	}
 
@@ -68,7 +71,7 @@ public class GameController implements GameActions {
 
 	@Override
 	public List<ISliceableObject> createGameObject(int time) {
-		return gameModeStrategy.NewBatch(time); 
+		return gameModeStrategy.NewBatch();
 		
 	}
 
