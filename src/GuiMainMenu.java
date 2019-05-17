@@ -24,49 +24,58 @@ public class GuiMainMenu{
     GuiMainMenu(Stage stage)
     {
         //-------
-        Image image = new Image("file:oneto.jpg");
+        Image image = new Image("file:fruit_ninja.gif");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setPreserveRatio(false);
         ivBackGround.setFocusTraversable(false);
-        ivBackGround.setFitWidth(1220);
-        ivBackGround.setFitHeight(820);
+        ivBackGround.setFitWidth(1200);
+        ivBackGround.setFitHeight(800);
 
         //-------
 
         //-------
-        Button classicBtn = new Button("Classic");
+        Button classicBtn = new Button("CLASSIC");
         Circle circle = new Circle(50);
         classicBtn.setPrefWidth(134);
         classicBtn.setPrefHeight(80);
         classicBtn.setLayoutX(533);
-        classicBtn.setLayoutY(256);
+        classicBtn.setLayoutY(150);
         classicBtn.setOpacity(0.85);
         classicBtn.setShape(circle);
-        classicBtn.setBackground(new Background(new BackgroundFill(Color.ORANGERED, CornerRadii.EMPTY, Insets.EMPTY)));
+        classicBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         classicBtn.setTextFill(Paint.valueOf("White"));
         //--------
-        Button arcadeBtn = new Button("Arcade");
+        Button arcadeBtn = new Button("ARCADE");
         arcadeBtn.setPrefWidth(134);
         arcadeBtn.setPrefHeight(80);
         arcadeBtn.setLayoutX(533);
-        arcadeBtn.setLayoutY(369);
+        arcadeBtn.setLayoutY(300);
         arcadeBtn.setOpacity(0.85);
         arcadeBtn.setShape(circle);
-        arcadeBtn.setBackground(new Background(new BackgroundFill(Color.ORANGERED, CornerRadii.EMPTY, Insets.EMPTY)));
+        arcadeBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         arcadeBtn.setTextFill(Paint.valueOf("White"));
         //-------
         //--------
-        Button scoreBoard = new Button("Score Board");
+        Button scoreBoard = new Button("SCORE BOARD");
         scoreBoard.setPrefWidth(134);
         scoreBoard.setPrefHeight(80);
         scoreBoard.setLayoutX(533);
-        scoreBoard.setLayoutY(503);
+        scoreBoard.setLayoutY(450);
         scoreBoard.setOpacity(0.85);
         scoreBoard.setShape(circle);
-        scoreBoard.setBackground(new Background(new BackgroundFill(Color.ORANGERED, CornerRadii.EMPTY, Insets.EMPTY)));
+        scoreBoard.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         scoreBoard.setTextFill(Paint.valueOf("White"));
         //-------
-
+        Button contuine = new Button("CONTINUE");
+        contuine.setPrefWidth(134);
+        contuine.setPrefHeight(80);
+        contuine.setLayoutX(533);
+        contuine.setLayoutY(600);
+        contuine.setOpacity(0.85);
+        contuine.setShape(circle);
+        contuine.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        contuine.setTextFill(Paint.valueOf("White"));
+        //-------
         //-----
         classicBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ClassicMode();
@@ -100,7 +109,7 @@ public class GuiMainMenu{
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200,800);
-        pane.getChildren().addAll(ivBackGround, classicBtn, scoreBoard, arcadeBtn);
+        pane.getChildren().addAll(ivBackGround, classicBtn, scoreBoard, arcadeBtn,contuine);
     }
 
     public Scene getScene() {

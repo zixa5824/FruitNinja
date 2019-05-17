@@ -4,16 +4,20 @@ public abstract class Fruit extends SliceableObject {
 
 
     public int slice() {
-
-        this.isSliced = true;
-        return associatedScore;
+     if(!isSliced) {
+        isSliced = true;
+        return associatedScore;}
+   return 0;
     }
     public int offscreen() {
-        this.hasMovedOffScreen = true;
+    	
+        if(!hasMovedOffScreen) {
+        	hasMovedOffScreen=true;
         if(isSliced == true)
-            return 0; //bisho: this condition is for when the object is already sliced
-                     // no life loss occur , can be done in a varity of ways but this is more direct
+            return 0; //bisho: this condition is for when the object is already sliced no life loss occur , can be done in a varity of ways but this is more direct
         else
             return associatedFallLiveLoss;
+        }
+        return 0;
     }
 }

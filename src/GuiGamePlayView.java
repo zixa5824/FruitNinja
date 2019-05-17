@@ -38,12 +38,12 @@ public class GuiGamePlayView {
     //private int score = 0;
     private Boolean scoreFlag = false;
     private List<ISliceableObject> currentObjects;
-    GameController gameController = GameController.getInstance();
+    private GameController gameController = GameController.getInstance();
     private boolean flag=false;
-
+private boolean runFlag=true;
     GuiGamePlayView(Stage stage)
     {
-            //BISHO: KNOW PROBS FRUITS OVERLAY BUTTONS DURING PAUSE , FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
+            //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
             ////////////////////////////////////////////////////
             //-------
             Image image = new Image("file:background.jpg");
@@ -127,14 +127,14 @@ public class GuiGamePlayView {
             pauseBtn.setShape(circle);
             pauseBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
             pauseBtn.setTextFill(Paint.valueOf("White"));
-            Button contuineBtn= new Button("CONTUINE");
-            contuineBtn.setPrefWidth(134);
-            contuineBtn.setPrefHeight(80);
-            contuineBtn.setLayoutX(533);
-            contuineBtn.setLayoutY(200);
-            contuineBtn.setShape(circle);
-            contuineBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
-            contuineBtn.setTextFill(Paint.valueOf("White"));
+            Button contBtn= new Button("CONTINUE");
+            contBtn.setPrefWidth(134);
+            contBtn.setPrefHeight(80);
+            contBtn.setLayoutX(533);
+            contBtn.setLayoutY(200);
+            contBtn.setShape(circle);
+            contBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
+            contBtn.setTextFill(Paint.valueOf("White"));
             Button resetBtn = new Button("RESET");
             resetBtn.setPrefWidth(134);
             resetBtn.setPrefHeight(80);
@@ -162,7 +162,7 @@ public class GuiGamePlayView {
             
             
             //--------
-            contuineBtn.setVisible(false);
+            contBtn.setVisible(false);
             saveBtn.setVisible(false);
             resetBtn.setVisible(false);
             returntomainBtn.setVisible(false);
@@ -201,7 +201,7 @@ public class GuiGamePlayView {
         ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
         HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
-        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,contuineBtn,resetBtn,saveBtn,returntomainBtn,timerLabel);
+        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,contBtn,resetBtn,saveBtn,returntomainBtn,timerLabel);
 
         for (ISliceableObject object:myObjects
         ) {
@@ -240,8 +240,14 @@ public class GuiGamePlayView {
                 scoreLabel.setText("Current Score: "+ gameController.getScore());
                 livesLabel.setText("LIVES: "+ gameController.getLives());
                 timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
-                if(gameController.checkGameOver()) {
-                    endGame();
+                if(gameController.checkGameOver()) {// bisho: gameover check (bool return) and alert box if true
+                	timer.stop();
+                	Alert Alert1 = new Alert(AlertType.INFORMATION);
+        			Alert1.setTitle("GAME OVER");
+        			Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
+        			Alert1.setHeaderText(null);
+        			Alert1.show();
+        
     			}
             ///////////////////////////////////////////////////////////////////////////////
 
@@ -253,21 +259,22 @@ public class GuiGamePlayView {
 
         pauseBtn.setOnAction(e->{
         	returntomainBtn.setVisible(true);
-        	   contuineBtn.setVisible(true);
+        	   contBtn.setVisible(true);
                saveBtn.setVisible(true);
                resetBtn.setVisible(true);
                pauseBtn.setVisible(false);
+               runFlag=false;
         	timer.stop();
         });
         
         
-        contuineBtn.setOnAction(e->{
+        contBtn.setOnAction(e->{
         	returntomainBtn.setVisible(false);
-        	   contuineBtn.setVisible(false);
+        	   contBtn.setVisible(false);
                saveBtn.setVisible(false);
                resetBtn.setVisible(false);
                pauseBtn.setVisible(true);
-        	
+               runFlag=true;
         timer.start();
         }); 
 

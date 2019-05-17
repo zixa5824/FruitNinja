@@ -16,14 +16,19 @@ public class FruitFactory {
                 return new FastFruit();
 
             case 3:
-                return new DangerousBomb();
+                return new LifeFruit();
 
             case 4:
-                return new FatalBomb();
-                /*
-	     case 5:
-		         return new SpecialBomb();
-		         break;*/
+                return new ExtraBonusFruit();
+                
+            case 5:
+            
+            return new DangerousBomb();
+            
+            case 6:
+            
+            return new FatalBomb();
+            
             default:
                 return null;
         }}
