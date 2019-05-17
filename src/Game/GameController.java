@@ -106,6 +106,8 @@ public class GameController implements GameActions {
 	public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 		gameModeStrategy.sliceObjects(objectsToSlice);
 	}
+
+
 	@Override
 	public void throwOffScreen(List<ISliceableObject> objects) {
 		gameModeStrategy.goOffScreen(objects);

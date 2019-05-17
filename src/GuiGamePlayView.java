@@ -241,13 +241,7 @@ public class GuiGamePlayView {
                 livesLabel.setText("LIVES: "+ gameController.getLives());
                 timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
                 if(gameController.checkGameOver()) {
-                	timer.stop();
-                	Alert Alert1 = new Alert(AlertType.INFORMATION);
-        			Alert1.setTitle("GAME OVER");
-        			Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
-        			Alert1.setHeaderText(null);
-        			Alert1.show();
-        
+                    endGame();
     			}
             ///////////////////////////////////////////////////////////////////////////////
 
@@ -279,6 +273,14 @@ public class GuiGamePlayView {
 
  }
 
+    public void endGame() {
+        timer.stop();
+        Alert Alert1 = new Alert(AlertType.INFORMATION);
+        Alert1.setTitle("GAME OVER");
+        Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
+        Alert1.setHeaderText(null);
+        Alert1.show();
+    }
   
   
     public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen
@@ -290,6 +292,7 @@ public class GuiGamePlayView {
     public void slice(List<ISliceableObject> objectsToSlice) {
 
         gameController.sliceObjects(objectsToSlice);
+
         for (ISliceableObject object:objectsToSlice
              ) {
             object.getImageView().setImage(object.getMyImage()[1]);
