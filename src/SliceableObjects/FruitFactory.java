@@ -20,15 +20,17 @@ public class FruitFactory {
         if(55<=type && type<70)
                 return new FastFruit();
 
-        if(70<=type && type<80)
+        if(73<=type && type<80)
             return new DangerousBomb();
-        if(80<=type && type<90)
 
+        if(88<=type && type<90)
             return new FatalBomb();
-        if(90<=type && type<=100)
+
+        if(95<=type && type<=100)
             return new LifeFruit();
-            else
-                return null;
+
+        else
+            return new NormalFruit();
         }
 
 
