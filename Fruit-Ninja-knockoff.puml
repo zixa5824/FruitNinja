@@ -16,18 +16,30 @@ package SliceableObjects {
 
     }
 
-    Class SliceableObject{
-        -xLocation:int
-        -yLocation:int
-        -maxHeight:int
-        -initialVelocity: int
-        -fallingVelocity: int
-        -isSliced: Boolean
-        -hasMovedOffScreen: Boolean
-        -ObjectType: String
-        -images: ImageView
-    }
 
+    abstract class Bomb
+    abstract class Fruit
+    abstract class SliceableObject {
+
+        #associatedScore: int
+        #associatedFallLiveLoss: int
+        #xLocation: double
+        #yLocation: double
+        #maxHeight: double
+        #initialVelocity: double
+        #fallingVelocity: double
+        #currentXVelocity: double
+        #currentYVelocity: double
+        #isSliced: boolean
+        #hasMovedOffScreen: boolean
+        #ObjectType: String
+        #myImageView: ImageView
+        #standardPrefSize: double
+        #localPrefSize: double
+
+        +move()
+
+        }
 
     ISliceableObject <|-- SliceableObject
 
@@ -37,13 +49,34 @@ package SliceableObjects {
     Fruit <|-- SlowFruit
     Fruit <|-- NormalFruit
     Fruit <|-- FastFruit
-    FastFruit <|-- LifeFruit
-    FastFruit <|-- ExtraBonusFruit
+    Fruit <|-- LifeFruit
+    Fruit <|-- ExtraBonusFruit
 
     Bomb <|-- DangerousBomb
     Bomb <|-- FatalBomb
 
 
 }
+package GameModes {
+interface IGameModeStrategy <<Interface>> {
+    +getInitialLives() : int
+    +timerType() : int
+    +NewBatch() :List<ISliceableObject>
+    +goOffScreen()
+    +sliceObjects():int
+    +isGameOver():boolean
+}
 
+IGameModeStrategy <-- ClassicMode
+IGameModeStrategy <-- ArcadeMode
+
+abstract class DifficultyDecorator
+
+IGameModeStrategy <-- DifficultyDecorator
+
+DifficultyDecorator <-- EasyMode
+DifficultyDecorator <-- HardMode
+
+
+}
 @enduml

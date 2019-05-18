@@ -8,4 +8,5 @@ public abstract class DifficultyDecorator implements IGameModeStrategy {
 
     protected IGameModeStrategy gameMode;
 
+
 }

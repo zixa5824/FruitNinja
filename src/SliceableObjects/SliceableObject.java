@@ -9,7 +9,6 @@ public abstract class SliceableObject implements ISliceableObject {
     protected int associatedFallLiveLoss;
     protected double xLocation;
     protected double yLocation;
-    private double yVelocity = 5, xVelocity = 5;
     protected double maxHeight = 650;
     protected double initialVelocity;
     protected double fallingVelocity;
@@ -99,18 +98,6 @@ public abstract class SliceableObject implements ISliceableObject {
     public ImageView getImageView() {
         return this.myImageView;
     }
-
-
-    @Override
-    public double getXVelocity() {
-        return this.xVelocity;
-    }
-
-    @Override
-    public double getYVelocity() {
-        return this.yVelocity;
-    }
-
 
 
 

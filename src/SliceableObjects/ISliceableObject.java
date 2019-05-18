@@ -36,22 +36,12 @@ public interface ISliceableObject {
 
 
 
-
-
     /*
      *@return max Y location that the object can reach on the screen
      */
     double getMaxHeight();
 
-
-
-    public double getXVelocity();
-
-    public double getYVelocity();
-
     ImageView getImageView();
-
-
 
     /*
      *@return velocity at which game object is thrown
