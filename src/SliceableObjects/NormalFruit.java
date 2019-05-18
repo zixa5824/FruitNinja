@@ -8,7 +8,6 @@ public class NormalFruit extends Fruit {
 
     public NormalFruit() {
 
-        Random i = new Random();
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
         this.associatedScore = 100;
@@ -18,9 +17,9 @@ public class NormalFruit extends Fruit {
         this.initialVelocity = 29;
         this.fallingVelocity = 20;
         if (i.nextBoolean()) {
-            this.currentXVelocity = initialVelocity;
+            this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
-            this.currentXVelocity = -initialVelocity;
+            this.currentXVelocity = -initialVelocity-i.nextInt(10);
         }
         this.currentYVelocity = initialVelocity/5;
 

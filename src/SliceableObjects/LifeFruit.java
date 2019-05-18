@@ -10,7 +10,6 @@ public class LifeFruit extends Fruit {
 	private int lifechange=1;
 	 public LifeFruit() {
 
-	        Random i = new Random();
 	        this.yLocation = 800;
 	        this.xLocation = i.nextInt(900);
 	        this.associatedScore = 0;

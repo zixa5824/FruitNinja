@@ -9,7 +9,6 @@ public class DangerousBomb extends Bomb {
 
 
     public DangerousBomb() {
-        Random i = new Random();
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
         this.associatedScore = 0;

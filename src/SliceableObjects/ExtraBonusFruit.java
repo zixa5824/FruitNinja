@@ -13,7 +13,6 @@ public class ExtraBonusFruit extends Fruit {
 
 	 public ExtraBonusFruit() {
 
-	        Random i = new Random();
 	        this.yLocation = 800;
 	        this.xLocation = i.nextInt(900);
 	        this.associatedScore = 0;

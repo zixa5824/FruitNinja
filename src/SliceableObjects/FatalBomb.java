@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class FatalBomb extends Bomb {
     public FatalBomb() {
-        Random i = new Random();
         this.yLocation = 800;
         this.xLocation = i.nextInt(900);
         this.associatedScore = 0;

@@ -2,9 +2,11 @@ package SliceableObjects;
 
 import javafx.scene.image.ImageView;
 
+import java.util.Random;
+
 public abstract class SliceableObject implements ISliceableObject {
 
-
+    protected Random i = new Random();
     protected int associatedScore;
     protected int associatedFallLiveLoss;
     protected double xLocation;
