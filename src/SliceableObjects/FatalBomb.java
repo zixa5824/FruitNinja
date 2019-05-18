@@ -20,9 +20,9 @@ public class FatalBomb extends Bomb {
 
 
         if (i.nextBoolean()) {
-            this.currentXVelocity = initialVelocity;
+            this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
-            this.currentXVelocity = -initialVelocity;
+            this.currentXVelocity = -initialVelocity-i.nextInt(10);
         }
         this.currentYVelocity = initialVelocity/5;
 

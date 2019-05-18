@@ -21,11 +21,11 @@ public class ExtraBonusFruit extends Fruit {
 	        this.ObjectType = "ExtraBonusFruit";
 	        this.initialVelocity = 22;
 	        this.fallingVelocity = 10;
-	        if (i.nextBoolean()) {
-	            this.currentXVelocity = initialVelocity;
-	        } else {
-	            this.currentXVelocity = -initialVelocity;
-	        }
+		 if (i.nextBoolean()) {
+			 this.currentXVelocity = initialVelocity+i.nextInt(10);
+		 } else {
+			 this.currentXVelocity = -initialVelocity-i.nextInt(10);
+		 }
 	        this.currentYVelocity = initialVelocity/5;
 
 	        localPrefSize = standardPrefSize*0.75;

@@ -18,9 +18,9 @@ public class SlowFruit extends Fruit {
         this.initialVelocity = 17;
         this.fallingVelocity = 6;
         if (i.nextBoolean()) {
-            this.currentXVelocity = initialVelocity;
+            this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
-            this.currentXVelocity = -initialVelocity;
+            this.currentXVelocity = -initialVelocity-i.nextInt(10);
         }
         this.currentYVelocity = initialVelocity/5;
 

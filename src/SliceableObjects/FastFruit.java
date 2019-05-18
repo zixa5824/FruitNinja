@@ -19,11 +19,10 @@ public class FastFruit extends Fruit {
         this.fallingVelocity = 15;
 
         if (i.nextBoolean()) {
-            this.currentXVelocity = initialVelocity;
+            this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
-            this.currentXVelocity = -initialVelocity;
+            this.currentXVelocity = -initialVelocity-i.nextInt(10);
         }
-
         this.currentYVelocity = initialVelocity/5;
 
         this.myImageView = new ImageView(this.getMyImage()[0]);

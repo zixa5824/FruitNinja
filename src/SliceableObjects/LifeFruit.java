@@ -18,11 +18,11 @@ public class LifeFruit extends Fruit {
 	        this.ObjectType = "LifeFruit";
 	        this.initialVelocity = 22;
 	        this.fallingVelocity = 10;
-	        if (i.nextBoolean()) {
-	            this.currentXVelocity = initialVelocity;
-	        } else {
-	            this.currentXVelocity = -initialVelocity;
-	        }
+		 if (i.nextBoolean()) {
+			 this.currentXVelocity = initialVelocity+i.nextInt(10);
+		 } else {
+			 this.currentXVelocity = -initialVelocity-i.nextInt(10);
+		 }
 	        this.currentYVelocity = initialVelocity/5;
 
 	        localPrefSize = standardPrefSize*0.5;

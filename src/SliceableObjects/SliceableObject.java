@@ -38,9 +38,9 @@ public abstract class SliceableObject implements ISliceableObject {
         }
 
         if (xLocation >= 1200 - localPrefSize) {
-            currentXVelocity= -currentXVelocity*time/30 -5;
+            currentXVelocity= -currentXVelocity*time/30 -i.nextInt(10)-5;
         } else if (xLocation < 0) {
-            currentXVelocity = -currentXVelocity*time/30 +5;
+            currentXVelocity = -currentXVelocity*time/30 +i.nextInt(10)+5;
         }
 
     }
@@ -89,11 +89,6 @@ public abstract class SliceableObject implements ISliceableObject {
     public Boolean isSliced() {
 
         return this.isSliced;
-    }
-
-    @Override
-    public int slice() {
-        return 0;
     }
 
     @Override
