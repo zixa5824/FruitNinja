@@ -162,10 +162,7 @@ private boolean runFlag=true;
             
             
             //--------
-            contBtn.setVisible(false);
-            saveBtn.setVisible(false);
-            resetBtn.setVisible(false);
-            returntomainBtn.setVisible(false);
+           
             //---------
             
            
@@ -201,7 +198,7 @@ private boolean runFlag=true;
         ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
         HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
-        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,contBtn,resetBtn,saveBtn,returntomainBtn,timerLabel);
+        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,timerLabel);
 
         for (ISliceableObject object:myObjects
         ) {
@@ -259,9 +256,7 @@ private boolean runFlag=true;
 
         pauseBtn.setOnAction(e->{
         	returntomainBtn.setVisible(true);
-        	   contBtn.setVisible(true);
-               saveBtn.setVisible(true);
-               resetBtn.setVisible(true);
+        	   pane.getChildren().addAll(contBtn,resetBtn,saveBtn,returntomainBtn);
                pauseBtn.setVisible(false);
                runFlag=false;
         	timer.stop();
@@ -270,9 +265,7 @@ private boolean runFlag=true;
         
         contBtn.setOnAction(e->{
         	returntomainBtn.setVisible(false);
-        	   contBtn.setVisible(false);
-               saveBtn.setVisible(false);
-               resetBtn.setVisible(false);
+            pane.getChildren().removeAll(contBtn,resetBtn,saveBtn,returntomainBtn);
                pauseBtn.setVisible(true);
                runFlag=true;
         timer.start();
