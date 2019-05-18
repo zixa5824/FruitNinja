@@ -29,7 +29,7 @@ public class GuiMainMenu{
     GuiMainMenu(Stage stage)
     {
         //-------
-        Image image = new Image("file:fruit_ninja.gif");
+        Image image = new Image("file:oneto.jpg");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setPreserveRatio(false);
         ivBackGround.setFocusTraversable(false);

@@ -40,7 +40,7 @@ public class GuiGamePlayView {
     private List<ISliceableObject> currentObjects;
     private GameController gameController = GameController.getInstance();
     private boolean flag=false;
-private boolean runFlag=true;
+    private boolean runFlag=true;
     GuiGamePlayView(Stage stage)
     {
             //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
@@ -162,7 +162,7 @@ private boolean runFlag=true;
             
             
             //--------
-           
+
             //---------
             
            
@@ -218,7 +218,7 @@ private boolean runFlag=true;
                             @Override
                             public void handle(MouseEvent event) {
                                 if (objectsOnScreen.get(event.getTarget()).isSliced() == false) {
-                                    objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
+                                    if(runFlag == true) objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
                                 }
                             }
                         });
@@ -238,13 +238,7 @@ private boolean runFlag=true;
                 livesLabel.setText("LIVES: "+ gameController.getLives());
                 timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
                 if(gameController.checkGameOver()) {// bisho: gameover check (bool return) and alert box if true
-                	timer.stop();
-                	Alert Alert1 = new Alert(AlertType.INFORMATION);
-        			Alert1.setTitle("GAME OVER");
-        			Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
-        			Alert1.setHeaderText(null);
-        			Alert1.show();
-        
+                	endGame();
     			}
             ///////////////////////////////////////////////////////////////////////////////
 
@@ -292,7 +286,6 @@ private boolean runFlag=true;
     public void slice(List<ISliceableObject> objectsToSlice) {
 
         gameController.sliceObjects(objectsToSlice);
-
         for (ISliceableObject object:objectsToSlice
              ) {
             object.getImageView().setImage(object.getMyImage()[1]);
