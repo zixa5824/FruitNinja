@@ -1,6 +1,7 @@
 package GameModes;
 
 import SliceableObjects.FastFruit;
+import SliceableObjects.FatalBomb;
 import SliceableObjects.ISliceableObject;
 
 import java.time.chrono.IsoChronology;
@@ -34,6 +35,9 @@ public class EasyDiff extends DifficultyDecorator{
         for (ISliceableObject object:thisList
              ) {
             if (object instanceof FastFruit) {
+                toRemove.add(object);
+            }
+            if (object instanceof FatalBomb) {
                 toRemove.add(object);
             }
         }

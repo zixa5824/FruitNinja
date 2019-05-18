@@ -34,7 +34,7 @@ public abstract class SliceableObject implements ISliceableObject {
         currentYVelocity -= fallingVelocity/170;
 
         if (yLocation < 0) {
-            currentYVelocity = -currentYVelocity*time/10;
+            currentYVelocity = -currentYVelocity*time/10-i.nextDouble()-.5;
         }
 
         if (xLocation >= 1200 - localPrefSize) {

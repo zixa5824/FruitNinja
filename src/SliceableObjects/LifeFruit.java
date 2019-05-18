@@ -16,8 +16,8 @@ public class LifeFruit extends Fruit {
 	        this.associatedFallLiveLoss=0;// no life loss from missing this one
 	        this.isSliced = false;
 	        this.ObjectType = "LifeFruit";
-	        this.initialVelocity = 22;
-	        this.fallingVelocity = 10;
+	        this.initialVelocity = 40;
+	        this.fallingVelocity = 38;
 		 if (i.nextBoolean()) {
 			 this.currentXVelocity = initialVelocity+i.nextInt(10);
 		 } else {

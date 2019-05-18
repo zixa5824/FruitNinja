@@ -15,8 +15,8 @@ public class SlowFruit extends Fruit {
         this.associatedFallLiveLoss =1;
         this.isSliced = false;
         this.ObjectType = "SlowFruit";
-        this.initialVelocity = 17;
-        this.fallingVelocity = 6;
+        this.initialVelocity = 20;
+        this.fallingVelocity = 10;
         if (i.nextBoolean()) {
             this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
