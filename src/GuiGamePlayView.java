@@ -47,14 +47,9 @@ public class GuiGamePlayView {
     private GameController gameController = GameController.getInstance();
     private boolean flag=false;
     private boolean runFlag=true;
-
-
-
-    private static final int SECONDS_PER_DAY     = 86_400;
-
-    private static final int SECONDS_PER_HOUR    = 3600;
-
-    private static final int SECONDS_PER_MINUTE  = 60;
+    long startTime = System.currentTimeMillis();
+    long old=0;
+    int secs=0,mins=0;
 
     GuiGamePlayView(Stage stage)
     {
@@ -70,11 +65,11 @@ public class GuiGamePlayView {
             ivBackGround.setFitHeight(820);
             //-------
             Label scoreLabel = new Label("Current Score:  " + gameController.getScore());
-            scoreLabel.setFont(Font.font("Bradley Hand ITC", 22));
+            scoreLabel.setFont(Font.font("Verdana", 20));
             scoreLabel.setTextFill(Color.GOLDENROD);
             scoreLabel.setPrefHeight(49);
-            scoreLabel.setPrefWidth(200);
-            scoreLabel.setLayoutX(523);
+            scoreLabel.setPrefWidth(300);
+            scoreLabel.setLayoutX(500);
             scoreLabel.setLayoutY(40);
            
             //------
@@ -89,10 +84,18 @@ public class GuiGamePlayView {
             if(gameController.getLives()<0) {
             	livesLabel.setVisible(false);
             }
-            
-            
+            //------
+            Label timeplayedLabel = new Label("time elapsed:       "); //bisho: new timer played for all modes
+            timeplayedLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 19));
+            timeplayedLabel.setTextFill(Color.YELLOW);
+            timeplayedLabel.setPrefHeight(49);
+            timeplayedLabel.setPrefWidth(400);
+            timeplayedLabel.setLayoutX(500);
+            timeplayedLabel.setLayoutY(80);
           
-            Label timerLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new timer for arcade
+            //------
+          
+            Label timerLabel = new Label("TIME LEFT:  " + gameController.getTime()); //bisho: new timer for arcade
             timerLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
             timerLabel.setTextFill(Color.YELLOW);
             timerLabel.setPrefHeight(49);
@@ -107,12 +110,12 @@ public class GuiGamePlayView {
             
             
             //-------
-            Ellipse ellipse = new Ellipse(120, 50);
-            ellipse.setMouseTransparent(true);
-            ellipse.setFill(Color.DARKRED);
-            ellipse.setLayoutX(601);
-            ellipse.setLayoutY(64);
-            ellipse.setOpacity(0.5);
+            Rectangle rec = new Rectangle(300, 120);
+            rec.setMouseTransparent(true);
+            rec.setFill(Color.DARKRED);
+            rec.setLayoutX(450);
+            rec.setLayoutY(20);
+            rec.setOpacity(0.5);
             //-------
             Ellipse ellipse1 = new Ellipse(80, 30);
             ellipse1.setFill(Color.YELLOW);
@@ -213,7 +216,7 @@ public class GuiGamePlayView {
         ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
         HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
-        pane.getChildren().addAll(ivBackGround, ellipse, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,timerLabel);
+        pane.getChildren().addAll(ivBackGround, rec, scoreLabel,livesLabel,ellipse1,ellipse2,pauseBtn,timerLabel,timeplayedLabel);
 
         for (ISliceableObject object:myObjects
         ) {
@@ -228,18 +231,21 @@ public class GuiGamePlayView {
             @Override
             public void handle(long now) {
 
-                //The timer is here, read the tutorial well.
-                if (now > lastTimerCall + 1_000_000_000l) {
-                    duration = duration.subtract(Duration.seconds(1));
-
-                    int remainingSeconds = (int) duration.toSeconds();
-
-                    int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
-                    int h = (remainingSeconds % SECONDS_PER_DAY) / SECONDS_PER_HOUR;
-                    if (m == 0 && h == 0) { endGame(); }
-
-                    timerLabel.setText(String.format("%02d", m));
-                }
+                //bisho: new timer plz dont mess around with it too much ^_^
+            	 
+            	    long timepassed=System.currentTimeMillis()-startTime;
+            	    long secondspassed=timepassed/1000;
+            	    
+            	   // System.out.println(secondspassed);
+            	    if(secondspassed>old) {
+                    gameController.timeEdit(-secondspassed+old);
+                   // gameController.setTime(gameController.getTime()-secondspassed+old);
+            	    old=secondspassed;
+            	    }
+                    timerLabel.setText("TIME LEFT: "+(int)(gameController.getTime()));
+                    secs=(int)secondspassed%60;
+                    mins=(int)secondspassed/60;
+                    timeplayedLabel.setText("time elapsed:  "+mins +" : "+secs);
 
 
                 if (myObjects.size() < 1) {
@@ -251,8 +257,8 @@ public class GuiGamePlayView {
                         object.getImageView().setOnMouseMoved(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
-                                if (objectsOnScreen.get(event.getTarget()).isSliced() == false) {
-                                    if(runFlag == true) objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
+                                if (objectsOnScreen.get(event.getTarget()).isSliced() == false&&runFlag == true) {
+                                     objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
                                 }
                             }
                         });
@@ -267,10 +273,8 @@ public class GuiGamePlayView {
                 myObjects.removeAll(objectsToRemove);
                 moveOffScreen(objectsToRemove);
                 objectsToRemove.clear();
-//                gameController.timeEdit((double)-1/30); //bisho: NOT IN SYNC WITH ANIMATION TIMER YET TO FIX LATER
                 scoreLabel.setText("Current Score: "+ gameController.getScore());
                 livesLabel.setText("LIVES: "+ gameController.getLives());
-                timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
                 if(gameController.checkGameOver()) {// bisho: gameover check (bool return) and alert box if true
                 	endGame();
     			}

@@ -70,6 +70,10 @@ public class GameController implements GameActions {
 
 		return timeS;
 	}
+	public void setTime(double timeS) { // for the timer
+
+		 this.timeS=timeS;
+	}
 	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
 //		if (now > lastTimerCall + 1_000_000_000l) {
 //			duration = duration.subtract(Duration.seconds(1));

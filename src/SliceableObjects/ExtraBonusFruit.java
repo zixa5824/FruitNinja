@@ -5,7 +5,7 @@ import java.util.Random;
 import Game.GameController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.omg.CORBA.PRIVATE_MEMBER;
+
 
 public class ExtraBonusFruit extends Fruit {
 
