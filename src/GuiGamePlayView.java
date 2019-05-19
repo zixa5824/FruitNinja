@@ -1,4 +1,5 @@
 import Game.GameController;
+import GameModes.EasyDiff;
 import SliceableObjects.ISliceableObject;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Timeline;
@@ -8,6 +9,7 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -26,10 +28,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.sound.midi.Sequence;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class GuiGamePlayView {
@@ -196,9 +195,7 @@ public class GuiGamePlayView {
             	//bisho; work in progress left untill all variables are determined 
             });
             returntomainBtn.setOnAction(e->{
-            	 GuiMainMenu g = new GuiMainMenu (stage);
-                 stage.setScene(g.getScene());
-                 stage.centerOnScreen();
+            	 backToMainMenu(stage);
             });
           
           
@@ -276,7 +273,7 @@ public class GuiGamePlayView {
                 scoreLabel.setText("Current Score: "+ gameController.getScore());
                 livesLabel.setText("LIVES: "+ gameController.getLives());
                 if(gameController.checkGameOver()) {// bisho: gameover check (bool return) and alert box if true
-                	endGame();
+                	endGame(stage);
     			}
             ///////////////////////////////////////////////////////////////////////////////
 
@@ -305,15 +302,25 @@ public class GuiGamePlayView {
 
  }
 
-    public void endGame() {
+    public void endGame(Stage stage) {
         timer.stop();
         Alert Alert1 = new Alert(AlertType.INFORMATION);
+        ButtonType back_to_menu = new ButtonType("Back to Menu");
+        ButtonType play_again = new ButtonType("Play again");
+//        Alert1.getButtonTypes().setAll(back_to_menu, play_again);
         Alert1.setTitle("GAME OVER");
         Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
         Alert1.setHeaderText(null);
+
+        Alert1.setOnHidden(event -> backToMainMenu(stage));
+
         Alert1.show();
+
+
+
     }
-  
+
+
   
     public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen
         gameController.throwOffScreen(objectsToRemove);
@@ -333,4 +340,12 @@ public class GuiGamePlayView {
     public Scene getScene() {
         return scene;
     }
+
+
+    public void backToMainMenu(Stage stage) {
+        GuiMainMenu g = new GuiMainMenu (stage);
+        stage.setScene(g.getScene());
+        stage.centerOnScreen();
+    }
+
 }

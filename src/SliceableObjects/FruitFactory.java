@@ -8,7 +8,7 @@ public class FruitFactory {
 
 
 
-        if(0<=type && type<10)
+        if(8<=type && type<10)
             return new ExtraBonusFruit();
 
         if(10<=type && type<40)
