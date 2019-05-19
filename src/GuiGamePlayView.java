@@ -1,6 +1,7 @@
 import Game.GameController;
 import SliceableObjects.ISliceableObject;
 import javafx.animation.AnimationTimer;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
@@ -22,7 +23,9 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import javax.sound.midi.Sequence;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,9 @@ public class GuiGamePlayView {
 
     private Scene scene;
     private AnimationTimer timer;
+    private Timeline timeline;
+    private long lastTimerCall;
+    private Duration duration;
     private Random random = new Random();
    //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
@@ -41,6 +47,15 @@ public class GuiGamePlayView {
     private GameController gameController = GameController.getInstance();
     private boolean flag=false;
     private boolean runFlag=true;
+
+
+
+    private static final int SECONDS_PER_DAY     = 86_400;
+
+    private static final int SECONDS_PER_HOUR    = 3600;
+
+    private static final int SECONDS_PER_MINUTE  = 60;
+
     GuiGamePlayView(Stage stage)
     {
             //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
@@ -205,9 +220,28 @@ public class GuiGamePlayView {
             pane.getChildren().add(object.getImageView());
         }
 
+        duration = Duration.hours(72);
+
+        lastTimerCall = System.nanoTime();
+
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
+                //The timer is here, read the tutorial well.
+                if (now > lastTimerCall + 1_000_000_000l) {
+                    duration = duration.subtract(Duration.seconds(1));
+
+                    int remainingSeconds = (int) duration.toSeconds();
+
+                    int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
+                    int h = (remainingSeconds % SECONDS_PER_DAY) / SECONDS_PER_HOUR;
+                    if (m == 0 && h == 0) { endGame(); }
+
+                    timerLabel.setText(String.format("%02d", m));
+                }
+
+
                 if (myObjects.size() < 1) {
                     List<ISliceableObject> newMyObjects = gameController.createGameObject(1);
                     myObjects.addAll(newMyObjects);
@@ -233,7 +267,7 @@ public class GuiGamePlayView {
                 myObjects.removeAll(objectsToRemove);
                 moveOffScreen(objectsToRemove);
                 objectsToRemove.clear();
-                gameController.timeEdit((double)-1/30); //bisho: NOT IN SYNC WITH ANIMATION TIMER YET TO FIX LATER
+//                gameController.timeEdit((double)-1/30); //bisho: NOT IN SYNC WITH ANIMATION TIMER YET TO FIX LATER
                 scoreLabel.setText("Current Score: "+ gameController.getScore());
                 livesLabel.setText("LIVES: "+ gameController.getLives());
                 timerLabel.setText("TIME LEFT: "+(int) gameController.getTime());
