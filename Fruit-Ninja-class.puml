@@ -1,8 +1,8 @@
 @startuml
-
+package Model{
 package SliceableObjects {
 
-    interface ISliceableObject{
+    interface ISliceableObject <<Interface>>{
         +getObjectType(): String
         +getXlocation(): int
         +getYlocation(): int
@@ -17,8 +17,15 @@ package SliceableObjects {
     }
 
 
-    abstract class Bomb
-    abstract class Fruit
+    abstract class Bomb {
+        +slice():int
+        +offscreen():int
+    }
+    abstract class Fruit{
+        +slice():int
+        +offscreen():int
+        }
+
     abstract class SliceableObject {
 
         #associatedScore: int
@@ -67,16 +74,38 @@ interface IGameModeStrategy <<Interface>> {
     +isGameOver():boolean
 }
 
-IGameModeStrategy <-- ClassicMode
-IGameModeStrategy <-- ArcadeMode
+IGameModeStrategy <|-- ClassicMode
+IGameModeStrategy <|-- ArcadeMode
 
 abstract class DifficultyDecorator
 
-IGameModeStrategy <-- DifficultyDecorator
+IGameModeStrategy <|-- DifficultyDecorator
 
-DifficultyDecorator <-- EasyMode
-DifficultyDecorator <-- HardMode
+DifficultyDecorator <|-- EasyMode
+DifficultyDecorator <|-- HardMode
 
 
+}
+
+ISliceableObject <-- IGameModeStrategy
+}
+
+
+
+package Controller {
+    interface GameActions <<Interface>> {
+    checkGameOver():
+    createGameObject():
+    throwOffScreen():
+    updateObjectsLocations():
+    sliceObjects():
+    saveGame():
+    loadGame():
+    resetGame():
+    }
+
+}
+
+package view {
 }
 @enduml
