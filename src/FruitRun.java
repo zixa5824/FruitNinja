@@ -1,8 +1,5 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import utilities.Command;
-import utilities.FileCommand;
-import utilities.RemoteControl;
 
 public class FruitRun extends Application {
 	private RemoteControl rem =new RemoteControl();

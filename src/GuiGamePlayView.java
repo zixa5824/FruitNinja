@@ -1,8 +1,13 @@
 import Game.GameController;
 import Game.Player;
 
+import GameModes.EasyDiff;
 import SliceableObjects.ISliceableObject;
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
@@ -11,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -22,10 +28,9 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import utilities.Command;
-import utilities.FileCommand;
-import utilities.RemoteControl;
+import javafx.util.Duration;
 
+import javax.sound.midi.Sequence;
 import java.util.*;
 
 

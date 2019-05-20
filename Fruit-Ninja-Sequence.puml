@@ -1,0 +1,31 @@
+@startuml
+
+loop untiGameOver
+
+alt Number of Objects < 1
+    GUIGameplayView --> GameController: createObjects()
+    GameController-->IGameModeStrategy: newBatch()
+    IGameModeStrategy --> GUIGameplayView: return List<ISliseableObjects>
+end
+
+GUIGameplayView --> GameController: updateObjectsLocation()
+
+loop forAllObjects
+
+alt IsClicked/sliced
+
+    GUIGameplayView --> GameController: slice()
+    GameController --> IGameModeStrategy: slice()
+    IGameModeStrategy --> GameController: edit game state
+end
+
+
+
+
+end
+
+
+
+
+end
+@enduml

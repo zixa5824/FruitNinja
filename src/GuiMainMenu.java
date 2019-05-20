@@ -25,7 +25,7 @@ import java.util.Optional;
 public class GuiMainMenu{
 
     private Scene scene;
-   private  GameController gameController =GameController.getInstance();
+   private  GameController c=GameController.getInstance();
 	    GuiMainMenu(Stage stage)
     {       
 	    	
@@ -114,14 +114,14 @@ public class GuiMainMenu{
         alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-           gameController.newGame(new EasyDiff(gameMode));
-            gameController.setDifficulty(1);
+           c.newGame(new EasyDiff(gameMode));
+            c.setDifficulty(1);
         } else if (result.get() == buttonTypeTwo) {
-           gameController.newGame(gameMode);
-            gameController.setDifficulty(2);
+           c.newGame(gameMode);
+            c.setDifficulty(2);
         } else if (result.get() == buttonTypeThree) {
-           gameController.newGame(new HardDiff(gameMode));
-            gameController.setDifficulty(3);
+           c.newGame(new HardDiff(gameMode));
+            c.setDifficulty(3);
         }
         else
             return;
