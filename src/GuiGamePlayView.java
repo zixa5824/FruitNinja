@@ -39,16 +39,20 @@ public class GuiGamePlayView {
     private Scene scene;
     private Pane pane = new Pane();
     private AnimationTimer timer;
-    private Random random = new Random();
     //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
-    private Boolean scoreFlag = false;
     private GameController gameController = GameController.getInstance();
     private boolean runFlag = true;
     long startTime = System.currentTimeMillis();
     long old = 0;
     int secs = 0, mins = 0;
     private ArrayList<Player> players = new ArrayList<>();
+    private RemoteControl rem =new RemoteControl();
+	private Command comm= new FileCommand();
+
+	private Button resetBtn;
+    private Button pauseBtn;
+    private Circle circle;
 
     GuiGamePlayView(Stage stage) {
         //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
@@ -69,9 +73,7 @@ public class GuiGamePlayView {
         scoreLabel.setPrefWidth(300);
         scoreLabel.setLayoutX(500);
         scoreLabel.setLayoutY(40);
-
         //------
-
         Label livesLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new live counter
         livesLabel.setFont(Font.font("", 22));
         livesLabel.setTextFill(Color.RED);
@@ -92,7 +94,6 @@ public class GuiGamePlayView {
         timeplayedLabel.setLayoutY(80);
 
         //------
-
         Label timerLabel = new Label("TIME LEFT:  " + gameController.getTime()); //bisho: new timer for arcade
         timerLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
         timerLabel.setTextFill(Color.YELLOW);
@@ -103,8 +104,6 @@ public class GuiGamePlayView {
         if (gameController.getTime() < 0) {
             timerLabel.setVisible(false);
         }
-
-
         //-------
         Rectangle rec = new Rectangle(300, 120);
         rec.setMouseTransparent(true);
@@ -131,8 +130,10 @@ public class GuiGamePlayView {
             ellipse2.setVisible(false);
         }
         //-------
-        Circle circle = new Circle(50);
-        Button pauseBtn = new Button("PAUSE");
+
+
+        circle = new Circle(50);
+        pauseBtn = new Button("PAUSE");
         pauseBtn.setPrefWidth(90);
         pauseBtn.setPrefHeight(50);
         pauseBtn.setLayoutX(40);
@@ -150,7 +151,8 @@ public class GuiGamePlayView {
         contBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         contBtn.setTextFill(Paint.valueOf("White"));
 
-        Button resetBtn = new Button("RESET");
+
+        resetBtn = new Button("RESET");
         resetBtn.setPrefWidth(134);
         resetBtn.setPrefHeight(80);
         resetBtn.setLayoutX(533);
@@ -178,9 +180,26 @@ public class GuiGamePlayView {
         returntomainBtn.setTextFill(Paint.valueOf("White"));
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //--------
 
         //---------
+
 
 
         resetBtn.setOnAction(e -> {
@@ -277,34 +296,44 @@ public class GuiGamePlayView {
         timer.start();
 
 
-        pauseBtn.setOnAction(e -> {
-            returntomainBtn.setVisible(true);
-            pane.getChildren().addAll(contBtn, resetBtn, saveBtn, returntomainBtn);
-            pauseBtn.setVisible(false);
-            runFlag = false;
-            timer.stop();
-        });
+        pauseBtn.setOnAction(e->{
+        	returntomainBtn.setVisible(true);
+        	   pane.getChildren().addAll(contBtn,resetBtn,returntomainBtn);
+               pauseBtn.setVisible(false);
+               runFlag=false;
+        	timer.stop();
+        });        
+     
+        contBtn.setOnAction(e->{
+        	returntomainBtn.setVisible(false);
+            pane.getChildren().removeAll(contBtn,resetBtn,returntomainBtn);
+               pauseBtn.setVisible(true);
+               runFlag=true;
+        timer.start();
+        }); 
+ }
 
 
-        contBtn.setOnAction(e -> {
-            returntomainBtn.setVisible(false);
-            pane.getChildren().removeAll(contBtn, resetBtn, saveBtn, returntomainBtn);
-            pauseBtn.setVisible(true);
-            runFlag = true;
-            timer.start();
-        });
 
-    }
+
+
+
+
+
+
+
+
+
 
     public void endGame(Stage stage) {
 
+
+
+        pauseBtn.setVisible(false);
         timer.stop();
-
-        Circle circle = new Circle(50);
-
         TextField textField = new TextField();
         textField.setPromptText("Name");
-        textField.setFont(Font.font("Calibri", 25));
+        textField.setFont(Font.font("Verdana", 25));
         textField.setPrefWidth(334);
         textField.setPrefHeight(75);
         textField.setLayoutX(570);
@@ -316,73 +345,32 @@ public class GuiGamePlayView {
         nameLabel.setLayoutY(91);
         nameLabel.setPrefWidth(291);
         nameLabel.setPrefHeight(200);
-        nameLabel.setFont(Font.font("Calibri", 25));
+        nameLabel.setFont(Font.font("Verdana",22));
 
         Button saveBtn = new Button("Save Name");
         saveBtn.setPrefWidth(134);
         saveBtn.setPrefHeight(80);
-        saveBtn.setLayoutX(562);
+        saveBtn.setLayoutX(533);
         saveBtn.setLayoutY(244);
         saveBtn.setOpacity(1);
         saveBtn.setShape(circle);
-        saveBtn.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        saveBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         saveBtn.setTextFill(Paint.valueOf("White"));
+        resetBtn.setVisible(true);
 
-        Image gameOver = new Image("file:background.gif");
-        ImageView ivGameOver = new ImageView(gameOver);
-        ivGameOver.setMouseTransparent(true);
-        ivGameOver.setPreserveRatio(false);
-        ivGameOver.setFocusTraversable(false);
-        ivGameOver.setFitWidth(1220);
-        ivGameOver.setFitHeight(820);
 
-        Label label = new Label("Your score is " + gameController.getScore() + "!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
-        label.setTextFill(Color.WHITE);
-        label.setLayoutX(500);
-        label.setLayoutY(400);
-        label.setPrefWidth(500);
-        label.setPrefHeight(400);
-        label.setFont(Font.font("Calibri", 25));
 
-//        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label);
-//        fadeTransition.setFromValue(1.0);
-//        fadeTransition.setToValue(0.1);
-//        fadeTransition.setCycleCount(Timeline.INDEFINITE);
-//        fadeTransition.setAutoReverse(true);
-//        fadeTransition.play();
-//
-//        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(1), nameLabel);
-//        scaleTransition.setToX(1.5);
-//        scaleTransition.setToY(-1.5);
-//        scaleTransition.setAutoReverse(true);
-//        scaleTransition.setCycleCount(ScaleTransition.INDEFINITE);
-//        scaleTransition.play();
 
-        scene.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.HOME) {
-                GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
-                stage.setScene(guiMainMenu.getScene());
-            }
-            if (e.getCode() == KeyCode.BACK_SPACE) {
-                gameController.resetGame();
-                GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
-                stage.setScene(guiGameplayView.getScene());
-                stage.centerOnScreen();
-            }
-            if (e.getCode() == KeyCode.ENTER) {
-                ScoreBoard scoreBoard = new ScoreBoard(stage);
-                stage.setScene(scoreBoard.getScene());
-            }
-        });
-
-        saveBtn.setOnAction(e -> {
-            if (textField.getText().equalsIgnoreCase("") && gameController.isSaveName() == false) {
+        saveBtn.setOnAction(e->{
+            if(textField.getText().equalsIgnoreCase("") && gameController.isSaveName() == false)
+            {
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setHeaderText("No name added are you sure ?");
                 alert.setContentText("Please add a name in textField");
                 alert.setTitle("Null Name ERROR");
                 alert.show();
-            } else if (gameController.isSaveName() == false) {
+            }
+            else if (gameController.isSaveName() == false){
                 Player player = new Player(textField.getText(), gameController.getScore(), gameController.difficulty());
                 players.add(player);
                 gameController.addPlayers(player);
@@ -393,16 +381,28 @@ public class GuiGamePlayView {
                 alert.setTitle("SAVE NAME");
                 alert.show();
                 textField.setEditable(false);
+
+                rem.setCommand(comm);// bisho: comand design pattern
+                rem.activateButton();// bisho: saves
+
+                ScoreBoard s = new ScoreBoard(stage);
+                stage.setScene(s.getScene());
+
+
             }
         });
 
-        pane.getChildren().addAll(ivGameOver, label, nameLabel, textField, saveBtn);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, resetBtn);
+
+
     }
 
 
+  
     public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen
         gameController.throwOffScreen(objectsToRemove);
     }
+
 
 
     public void slice(List<ISliceableObject> objectsToSlice) {

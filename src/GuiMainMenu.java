@@ -1,5 +1,4 @@
 import Game.GameController;
-import Game.Player;
 import GameModes.*;
 import GameModes.IGameModeStrategy;
 import javafx.geometry.Insets;
@@ -26,17 +25,18 @@ import java.util.Optional;
 public class GuiMainMenu{
 
     private Scene scene;
-    private GameController gameController = GameController.getInstance();
-    GuiMainMenu(Stage stage) {
-        gameController.setDifficulty(0);
-        gameController.setSaveName(false);
+   private  GameController c=GameController.getInstance();
+	    GuiMainMenu(Stage stage)
+    {       
+	    	
+	    	 GameController c=GameController.getInstance();
+    		
         //-------
         Image image = new Image("file:oneto.jpg");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setPreserveRatio(false);
-        ivBackGround.setFocusTraversable(false);
-        ivBackGround.setFitWidth(1220);
-        ivBackGround.setFitHeight(820);
+        ivBackGround.setFitWidth(1200);
+        ivBackGround.setFitHeight(800);
 
         //-------
 
@@ -73,16 +73,6 @@ public class GuiMainMenu{
         scoreBoardBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         scoreBoardBtn.setTextFill(Paint.valueOf("White"));
         //-------
-        Button contuine = new Button("CONTINUE");
-        contuine.setPrefWidth(134);
-        contuine.setPrefHeight(80);
-        contuine.setLayoutX(533);
-        contuine.setLayoutY(600);
-        contuine.setOpacity(0.85);
-        contuine.setShape(circle);
-        contuine.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
-        contuine.setTextFill(Paint.valueOf("White"));
-        //-------
         //-----
         classicBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ClassicMode();
@@ -94,11 +84,12 @@ public class GuiMainMenu{
             chooseDifficulty(gameMode, stage);
         });
         //-----
-
-
-        scoreBoardBtn.setOnAction(e -> {
-            ScoreBoard scoreBoard = new ScoreBoard(stage);
-            stage.setScene(scoreBoard.getScene());
+        
+        
+        scoreBoardBtn.setOnAction(e->{
+            // bisho; when scoreboard scene is finished should be wired later
+        	ScoreBoard s = new ScoreBoard(stage);
+            stage.setScene(s.getScene());
         });
         
         
@@ -108,9 +99,9 @@ public class GuiMainMenu{
         Image cursor1 = new Image("file:cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
-        scene = new Scene(pane, 1200, 800);
-        pane.getChildren().addAll(ivBackGround, classicBtn, scoreBoardBtn, arcadeBtn, contuine);
-     }
+        scene = new Scene(pane, 1200,800);
+        pane.getChildren().addAll(ivBackGround, classicBtn, scoreBoardBtn, arcadeBtn);
+    }
 
     public void chooseDifficulty(IGameModeStrategy gameMode, Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -123,11 +114,14 @@ public class GuiMainMenu{
         alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            GameController.getInstance().newGame(new EasyDiff(gameMode));
+           c.newGame(new EasyDiff(gameMode));
+            c.setDifficulty(1);
         } else if (result.get() == buttonTypeTwo) {
-            GameController.getInstance().newGame(gameMode);
+           c.newGame(gameMode);
+            c.setDifficulty(2);
         } else if (result.get() == buttonTypeThree) {
-            GameController.getInstance().newGame(new HardDiff(gameMode));
+           c.newGame(new HardDiff(gameMode));
+            c.setDifficulty(3);
         }
         else
             return;

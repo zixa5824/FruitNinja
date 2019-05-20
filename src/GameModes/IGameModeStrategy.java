@@ -17,5 +17,5 @@ public interface IGameModeStrategy {
     void sliceObjects(List<ISliceableObject> objectsToSlice);
     
     boolean isGameOver(int score , double timeS , int lives);//bisho: new game over condition
-    
+
 }

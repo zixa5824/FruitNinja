@@ -25,11 +25,11 @@ public interface GameActions {
     /*
      *saves the current state of the game
      */
-    public void saveGame();
+    public void save();
     /*
      *loads the last saved state of the game
      */
-    public void loadGame();
+    public void load();
     /*
      *resets the game to its initial state
      */

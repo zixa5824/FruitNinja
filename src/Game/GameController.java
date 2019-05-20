@@ -1,7 +1,9 @@
 package Game;
 
+import GameModes.*;
 import GameModes.IGameModeStrategy;
 import SliceableObjects.ISliceableObject;
+
 import javafx.scene.control.Label;
 import javafx.util.Duration;
 
@@ -12,11 +14,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class GameController implements GameActions {
+public class GameController implements GameActions,Serializable {
 	private int score;
 	private int lives ;
 	private double timeS;
@@ -24,10 +29,9 @@ public class GameController implements GameActions {
 	private static GameController instance;
 	private GameController() {}
 	private ArrayList<Label> observerLabels = new ArrayList<>();
-	private ArrayList<Player> players = new ArrayList<>();
-	private int difficulty = 0;
+	private ArrayList<Player> records = new ArrayList<>();
 	private boolean saveName = false;
-
+	private int difficulty = 0;
 	public static GameController getInstance() {
 		if (instance == null)
 			instance = new GameController();
@@ -130,17 +134,14 @@ public class GameController implements GameActions {
 
 
 	@Override
-	public void saveGame() {
+	public void save() {
 
 		try {
-			FileOutputStream fos = new FileOutputStream(new File("ninjas.xml"));
-			XMLEncoder encoder = new XMLEncoder(fos);
-			//	encoder.writeObject(var);
-
-
-			encoder.close();
-			fos.close();
-
+			 FileOutputStream f = new FileOutputStream("ninjas.txt");
+	         ObjectOutputStream o = new ObjectOutputStream(f);
+	         for(int i=0;i<records.size();i++)
+	         o.writeObject(records.get(i));
+	         o.close();
 		}
 		catch(IOException ex) {
 			ex.printStackTrace();
@@ -149,51 +150,37 @@ public class GameController implements GameActions {
 	}
 
 	@Override
-	public void loadGame() {
+	public void load() {
 		try {
-			FileInputStream fis = new FileInputStream(new File("riversave.xml"));
-			XMLDecoder decoder = new XMLDecoder(fis);
-
-
-			//decoder.readObject();
-
-
-			decoder.close();
-			fis.close();
-
-
-
-
+			
+	         FileInputStream f = new FileInputStream("ninjas.txt");
+	         ObjectInputStream o = new ObjectInputStream(f);
+	         while(f.available() > 0)
+					records.add((Player)o.readObject());
+			
+	         o.close();
 		}
-		catch(IOException ex) {
+		catch(IOException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
 
 	}
 
-	public String difficulty()
-	{
-		if(difficulty == 1)
-			return "Classic Easy";
-		if(difficulty == 2)
-			return "Classic Medium";
-		if(difficulty == 3)
-			return "Classic Hard";
-
-		return "Arcade";
-	}
-
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
+	@Override
+	public void resetGame() {
+		lives = gameModeStrategy.getInitialLives();
+		score = 0;
 	}
 
 	public ArrayList<Player> listPlayers(){
-		return players;
+		return records;
 	}
 
 	public void addPlayers(Player player) {
-		players.add(player);
+		records.add(player);
 	}
+
+
 
 	public boolean isSaveName() {
 		return saveName;
@@ -203,10 +190,14 @@ public class GameController implements GameActions {
 		this.saveName = saveName;
 	}
 
-	@Override
-	public void resetGame() {
-		lives = gameModeStrategy.getInitialLives();
-		score = 0;
+	public String difficulty()
+	{
+		return gameModeStrategy.toString();
+	}
+
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
 
 }
