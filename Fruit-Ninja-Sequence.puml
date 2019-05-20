@@ -10,14 +10,16 @@ end
 
 GUIGameplayView --> GameController: updateObjectsLocation()
 
+loop forAllObjects
 
 alt IsClicked/sliced
 
-    
-
+    GUIGameplayView --> GameController: slice()
+    GameController --> IGameModeStrategy: slice()
+    IGameModeStrategy --> GameController: edit game state
 end
 
-loop forAllObjects
+
 
 
 end

@@ -1,19 +1,22 @@
 import Game.GameController;
+import Game.Player;
+
 import GameModes.EasyDiff;
 import SliceableObjects.ISliceableObject;
 import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -34,21 +37,18 @@ import java.util.*;
 public class GuiGamePlayView {
 
     private Scene scene;
+    private Pane pane = new Pane();
     private AnimationTimer timer;
-    private Timeline timeline;
-    private long lastTimerCall;
-    private Duration duration;
     private Random random = new Random();
    //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
     private Boolean scoreFlag = false;
-    private List<ISliceableObject> currentObjects;
     private GameController gameController = GameController.getInstance();
-    private boolean flag=false;
     private boolean runFlag=true;
     long startTime = System.currentTimeMillis();
     long old=0;
     int secs=0,mins=0;
+    private ArrayList<Player> players = new ArrayList<>();
 
     GuiGamePlayView(Stage stage)
     {
@@ -152,6 +152,7 @@ public class GuiGamePlayView {
             contBtn.setShape(circle);
             contBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
             contBtn.setTextFill(Paint.valueOf("White"));
+
             Button resetBtn = new Button("RESET");
             resetBtn.setPrefWidth(134);
             resetBtn.setPrefHeight(80);
@@ -160,6 +161,7 @@ public class GuiGamePlayView {
             resetBtn.setShape(circle);
             resetBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
             resetBtn.setTextFill(Paint.valueOf("White"));
+
             Button saveBtn = new Button("SAVE");
             saveBtn.setPrefWidth(134);
             saveBtn.setPrefHeight(80);
@@ -168,6 +170,7 @@ public class GuiGamePlayView {
             saveBtn.setShape(circle);
             saveBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
             saveBtn.setTextFill(Paint.valueOf("White"));
+            //----------
             Button returntomainBtn= new Button("RETURN TO MAIN MENU");
             returntomainBtn.setPrefWidth(200);
             returntomainBtn.setPrefHeight(80);
@@ -202,7 +205,6 @@ public class GuiGamePlayView {
         //////////////////////////////////////////////////////////////////////
 
 
-        Pane pane = new Pane();
         Image cursor1 = new Image("file:cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
@@ -220,9 +222,6 @@ public class GuiGamePlayView {
             pane.getChildren().add(object.getImageView());
         }
 
-        duration = Duration.hours(72);
-
-        lastTimerCall = System.nanoTime();
 
         timer = new AnimationTimer() {
             @Override
@@ -303,24 +302,110 @@ public class GuiGamePlayView {
  }
 
     public void endGame(Stage stage) {
-        timer.stop();
-        Alert Alert1 = new Alert(AlertType.INFORMATION);
-        ButtonType back_to_menu = new ButtonType("Back to Menu");
-        ButtonType play_again = new ButtonType("Play again");
-//        Alert1.getButtonTypes().setAll(back_to_menu, play_again);
-        Alert1.setTitle("GAME OVER");
-        Alert1.setContentText("YOUR SCORE  "+gameController.getScore());
-        Alert1.setHeaderText(null);
+        
+                    timer.stop();
 
-        Alert1.setOnHidden(event -> backToMainMenu(stage));
+                    Circle circle = new Circle(50);
 
-        Alert1.show();
+                    TextField textField = new TextField();
+                    textField.setPromptText("Name");
+                    textField.setFont(Font.font("Bradley Hand ITC", 25));
+                    textField.setPrefWidth(334);
+                    textField.setPrefHeight(75);
+                    textField.setLayoutX(570);
+                    textField.setLayoutY(150);
 
+                    Label nameLabel = new Label("Write Your name Here:");
+                    nameLabel.setTextFill(Color.WHITE);
+                    nameLabel.setLayoutX(287);
+                    nameLabel.setLayoutY(91);
+                    nameLabel.setPrefWidth(291);
+                    nameLabel.setPrefHeight(200);
+                    nameLabel.setFont(Font.font("Bradley Hand ITC",25));
 
+                    Button saveBtn = new Button("Save Name");
+                    saveBtn.setPrefWidth(134);
+                    saveBtn.setPrefHeight(80);
+                    saveBtn.setLayoutX(562);
+                    saveBtn.setLayoutY(244);
+                    saveBtn.setOpacity(1);
+                    saveBtn.setShape(circle);
+                    saveBtn.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                    saveBtn.setTextFill(Paint.valueOf("White"));
 
+                    Image gameOver = new Image("file:GameOver.gif");
+        			ImageView ivGameOver = new ImageView(gameOver);
+        			ivGameOver.setMouseTransparent(true);
+        			ivGameOver.setPreserveRatio(false);
+        			ivGameOver.setFocusTraversable(false);
+        			ivGameOver.setFitWidth(1220);
+        			ivGameOver.setFitHeight(820);
+
+                    Label label = new Label("Your score is "+gameController.getScore() + "!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
+                    label.setTextFill(Color.WHITE);
+                    label.setLayoutX(500);
+                    label.setLayoutY(400);
+                    label.setPrefWidth(500);
+                    label.setPrefHeight(400);
+                    label.setFont(Font.font("Bradley Hand ITC",25));
+
+                    FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label);
+                    fadeTransition.setFromValue(1.0);
+                    fadeTransition.setToValue(0.1);
+                    fadeTransition.setCycleCount(Timeline.INDEFINITE);
+                    fadeTransition.setAutoReverse(true);
+                    fadeTransition.play();
+
+                    ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(1), nameLabel);
+                    scaleTransition.setToX(1.5);
+                    scaleTransition.setToY(-1.5);
+                    scaleTransition.setAutoReverse(true);
+                    scaleTransition.setCycleCount(ScaleTransition.INDEFINITE);
+                    scaleTransition.play();
+
+                    scene.setOnKeyPressed(e->{
+                        if (e.getCode() == KeyCode.HOME) {
+                                GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
+                                stage.setScene(guiMainMenu.getScene());
+                        }
+                        if (e.getCode() == KeyCode.BACK_SPACE) {
+                            gameController.resetGame();
+                            GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                            stage.setScene(guiGameplayView.getScene());
+                            stage.centerOnScreen();
+                        }
+                        if (e.getCode() == KeyCode.ENTER) {
+                            ScoreBoard scoreBoard = new ScoreBoard(stage);
+                            stage.setScene(scoreBoard.getScene());
+                        }
+                    });
+
+                    saveBtn.setOnAction(e->{
+                        if(textField.getText().equalsIgnoreCase("") && gameController.isSaveName() == false)
+                        {
+                            Alert alert = new Alert(AlertType.WARNING);
+                            alert.setHeaderText("No name added are you sure ?");
+                            alert.setContentText("Please add a name in textField");
+                            alert.setTitle("Null Name ERROR");
+                            alert.show();
+                        }
+                        else if (gameController.isSaveName() == false){
+                            Player player = new Player(textField.getText(), gameController.getScore(), gameController.difficulty());
+                            players.add(player);
+                            gameController.addPlayers(player);
+                            gameController.setSaveName(true);
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setContentText("Save is done successfully");
+                            alert.setHeaderText("Save Complete");
+                            alert.setTitle("SAVE NAME");
+                            alert.show();
+                            textField.setEditable(false);
+                        }
+                    });
+
+        			pane.getChildren().addAll(ivGameOver, label, nameLabel, textField, saveBtn);
     }
-
-
+  
   
     public void moveOffScreen(List<ISliceableObject> objectsToRemove) {//bisho: for when objects fall off screen
         gameController.throwOffScreen(objectsToRemove);
@@ -331,11 +416,14 @@ public class GuiGamePlayView {
     public void slice(List<ISliceableObject> objectsToSlice) {
 
         gameController.sliceObjects(objectsToSlice);
+
         for (ISliceableObject object:objectsToSlice
              ) {
             object.getImageView().setImage(object.getMyImage()[1]);
         }
     }
+
+
 
     public Scene getScene() {
         return scene;

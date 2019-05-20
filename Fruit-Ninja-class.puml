@@ -99,6 +99,12 @@ interface IGameModeStrategy <<Interface>> {
 IGameModeStrategy <|-- ClassicMode
 IGameModeStrategy <|-- ArcadeMode
 
+
+Class ClassicMode {
+    -initialLives: int
+}
+
+
 abstract class DifficultyDecorator
 
 IGameModeStrategy <|-- DifficultyDecorator
@@ -126,8 +132,28 @@ package Controller {
     resetGame():
     }
 
+    Class GameController{
+             -score:int
+        	 -lives :int
+        	 -timeS:double
+        	 -gameModeStrategy:IGameModeStrategy
+        	 -{static}instance:GameController
+        	 -observerLabels:ArrayList<Label>
+
+    }
+
+    GameActions <|-- GameController
+
+
 }
 
+IGameModeStrategy <--> GameController
+
 package view {
+
+    class GuiGamePlayView
+
+    GuiGamePlayView --> GameActions
+
 }
 @enduml

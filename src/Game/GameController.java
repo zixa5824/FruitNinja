@@ -21,14 +21,12 @@ public class GameController implements GameActions {
 	private int lives ;
 	private double timeS;
 	private IGameModeStrategy gameModeStrategy;
-	//private
-	private String[] srcbrd1;
-	private String[] srcbrd2;
 	private static GameController instance;
 	private GameController() {}
 	private ArrayList<Label> observerLabels = new ArrayList<>();
-
-
+	private ArrayList<Player> players = new ArrayList<>();
+	private int difficulty = 0;
+	private boolean saveName = false;
 
 	public static GameController getInstance() {
 		if (instance == null)
@@ -51,6 +49,7 @@ public class GameController implements GameActions {
 		lives=gameModeStrategy.getInitialLives();//bisho: we must set initial lives at the start and set the score to 0;
 		timeS=gameModeStrategy.timerType();	
 		score=0;
+		saveName = false;
 	}
 	public void scoreEdit(int change) {
 
@@ -172,17 +171,42 @@ public class GameController implements GameActions {
 
 	}
 
+	public String difficulty()
+	{
+		if(difficulty == 1)
+			return "Classic Easy";
+		if(difficulty == 2)
+			return "Classic Medium";
+		if(difficulty == 3)
+			return "Classic Hard";
+
+		return "Arcade";
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	public ArrayList<Player> listPlayers(){
+		return players;
+	}
+
+	public void addPlayers(Player player) {
+		players.add(player);
+	}
+
+	public boolean isSaveName() {
+		return saveName;
+	}
+
+	public void setSaveName(boolean saveName) {
+		this.saveName = saveName;
+	}
+
 	@Override
 	public void resetGame() {
 		lives = gameModeStrategy.getInitialLives();
 		score = 0;
 	}
-
-
-
-
-
-
-
 
 }
