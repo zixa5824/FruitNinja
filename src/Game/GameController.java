@@ -11,15 +11,12 @@ import javafx.util.Duration;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-
-public class GameController implements GameActions {
+public class GameController implements GameActions ,Serializable{
 	private int score;
 	private int lives ;
 	private double timeS;
@@ -45,7 +42,7 @@ public class GameController implements GameActions {
 
 	public void updateObservers() {
 		for (Label label:observerLabels
-			 ) {
+		) {
 			label.setText("Current Score: "+ score);
 		}
 	}
@@ -53,7 +50,7 @@ public class GameController implements GameActions {
 	public void newGame(IGameModeStrategy IGameModeStrategy) {
 		this.gameModeStrategy = IGameModeStrategy;
 		lives=gameModeStrategy.getInitialLives();//bisho: we must set initial lives at the start and set the score to 0;
-		timeS=gameModeStrategy.timerType();	
+		timeS=gameModeStrategy.timerType();
 		score=0;
 		saveName = false;
 	}
@@ -67,7 +64,7 @@ public class GameController implements GameActions {
 		return score;
 	}
 	public int getLives() {
-		
+
 		return lives;
 	}
 	public double getTime() {
@@ -75,7 +72,7 @@ public class GameController implements GameActions {
 		return timeS;
 	}
 	public void setTime(double timeS) { // for the timer
-		 this.timeS=timeS;
+		this.timeS=timeS;
 	}
 	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
 //		if (now > lastTimerCall + 1_000_000_000l) {
@@ -101,7 +98,7 @@ public class GameController implements GameActions {
 	@Override
 	public List<ISliceableObject> createGameObject(int time) {
 		return gameModeStrategy.NewBatch();
-		
+
 	}
 
 	@Override
@@ -137,14 +134,11 @@ public class GameController implements GameActions {
 	public void saveGame() {
 
 		try {
-			FileOutputStream fos = new FileOutputStream(new File("ninjas.xml"));
-			XMLEncoder encoder = new XMLEncoder(fos);
-			//	encoder.writeObject(var);
-
-
-			encoder.close();
-			fos.close();
-
+			FileOutputStream f = new FileOutputStream("ninjas.txt");
+			ObjectOutputStream o = new ObjectOutputStream(f);
+			for(int i=0;i< players.size();i++)
+				o.writeObject(players.get(i));
+			o.close();
 		}
 		catch(IOException ex) {
 			ex.printStackTrace();
@@ -155,21 +149,15 @@ public class GameController implements GameActions {
 	@Override
 	public void loadGame() {
 		try {
-			FileInputStream fis = new FileInputStream(new File("riversave.xml"));
-			XMLDecoder decoder = new XMLDecoder(fis);
 
+			FileInputStream f = new FileInputStream("ninjas.txt");
+			ObjectInputStream o = new ObjectInputStream(f);
+			while(f.available() > 0)
+				players.add((Player)o.readObject());
 
-			//decoder.readObject();
-
-
-			decoder.close();
-			fis.close();
-
-
-
-
+			o.close();
 		}
-		catch(IOException ex) {
+		catch(IOException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
 
@@ -183,8 +171,14 @@ public class GameController implements GameActions {
 			return "Classic Medium";
 		if(difficulty == 3)
 			return "Classic Hard";
+		if(difficulty == 4)
+			return "Arcade Easy";
+		if(difficulty == 5)
+			return "Arcade Medium";
+		if(difficulty == 6)
+			return "Arcade Hard";
 
-		return "Arcade";
+		return null;
 	}
 
 	public void setDifficulty(int difficulty) {

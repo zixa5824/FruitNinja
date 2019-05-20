@@ -15,10 +15,14 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Optional;
 
@@ -87,7 +91,6 @@ public class GuiMainMenu{
         //-----
         classicBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ClassicMode();
-            IGameModeStrategy hard = new EasyDiff(gameMode);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Difficulty Options");
             alert.setHeaderText("Please choose one difficulty from below");
@@ -127,10 +130,40 @@ public class GuiMainMenu{
         //-----
         arcadeBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ArcadeMode();
-            GameController.getInstance().newGame(gameMode);
-            GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
-            stage.setScene(guiGameplayView.getScene());
-            stage.centerOnScreen();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Difficulty Options");
+            alert.setHeaderText("Please choose one difficulty from below");
+            ButtonType buttonTypeOne = new ButtonType("Easy");
+            ButtonType buttonTypeTwo = new ButtonType("Medium");
+            ButtonType buttonTypeThree = new ButtonType("Hard");
+            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOne){
+                GameController.getInstance().newGame(new EasyDiff(gameMode));
+                gameController.setDifficulty(4);
+                GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                stage.setScene(guiGameplayView.getScene());
+                stage.centerOnScreen();
+            } else if (result.get() == buttonTypeTwo) {
+                GameController.getInstance().newGame(gameMode);
+                gameController.setDifficulty(5);
+                GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                stage.setScene(guiGameplayView.getScene());
+                stage.centerOnScreen();
+            } else if (result.get() == buttonTypeThree) {
+                GameController.getInstance().newGame(new HardDiff(gameMode));
+                gameController.setDifficulty(6);
+                GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                stage.setScene(guiGameplayView.getScene());
+                stage.centerOnScreen();
+            }
+
+            else if (result.get() == buttonTypeCancel)
+            {
+                alert.close();
+
+            }
         });
         //-----
         
@@ -139,10 +172,7 @@ public class GuiMainMenu{
             ScoreBoard scoreBoard = new ScoreBoard(stage);
             stage.setScene(scoreBoard.getScene());
         });
-        
-        
 
-        
         Pane pane = new Pane();
         Image cursor1 = new Image("file:cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
@@ -170,6 +200,7 @@ public class GuiMainMenu{
         }
         else
             return;
+
 
         GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
         stage.setScene(guiGameplayView.getScene());

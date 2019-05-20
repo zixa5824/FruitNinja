@@ -55,6 +55,8 @@ public class GuiGamePlayView {
     long startTime = System.currentTimeMillis();
     long old=0;
     int secs=0,mins=0;
+    private RemoteControl rem =new RemoteControl();
+    private Command comm= new FileCommand();
     GuiGamePlayView(Stage stage)
     {
             //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
@@ -323,14 +325,15 @@ public class GuiGamePlayView {
         			ivGameOver.setFocusTraversable(false);
         			ivGameOver.setFitWidth(1220);
         			ivGameOver.setFitHeight(820);
+        			ivGameOver.setOpacity(0.4);
 
-                    Label label = new Label("Your score is "+gameController.getScore() + "!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
+                    Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
                     label.setTextFill(Color.WHITE);
                     label.setLayoutX(500);
                     label.setLayoutY(400);
-                    label.setPrefWidth(500);
+                    label.setPrefWidth(700);
                     label.setPrefHeight(400);
-                    label.setFont(Font.font("Bradley Hand ITC",25));
+                    label.setFont(Font.font("Bradley Hand ITC",28));
 
                     FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), label);
                     fadeTransition.setFromValue(1.0);
@@ -383,6 +386,8 @@ public class GuiGamePlayView {
                             alert.setTitle("SAVE NAME");
                             alert.show();
                             textField.setEditable(false);
+                            rem.setCommand(comm);// bisho: command design pattern
+                            rem.activateButton();// bisho: saves
                         }
                     });
 
