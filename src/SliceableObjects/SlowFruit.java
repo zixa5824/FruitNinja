@@ -2,7 +2,9 @@ package SliceableObjects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class SlowFruit extends Fruit {
@@ -30,6 +32,8 @@ public class SlowFruit extends Fruit {
         this.myImageView.setLayoutY(yLocation);
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
+
+        slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
     }
 
 

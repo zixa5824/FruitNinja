@@ -2,7 +2,9 @@ package SliceableObjects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class FatalBomb extends Bomb {
@@ -32,7 +34,12 @@ public class FatalBomb extends Bomb {
         localPrefSize = standardPrefSize;
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
+
+        slashClip = new AudioClip(Paths.get("grenade.wav").toUri().toString());
+
     }
+
+
     public Image[] getMyImage() {
         Image[] view= new Image[3];
         view[0] = new Image("file:resources/db.png");

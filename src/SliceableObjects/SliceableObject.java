@@ -1,6 +1,7 @@
 package SliceableObjects;
 
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 import java.util.Random;
 
@@ -22,7 +23,7 @@ public abstract class SliceableObject implements ISliceableObject {
     protected ImageView myImageView = new ImageView();
     protected double standardPrefSize = 130;
     protected double localPrefSize;
-
+    protected AudioClip slashClip;
 
 
     public void move(double time) {

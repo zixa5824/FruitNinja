@@ -1,10 +1,12 @@
 package SliceableObjects;
 
+import java.nio.file.Paths;
 import java.util.Random;
 
 import Game.GameController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 
 public class ExtraBonusFruit extends Fruit {
@@ -40,7 +42,9 @@ public class ExtraBonusFruit extends Fruit {
     		isSliced=true;
     	 GameController c = GameController.getInstance();
 	    	c.timeEdit(timeChange);// double current score placeholder effect
-	    	}	
+			slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
+
+		}
 	    	return 0;
 	    }
 	
