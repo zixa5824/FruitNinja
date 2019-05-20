@@ -64,4 +64,9 @@ public class ArcadeMode implements IGameModeStrategy {
 		
 	}
 
+
+    @Override
+    public String toString() {
+        return "Arcade";
+    }
 }

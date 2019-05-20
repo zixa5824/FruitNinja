@@ -1,6 +1,13 @@
 @startuml
 
+
+
+MainMenu -> GameController: newGame(gameMode)
+
+
 loop untiGameOver
+
+
 
 alt Number of Objects < 1
     GUIGameplayView -> GameController: createObjects()

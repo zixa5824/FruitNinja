@@ -18,4 +18,8 @@ public interface IGameModeStrategy {
     
     boolean isGameOver(int score , double timeS , int lives);//bisho: new game over condition
 
+
+    @Override
+    String toString();
+
 }

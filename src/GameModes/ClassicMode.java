@@ -75,5 +75,9 @@ public class ClassicMode implements IGameModeStrategy {
 
 
 
+    @Override
+    public String toString() {
+        return "Classic";
+    }
 
 }

@@ -42,5 +42,12 @@ public class HardDiff extends DifficultyDecorator {
     @Override
     public boolean isGameOver(int score, double timeS, int lives) {
         return gameMode.isGameOver(score, timeS, lives);
+
+    }
+
+
+    @Override
+    public String toString() {
+        return gameMode.toString() + " Hard";
     }
 }

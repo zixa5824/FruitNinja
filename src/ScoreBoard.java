@@ -64,7 +64,7 @@ public class ScoreBoard{
         scoreBoardTable.setLayoutY(134);
         scoreBoardTable.setPrefWidth(885);
         scoreBoardTable.setPrefHeight(506);
-        scoreBoardTable.setOpacity(0.5);
+        scoreBoardTable.setOpacity(0.75);
 
         Circle circle = new Circle(50);
         Button exitBtn = new Button("MainMenu");
