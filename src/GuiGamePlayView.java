@@ -28,13 +28,21 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.sound.midi.Sequence;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 
 public class GuiGamePlayView {
 
     private Scene scene;
     private AnimationTimer timer;
+    private Timeline timeline;
+    private long lastTimerCall;
+    private Duration duration;
     private Random random = new Random();
    //THIS IS ONLY FOR TRIAL SCORE LOOK
     //private int score = 0;
@@ -43,7 +51,10 @@ public class GuiGamePlayView {
     private GameController gameController = GameController.getInstance();
     private boolean flag=false;
     private ArrayList<Player> players = new ArrayList<>();
-private boolean runFlag=true;
+    private boolean runFlag=true;
+    long startTime = System.currentTimeMillis();
+    long old=0;
+    int secs=0,mins=0;
     GuiGamePlayView(Stage stage)
     {
             //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
@@ -77,10 +88,18 @@ private boolean runFlag=true;
             if(gameController.getLives()<0) {
             	livesLabel.setVisible(false);
             }
-            
-            
+            //------
+            Label timeplayedLabel = new Label("time elapsed:       "); //bisho: new timer played for all modes
+            timeplayedLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 19));
+            timeplayedLabel.setTextFill(Color.YELLOW);
+            timeplayedLabel.setPrefHeight(49);
+            timeplayedLabel.setPrefWidth(400);
+            timeplayedLabel.setLayoutX(500);
+            timeplayedLabel.setLayoutY(80);
           
-            Label timerLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new timer for arcade
+            //------
+          
+            Label timerLabel = new Label("TIME LEFT:  " + gameController.getTime()); //bisho: new timer for arcade
             timerLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
             timerLabel.setTextFill(Color.YELLOW);
             timerLabel.setPrefHeight(49);
@@ -212,9 +231,31 @@ private boolean runFlag=true;
             pane.getChildren().add(object.getImageView());
         }
 
+        duration = Duration.hours(72);
+
+        lastTimerCall = System.nanoTime();
+
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
+                //bisho: new timer plz dont mess around with it too much ^_^
+            	 
+            	    long timepassed=System.currentTimeMillis()-startTime;
+            	    long secondspassed=timepassed/1000;
+            	    
+            	   // System.out.println(secondspassed);
+            	    if(secondspassed>old) {
+                    gameController.timeEdit(-secondspassed+old);
+                   // gameController.setTime(gameController.getTime()-secondspassed+old);
+            	    old=secondspassed;
+            	    }
+                    timerLabel.setText("TIME LEFT: "+(int)(gameController.getTime()));
+                    secs=(int)secondspassed%60;
+                    mins=(int)secondspassed/60;
+                    timeplayedLabel.setText("time elapsed:  "+mins +" : "+secs);
+
+
                 if (myObjects.size() < 1) {
                     List<ISliceableObject> newMyObjects = gameController.createGameObject(1);
                     myObjects.addAll(newMyObjects);
@@ -224,8 +265,8 @@ private boolean runFlag=true;
                         object.getImageView().setOnMouseMoved(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent event) {
-                                if (objectsOnScreen.get(event.getTarget()).isSliced() == false) {
-                                    objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
+                                if (objectsOnScreen.get(event.getTarget()).isSliced() == false&&runFlag == true) {
+                                     objectsToSlice.add(objectsOnScreen.get(event.getTarget()));
                                 }
                             }
                         });
@@ -377,6 +418,7 @@ private boolean runFlag=true;
         }); 
 
  }
+
     public void endGame() {
         timer.stop();
         Alert Alert1 = new Alert(AlertType.INFORMATION);

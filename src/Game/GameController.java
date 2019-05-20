@@ -6,6 +6,7 @@ import GameModes.HardDiff;
 import GameModes.IGameModeStrategy;
 import SliceableObjects.ISliceableObject;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 
 import java.beans.XMLDecoder;
@@ -73,8 +74,21 @@ public class GameController implements GameActions {
 
 		return timeS;
 	}
+	public void setTime(double timeS) { // for the timer
+		 this.timeS=timeS;
+	}
 	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
-
+//		if (now > lastTimerCall + 1_000_000_000l) {
+//			duration = duration.subtract(Duration.seconds(1));
+//
+//			int remainingSeconds = (int) duration.toSeconds();
+//
+//			int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
+//			int h = (remainingSeconds % SECONDS_PER_DAY) / SECONDS_PER_HOUR;
+//			if (m == 0 && h == 0) { endGame(); }
+//
+//			timerLabel.setText(String.format("%02d", m));
+//		}
 		timeS += change;
 	}
 

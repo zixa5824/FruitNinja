@@ -2,9 +2,11 @@ package SliceableObjects;
 
 import javafx.scene.image.ImageView;
 
+import java.util.Random;
+
 public abstract class SliceableObject implements ISliceableObject {
 
-
+    protected Random i = new Random();
     protected int associatedScore;
     protected int associatedFallLiveLoss;
     protected double xLocation;
@@ -33,13 +35,13 @@ public abstract class SliceableObject implements ISliceableObject {
         currentYVelocity -= fallingVelocity/170;
 
         if (yLocation < 0) {
-            currentYVelocity = -currentYVelocity*time/10;
+            currentYVelocity = -currentYVelocity*time/10-i.nextDouble()-.5;
         }
 
         if (xLocation >= 1200 - localPrefSize) {
-            currentXVelocity= -currentXVelocity*time/30 -5;
+            currentXVelocity= -currentXVelocity*time/30 -i.nextInt(10)-5;
         } else if (xLocation < 0) {
-            currentXVelocity = -currentXVelocity*time/30 +5;
+            currentXVelocity = -currentXVelocity*time/30 +i.nextInt(10)+5;
         }
 
     }
@@ -101,7 +103,7 @@ public abstract class SliceableObject implements ISliceableObject {
     }
 
 
-    @Override
+   /* @Override
     public double getXVelocity() {
         return this.xVelocity;
     }
@@ -109,7 +111,7 @@ public abstract class SliceableObject implements ISliceableObject {
     @Override
     public double getYVelocity() {
         return this.yVelocity;
-    }
+    }*/
 
 
 

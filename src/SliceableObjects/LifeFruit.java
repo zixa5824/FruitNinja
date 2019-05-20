@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class LifeFruit extends Fruit {
-	
+	private int lifechange=1;
 	 public LifeFruit() {
 
 	        Random i = new Random();
@@ -17,13 +17,13 @@ public class LifeFruit extends Fruit {
 	        this.associatedFallLiveLoss=0;// no life loss from missing this one
 	        this.isSliced = false;
 	        this.ObjectType = "LifeFruit";
-	        this.initialVelocity = 22;
-	        this.fallingVelocity = 10;
-	        if (i.nextBoolean()) {
-	            this.currentXVelocity = initialVelocity;
-	        } else {
-	            this.currentXVelocity = -initialVelocity;
-	        }
+	        this.initialVelocity = 40;
+	        this.fallingVelocity = 38;
+		 if (i.nextBoolean()) {
+			 this.currentXVelocity = initialVelocity+i.nextInt(10);
+		 } else {
+			 this.currentXVelocity = -initialVelocity-i.nextInt(10);
+		 }
 	        this.currentYVelocity = initialVelocity/5;
 
 	        localPrefSize = standardPrefSize*0.5;
@@ -39,7 +39,7 @@ public class LifeFruit extends Fruit {
 	    	if(!isSliced) {
 	    		isSliced=true;
 	    	 GameController c = GameController.getInstance();
-	    	 c.livesEdit(1);
+	    	 c.livesEdit(lifechange);
 		    	}	
 		    	return 0;
 		    }

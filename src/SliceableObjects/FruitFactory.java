@@ -4,34 +4,34 @@ public class FruitFactory {
 
 
     public ISliceableObject getFruits(int type){
-        switch(type) {
 
-            case 0:
-                return new NormalFruit();
 
-            case 1:
-                return new SlowFruit();
 
-            case 2:
+
+        if(0<=type && type<10)
+            return new ExtraBonusFruit();
+
+        if(10<=type && type<40)
+            return new NormalFruit();
+
+        if(40<=type && type<55)
+            return new SlowFruit();
+
+        if(55<=type && type<70)
                 return new FastFruit();
 
-            case 3:
-                return new LifeFruit();
-
-            case 4:
-                return new ExtraBonusFruit();
-                
-            case 5:
-            
+        if(73<=type && type<80)
             return new DangerousBomb();
-            
-            case 6:
-            
+
+        if(85<=type && type<90)
             return new FatalBomb();
-            
-            default:
-                return null;
-        }}
+
+        if(95<=type && type<=100)
+            return new LifeFruit();
+
+        else
+            return new NormalFruit();
+        }
 
 
 

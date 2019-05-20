@@ -5,8 +5,11 @@ import java.util.Random;
 import Game.GameController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 public class ExtraBonusFruit extends Fruit {
+
+	private int timeChange = 10;
 
 	 public ExtraBonusFruit() {
 
@@ -19,11 +22,11 @@ public class ExtraBonusFruit extends Fruit {
 	        this.ObjectType = "ExtraBonusFruit";
 	        this.initialVelocity = 22;
 	        this.fallingVelocity = 10;
-	        if (i.nextBoolean()) {
-	            this.currentXVelocity = initialVelocity;
-	        } else {
-	            this.currentXVelocity = -initialVelocity;
-	        }
+		 if (i.nextBoolean()) {
+			 this.currentXVelocity = initialVelocity+i.nextInt(10);
+		 } else {
+			 this.currentXVelocity = -initialVelocity-i.nextInt(10);
+		 }
 	        this.currentYVelocity = initialVelocity/5;
 
 	        localPrefSize = standardPrefSize*0.75;
@@ -37,7 +40,7 @@ public class ExtraBonusFruit extends Fruit {
     	if(!isSliced) {
     		isSliced=true;
     	 GameController c = GameController.getInstance();
-	    	c.scoreEdit(c.getScore());// double current score placeholder effect
+	    	c.timeEdit(timeChange);// double current score placeholder effect
 	    	}	
 	    	return 0;
 	    }

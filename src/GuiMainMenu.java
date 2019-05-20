@@ -87,6 +87,7 @@ public class GuiMainMenu{
         //-----
         classicBtn.setOnAction(e->{
             IGameModeStrategy gameMode = new ClassicMode();
+            IGameModeStrategy hard = new EasyDiff(gameMode);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Difficulty Options");
             alert.setHeaderText("Please choose one difficulty from below");
@@ -140,7 +141,7 @@ public class GuiMainMenu{
         });
         
         
-        
+
         
         Pane pane = new Pane();
         Image cursor1 = new Image("file:cursor.gif");
@@ -148,6 +149,32 @@ public class GuiMainMenu{
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200,800);
         pane.getChildren().addAll(ivBackGround, classicBtn, scoreBoardBtn, arcadeBtn,contuine);
+    }
+
+    public void chooseDifficulty(IGameModeStrategy gameMode, Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Difficulty Options");
+        alert.setHeaderText("Please choose one difficulty from below");
+        ButtonType buttonTypeOne = new ButtonType("Easy");
+        ButtonType buttonTypeTwo = new ButtonType("Medium");
+        ButtonType buttonTypeThree = new ButtonType("Hard");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+            GameController.getInstance().newGame(new EasyDiff(gameMode));
+        } else if (result.get() == buttonTypeTwo) {
+            GameController.getInstance().newGame(gameMode);
+        } else if (result.get() == buttonTypeThree) {
+            GameController.getInstance().newGame(new HardDiff(gameMode));
+        }
+        else
+            return;
+
+        GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+        stage.setScene(guiGameplayView.getScene());
+        stage.centerOnScreen();
+
     }
 
     public Scene getScene() {

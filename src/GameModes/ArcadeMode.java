@@ -25,7 +25,7 @@ public class ArcadeMode implements IGameModeStrategy {
         int x,y;
         x = new Random().nextInt(4)+1;
         for(int i = 0;i < x; i++) {
-            y = new Random().nextInt(3);//BISHO : NO BOMBS IN ARCADE
+            y = new Random().nextInt(70);//BISHO : NO BOMBS IN ARCADE
             localList.add(fruitFactory.getFruits(y));
         }
         return localList;

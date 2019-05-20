@@ -18,9 +18,9 @@ public class NormalFruit extends Fruit {
         this.initialVelocity = 29;
         this.fallingVelocity = 20;
         if (i.nextBoolean()) {
-            this.currentXVelocity = initialVelocity;
+            this.currentXVelocity = initialVelocity+i.nextInt(10);
         } else {
-            this.currentXVelocity = -initialVelocity;
+            this.currentXVelocity = -initialVelocity-i.nextInt(10);
         }
         this.currentYVelocity = initialVelocity/5;
 
