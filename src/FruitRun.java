@@ -12,7 +12,7 @@ public class FruitRun extends Application {
 
         GuiMainMenu guiNinjaMainMenu = new GuiMainMenu(primaryStage);
         primaryStage.setScene(guiNinjaMainMenu.getScene());
-        primaryStage.setTitle("Ninja Fruit");
+        primaryStage.setTitle("Ninja SliceableObjects.Fruit");
         primaryStage.centerOnScreen();
         primaryStage.show();
         primaryStage.setResizable(false);
