@@ -1,3 +1,5 @@
+package utilities;
+
 import Game.GameController;
 
 public class FileCommand implements Command{
