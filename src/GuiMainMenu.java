@@ -109,7 +109,6 @@ public class GuiMainMenu{
         	ScoreBoard s = new ScoreBoard(stage);
         	mainMenuMusic.stop();
             stage.setScene(s.getScene());
-            mediaPlayer.stop();
         });
         
         

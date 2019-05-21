@@ -52,6 +52,7 @@ public class GuiGamePlayView {
 
 	private Button resetBtn;
     private Button pauseBtn;
+    private Button returntomainBtn;
     private Circle circle;
     private MediaPlayer gamePlayMusic;
     private MediaPlayer gameOverMusic;
@@ -187,7 +188,7 @@ public class GuiGamePlayView {
         saveBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         saveBtn.setTextFill(Paint.valueOf("White"));*/
         //----------
-        Button returntomainBtn = new Button("RETURN TO MAIN MENU");
+        returntomainBtn = new Button("RETURN TO MAIN MENU");
         returntomainBtn.setPrefWidth(200);
         returntomainBtn.setPrefHeight(80);
         returntomainBtn.setLayoutX(500);
@@ -200,7 +201,6 @@ public class GuiGamePlayView {
 
 
         resetBtn.setOnAction(e -> {
-        	mediaPlayer.stop(); //bisho: added to stop gameover sound on reset
             gameController.resetGame();
             gameOverMusic.stop();
             gamePlayMusic.play();
@@ -453,7 +453,7 @@ public class GuiGamePlayView {
             }
         });
 
-        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn, returntomainBtn);
 
 
     }

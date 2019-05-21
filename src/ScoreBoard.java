@@ -44,7 +44,7 @@ public class ScoreBoard{
     {
 
 
-        Media sound = new Media(Paths.get("ScoreBoard.mp3").toUri().toString());
+        Media sound = new Media(Paths.get("music/ScoreBoard.mp3").toUri().toString());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             @Override
