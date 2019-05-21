@@ -207,7 +207,7 @@ public class GuiGamePlayView {
         resetBtn.setOnAction(e -> {
             gameController.resetGame();
             gameOverMusic.stop();
-            gamePlayMusic.play();
+            gamePlayMusic.stop();
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
@@ -392,15 +392,15 @@ public class GuiGamePlayView {
         ivGameOver.setLayoutX(211);
         ivGameOver.setLayoutY(250);
 
-        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
+        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press HOME key To get back to MainMenu....\n\t BackSpace key To play Again...\n\t\tEnter to show Score Board...");
         label.setTextFill(Color.WHITESMOKE);
-        label.setLayoutX(600);
+        label.setLayoutX(700);
         label.setLayoutY(400);
         label.setPrefWidth(700);
         label.setPrefHeight(400);
         label.setFont(Font.font("Agency FB",28));
 
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.15), label);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.45), label);
         fadeTransition.setFromValue(1.0);
         fadeTransition.setToValue(0.1);
         fadeTransition.setCycleCount(Timeline.INDEFINITE);
@@ -432,9 +432,9 @@ public class GuiGamePlayView {
             if(textField.getText().equalsIgnoreCase("") && gameController.isSaveName() == false)
             {
                 Alert alert = new Alert(AlertType.WARNING);
-                alert.setHeaderText("No name added are you sure ?");
-                alert.setContentText("Please add a name in textField");
-                alert.setTitle("Null Name ERROR");
+                alert.setHeaderText("Empty Field!");
+                alert.setContentText("Please add a name in the textField");
+                alert.setTitle("ERROR");
                 alert.show();
             }
             else if (gameController.isSaveName() == false){
@@ -443,8 +443,8 @@ public class GuiGamePlayView {
                 gameController.addPlayers(player);
                 gameController.setSaveName(true);
                 Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setContentText("Save is done successfully");
-                alert.setHeaderText("Save Complete");
+                alert.setContentText("Saved successfully");
+                alert.setHeaderText("Saved");
                 alert.setTitle("SAVE NAME");
                 alert.show();
                 textField.setEditable(false);
@@ -459,6 +459,7 @@ public class GuiGamePlayView {
             }
         });
 
+        returntomainBtn.setOpacity(.5);
         pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn, returntomainBtn);
 
 
