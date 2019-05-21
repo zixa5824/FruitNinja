@@ -113,6 +113,7 @@ public class GameController implements GameActions,Serializable {
 	public void sliceObjects(List<ISliceableObject> objectsToSlice) {
 
 		gameModeStrategy.sliceObjects(objectsToSlice);
+		updateObservers();
 	}
 
 

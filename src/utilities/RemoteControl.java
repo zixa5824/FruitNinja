@@ -1,3 +1,6 @@
+package utilities;
+
+import utilities.Command;
 
 public class RemoteControl
 {

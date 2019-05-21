@@ -19,7 +19,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -29,6 +28,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import utilities.Command;
+import utilities.FileCommand;
+import utilities.RemoteControl;
 
 import java.nio.file.Paths;
 import java.util.*;
@@ -84,6 +86,8 @@ public class GuiGamePlayView {
         scoreLabel.setPrefWidth(300);
         scoreLabel.setLayoutX(500);
         scoreLabel.setLayoutY(40);
+
+        gameController.addObserver(scoreLabel);
         //------
         Label livesLabel = new Label("LIVES:  " + gameController.getLives()); //bisho: new live counter
         livesLabel.setFont(Font.font("", 22));

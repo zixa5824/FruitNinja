@@ -54,6 +54,7 @@ package SliceableObjects {
     SliceableObject <|--  Bomb
 
     Class SlowFruit {
+        getMyImage():Image[]
 
     }
 
@@ -62,19 +63,25 @@ package SliceableObjects {
     }
 
     Class FastFruit{
+        getMyImage():Image[]
 
     }
 
     Class LifeFruit{
-        slice():int
         getMyImage():Image[]
     }
 
     Class ExtraBonusFruit{
+        getMyImage():Image[]
 
     }
 
-
+    class FatalBomb{
+        getMyImage():Image[]
+    }
+    class DangerousBomb{
+        getMyImage():Image[]
+    }
     Fruit <|-- SlowFruit
     Fruit <|-- NormalFruit
     Fruit <|-- FastFruit
