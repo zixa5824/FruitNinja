@@ -39,9 +39,6 @@ public class ArcadeMode implements IGameModeStrategy {
     		            if (object instanceof Fruit) {
     		                gameController.scoreEdit(x);
     		            }
-    		            else if(object instanceof Bomb){
-    		                gameController.scoreEdit(-x*100); 
-    		            }
     }
     }
     @Override
