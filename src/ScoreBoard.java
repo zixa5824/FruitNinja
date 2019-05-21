@@ -149,6 +149,7 @@ public class ScoreBoard{
 
 
 
+
         pane.getChildren().addAll(bgIv, ellipse, label, scoreBoardTable, exitBtn);
 
     }

@@ -392,7 +392,9 @@ public class GuiGamePlayView {
         ivGameOver.setLayoutX(211);
         ivGameOver.setLayoutY(250);
 
-        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press F6 key To get back to MainMenu....\nPress F5 key To play Again...\nPress F7 to show Score Board...");
+        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n"
+                + "Press F6 key To get back to MainMenu....\nPress F5 key To play Again...\n" +
+                "Press F7 to show Score Board...");
         label.setTextFill(Color.WHITESMOKE);
         label.setLayoutX(500);
         label.setLayoutY(400);
@@ -400,13 +402,14 @@ public class GuiGamePlayView {
         label.setPrefHeight(450);
         label.setFont(Font.font("Agency FB",30));
 
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.1), label);
-        fadeTransition.setFromValue(1.0);
-        fadeTransition.setToValue(0.1);
-        fadeTransition.setCycleCount(Timeline.INDEFINITE);
-        fadeTransition.setAutoReverse(true);
-        fadeTransition.play();
-        
+
+//        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.45), label);
+//        fadeTransition.setFromValue(1.0);
+//        fadeTransition.setToValue(0.1);
+//        fadeTransition.setCycleCount(Timeline.INDEFINITE);
+//        fadeTransition.setAutoReverse(true);
+//        fadeTransition.play();
+
 
         textField.setOnKeyPressed(e->{
             if (e.getCode() == KeyCode.F6) {
