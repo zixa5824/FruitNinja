@@ -2,7 +2,6 @@
 
 
 
-MainMenu -> GameController: newGame(gameMode)
 
 
 loop untiGameOver
@@ -12,10 +11,19 @@ loop untiGameOver
 alt Number of Objects < 1
     GUIGameplayView -> GameController: createObjects()
     GameController->IGameModeStrategy: newBatch()
+
+    loop for random number
+
+    IGameModeStrategy -> FruitFactory: createObject
+    FruitFactory -> ISilceableObject: create
+    ISilceableObject --> IGameModeStrategy: return object
+    activate ISilceableObject
+    end
+
     IGameModeStrategy --> GUIGameplayView: List of ISliseableObjects
 end
 
-GUIGameplayView -> GameController: updateObjectsLocation()
+GUIGameplayView <- GameController: updateObjectsLocation()
 
 loop forAllObjects
 
@@ -23,6 +31,15 @@ alt IsClicked/sliced
 
     GUIGameplayView -> GameController: slice()
     GameController -> IGameModeStrategy: slice()
+
+    IGameModeStrategy -> ISilceableObject: slice
+
+
+
+    ISilceableObject --> IGameModeStrategy: slice result
+
+    deactivate ISilceableObject
+
     IGameModeStrategy --> GameController: edit game state
 end
 

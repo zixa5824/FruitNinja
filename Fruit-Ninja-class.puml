@@ -151,16 +151,14 @@ IGameModeStrategy <--> GameController
 
 package view {
 
-    class GuiGamePlayView
+    class GuiGamePlayView{
+
+
+
+    }
 
     GuiGamePlayView --> GameActions
 
 }
 
-interface command <<interface>>{
-
-    execute()
-    unexecute()
-
-}
 @enduml
