@@ -2,10 +2,10 @@ package utilities;
 
 public interface Command {
 
-    public void execute() ;
+    void execute() ;
 
 
-    public void unexecute() ;
+    void unexecute() ;
 
 }
 

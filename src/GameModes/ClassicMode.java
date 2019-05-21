@@ -14,6 +14,7 @@ public class ClassicMode implements IGameModeStrategy {
 
 	private GameController gameController = GameController.getInstance();
     private int initialLives = 3;
+    private FruitFactory fruitFactory = new FruitFactory();
 
     @Override
     public int timerType() {
@@ -24,7 +25,6 @@ public class ClassicMode implements IGameModeStrategy {
     public List<ISliceableObject> NewBatch() {
 
         List<ISliceableObject> localList = new ArrayList<>();
-        FruitFactory fruitFactory = new FruitFactory();
         int x,y;
         x = new Random().nextInt(4)+1;
         for(int i = 0;i < x; i++) {

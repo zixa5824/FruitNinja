@@ -125,7 +125,7 @@ public class GuiMainMenu{
     public void chooseDifficulty(IGameModeStrategy gameMode, Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Difficulty Options");
-        alert.setHeaderText("Please choose one difficulty from below");
+        alert.setHeaderText("Choose difficulty");
         ButtonType buttonTypeOne = new ButtonType("Easy");
         ButtonType buttonTypeTwo = new ButtonType("Medium");
         ButtonType buttonTypeThree = new ButtonType("Hard");

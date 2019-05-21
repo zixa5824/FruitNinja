@@ -1,4 +1,9 @@
 @startuml
+
+
+skinparam classAttributeIconSize 0
+
+
 package Model{
 package SliceableObjects {
 
@@ -48,10 +53,10 @@ package SliceableObjects {
 
         }
 
-    ISliceableObject <|-- SliceableObject
+    ISliceableObject <|.. SliceableObject
 
-    SliceableObject <|-- Fruit
-    SliceableObject <|--  Bomb
+    SliceableObject <|.. Fruit
+    SliceableObject <|..  Bomb
 
     Class SlowFruit {
         getMyImage():Image[]
@@ -103,8 +108,8 @@ interface IGameModeStrategy <<Interface>> {
     +isGameOver():boolean
 }
 
-IGameModeStrategy <|-- ClassicMode
-IGameModeStrategy <|-- ArcadeMode
+IGameModeStrategy <|.. ClassicMode
+IGameModeStrategy <|.. ArcadeMode
 
 
 Class ClassicMode {
@@ -114,7 +119,7 @@ Class ClassicMode {
 
 abstract class DifficultyDecorator
 
-IGameModeStrategy <|-- DifficultyDecorator
+IGameModeStrategy <|.. DifficultyDecorator
 
 DifficultyDecorator <|-- EasyMode
 DifficultyDecorator <|-- HardMode
@@ -122,7 +127,15 @@ DifficultyDecorator <|-- HardMode
 
 }
 
-ISliceableObject <-- IGameModeStrategy
+class ObjectFactory {
+
+    createObject(): ISliceableObject
+
+}
+
+IGameModeStrategy "1"--> "1" ObjectFactory
+
+ObjectFactory --> ISliceableObject
 }
 
 
@@ -154,18 +167,43 @@ package Controller {
 
 }
 
-IGameModeStrategy <--> GameController
+IGameModeStrategy "0..1" <--> "1" GameController
 
 package view {
 
     class GuiGamePlayView{
 
+    timer: AnimationTimer
 
+    updateVisuals()
 
     }
 
     GuiGamePlayView --> GameActions
 
 }
+
+interface Command {
+
+   execute()
+   unexecute()
+
+}
+
+
+ Command <|.. FileCommand
+
+
+class RemoteControl {
+
+    setCommand()
+    activate()
+    deactivate()
+}
+
+RemoteControl -> Command
+Command -> GameController
+
+
 
 @enduml
