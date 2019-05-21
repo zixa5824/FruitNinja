@@ -35,8 +35,8 @@ public class GuiMainMenu{
         Image image = new Image("file:oneto.jpg");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setPreserveRatio(false);
-        ivBackGround.setFitWidth(1200);
-        ivBackGround.setFitHeight(800);
+        ivBackGround.setFitWidth(1220);
+        ivBackGround.setFitHeight(820);
 
         //-------
 

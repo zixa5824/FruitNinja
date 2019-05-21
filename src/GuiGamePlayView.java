@@ -180,22 +180,6 @@ public class GuiGamePlayView {
         returntomainBtn.setTextFill(Paint.valueOf("White"));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //--------
 
         //---------
@@ -327,8 +311,6 @@ public class GuiGamePlayView {
 
     public void endGame(Stage stage) {
 
-
-
         pauseBtn.setVisible(false);
         timer.stop();
         TextField textField = new TextField();
@@ -337,12 +319,12 @@ public class GuiGamePlayView {
         textField.setPrefWidth(334);
         textField.setPrefHeight(75);
         textField.setLayoutX(570);
-        textField.setLayoutY(150);
+        textField.setLayoutY(170);
 
         Label nameLabel = new Label("Write Your name Here:");
         nameLabel.setTextFill(Color.WHITE);
         nameLabel.setLayoutX(287);
-        nameLabel.setLayoutY(91);
+        nameLabel.setLayoutY(101);
         nameLabel.setPrefWidth(291);
         nameLabel.setPrefHeight(200);
         nameLabel.setFont(Font.font("Verdana",22));
@@ -351,15 +333,61 @@ public class GuiGamePlayView {
         saveBtn.setPrefWidth(134);
         saveBtn.setPrefHeight(80);
         saveBtn.setLayoutX(533);
-        saveBtn.setLayoutY(244);
+        saveBtn.setLayoutY(264);
         saveBtn.setOpacity(1);
         saveBtn.setShape(circle);
         saveBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         saveBtn.setTextFill(Paint.valueOf("White"));
-        resetBtn.setVisible(true);
+        //resetBtn.setVisible(true);
 
+        Image gameOver = new Image("file:GameOver.gif");
+        ImageView ivGameOver = new ImageView(gameOver);
+        ivGameOver.setMouseTransparent(true);
+        ivGameOver.setPreserveRatio(false);
+        ivGameOver.setFocusTraversable(false);
+        ivGameOver.setFitWidth(807);
+        ivGameOver.setFitHeight(448);
+        ivGameOver.setLayoutX(211);
+        ivGameOver.setLayoutY(250);
 
+        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press HOME key To MainMenu....\n\tReset BackSpace key To play Again...\n\t\tEnter to show Score Board...");
+        label.setTextFill(Color.WHITESMOKE);
+        label.setLayoutX(600);
+        label.setLayoutY(400);
+        label.setPrefWidth(700);
+        label.setPrefHeight(400);
+        label.setFont(Font.font("Agency FB",28));
 
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.15), label);
+        fadeTransition.setFromValue(1.0);
+        fadeTransition.setToValue(0.1);
+        fadeTransition.setCycleCount(Timeline.INDEFINITE);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
+
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(1.5), nameLabel);
+        scaleTransition.setToX(1.5);
+        scaleTransition.setToY(-1.5);
+        scaleTransition.setAutoReverse(true);
+        scaleTransition.setCycleCount(ScaleTransition.INDEFINITE);
+        scaleTransition.play();
+
+        scene.setOnKeyPressed(e->{
+            if (e.getCode() == KeyCode.HOME) {
+                GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
+                stage.setScene(guiMainMenu.getScene());
+            }
+            if (e.getCode() == KeyCode.BACK_SPACE) {
+                gameController.resetGame();
+                GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                stage.setScene(guiGameplayView.getScene());
+                stage.centerOnScreen();
+            }
+            if (e.getCode() == KeyCode.ENTER) {
+                ScoreBoard scoreBoard = new ScoreBoard(stage);
+                stage.setScene(scoreBoard.getScene());
+            }
+        });
 
         saveBtn.setOnAction(e->{
             if(textField.getText().equalsIgnoreCase("") && gameController.isSaveName() == false)
@@ -392,7 +420,7 @@ public class GuiGamePlayView {
             }
         });
 
-        pane.getChildren().addAll( nameLabel, textField, saveBtn, resetBtn);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label);
 
 
     }
