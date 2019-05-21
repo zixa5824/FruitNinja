@@ -18,12 +18,16 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -35,10 +39,21 @@ public class ScoreBoard{
 
     private Scene scene;
     private ArrayList<Player> players = new ArrayList<>();
-
+    private MediaPlayer mediaPlayer;
     ScoreBoard(Stage stage)
     {
-    	
+
+        Media sound = new Media(Paths.get("ScoreBoard.mp3").toUri().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        mediaPlayer.play();
+
+
         Image bgImage = new Image("file:ScoreBoard.gif");
         ImageView bgIv = new ImageView(bgImage);
         bgIv.setPreserveRatio(false);
@@ -80,6 +95,7 @@ public class ScoreBoard{
         exitBtn.setOnAction(e->{
             GuiMainMenu mainMenu = new GuiMainMenu(stage);
             stage.setScene(mainMenu.getScene());
+            mediaPlayer.stop();
         });
 
 

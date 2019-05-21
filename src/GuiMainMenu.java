@@ -108,6 +108,7 @@ public class GuiMainMenu{
             // bisho; when scoreboard scene is finished should be wired later
         	ScoreBoard s = new ScoreBoard(stage);
             stage.setScene(s.getScene());
+            mediaPlayer.stop();
         });
         
         
@@ -124,7 +125,7 @@ public class GuiMainMenu{
     public void chooseDifficulty(IGameModeStrategy gameMode, Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Difficulty Options");
-        alert.setHeaderText("Choose difficulty");
+        alert.setHeaderText("Please choose one difficulty from below");
         ButtonType buttonTypeOne = new ButtonType("Easy");
         ButtonType buttonTypeTwo = new ButtonType("Medium");
         ButtonType buttonTypeThree = new ButtonType("Hard");
