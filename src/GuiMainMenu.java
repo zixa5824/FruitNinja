@@ -36,7 +36,6 @@ public class GuiMainMenu{
 
         Media sound = new Media(Paths.get("Shall_We_Pom.mp3").toUri().toString());
         mediaPlayer = new MediaPlayer(sound);
-
         mediaPlayer.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {

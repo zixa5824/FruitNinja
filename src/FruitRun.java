@@ -16,7 +16,7 @@ public class FruitRun extends Application {
         rem.unactivateButton();//bisho: loads
         GuiMainMenu guiNinjaMainMenu = new GuiMainMenu(primaryStage);
         primaryStage.setScene(guiNinjaMainMenu.getScene());
-        primaryStage.setTitle("Fruit Ninja!");
+        primaryStage.setTitle("Ninja SliceableObjects.Fruit");
         primaryStage.centerOnScreen();
         primaryStage.show();
         primaryStage.setResizable(false);

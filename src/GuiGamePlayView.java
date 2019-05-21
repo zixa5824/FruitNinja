@@ -323,6 +323,18 @@ public class GuiGamePlayView {
         pauseBtn.setVisible(false);
         timer.stop();
         mediaPlayer.stop();
+
+        Media sound = new Media(Paths.get("GameOver.mp3").toUri().toString());
+        mediaPlayer = new MediaPlayer(sound);
+
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        mediaPlayer.play();
+
         TextField textField = new TextField();
         textField.setPromptText("Name");
         textField.setFont(Font.font("Verdana", 25));
@@ -374,28 +386,25 @@ public class GuiGamePlayView {
         fadeTransition.setCycleCount(Timeline.INDEFINITE);
         fadeTransition.setAutoReverse(true);
         fadeTransition.play();
-
-        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(1.5), nameLabel);
-        scaleTransition.setToX(1.5);
-        scaleTransition.setToY(-1.5);
-        scaleTransition.setAutoReverse(true);
-        scaleTransition.setCycleCount(ScaleTransition.INDEFINITE);
-        scaleTransition.play();
+        
 
         scene.setOnKeyPressed(e->{
             if (e.getCode() == KeyCode.HOME) {
                 GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
                 stage.setScene(guiMainMenu.getScene());
+                mediaPlayer.stop();
             }
             if (e.getCode() == KeyCode.BACK_SPACE) {
                 gameController.resetGame();
                 GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
                 stage.setScene(guiGameplayView.getScene());
                 stage.centerOnScreen();
+                mediaPlayer.stop();
             }
             if (e.getCode() == KeyCode.ENTER) {
                 ScoreBoard scoreBoard = new ScoreBoard(stage);
                 stage.setScene(scoreBoard.getScene());
+                mediaPlayer.stop();
             }
         });
 
@@ -425,7 +434,7 @@ public class GuiGamePlayView {
 
                 ScoreBoard s = new ScoreBoard(stage);
                 stage.setScene(s.getScene());
-
+                mediaPlayer.stop();
 
             }
         });
