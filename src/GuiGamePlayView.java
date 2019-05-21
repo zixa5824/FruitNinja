@@ -439,7 +439,7 @@ public class GuiGamePlayView {
             }
         });
 
-        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn);
 
 
     }
