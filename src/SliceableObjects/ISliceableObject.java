@@ -26,9 +26,6 @@ public interface ISliceableObject {
 
 
 
-
-
-
     /*
      *@return Y location of game object
      */

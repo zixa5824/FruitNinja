@@ -1,13 +1,10 @@
 import Game.GameController;
 import Game.Player;
 
-import GameModes.EasyDiff;
 import SliceableObjects.ISliceableObject;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.ImageCursor;
@@ -33,7 +30,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.sound.midi.Sequence;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -57,13 +53,23 @@ public class GuiGamePlayView {
 	private Button resetBtn;
     private Button pauseBtn;
     private Circle circle;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer gamePlayMusic;
+    private MediaPlayer gameOverMusic;
     private AudioClip slashClip;
     GuiGamePlayView(Stage stage) {
+
+
+        Media sound = new Media(Paths.get("music/pomGameplay.mp3").toUri().toString());
+        gamePlayMusic = new MediaPlayer(sound);
+
+        Media gameOverURI = new Media(Paths.get("music/GameOver.mp3").toUri().toString());
+        gameOverMusic = new MediaPlayer(gameOverURI);
+
+
         //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
         ////////////////////////////////////////////////////
         //-------
-        Image image = new Image("file:background.jpg");
+        Image image = new Image("file:resources/background.jpg");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setMouseTransparent(true);
         ivBackGround.setPreserveRatio(false);
@@ -190,6 +196,8 @@ public class GuiGamePlayView {
         resetBtn.setOnAction(e -> {
 
             gameController.resetGame();
+            gameOverMusic.stop();
+            gamePlayMusic.play();
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
@@ -198,13 +206,15 @@ public class GuiGamePlayView {
             //bisho; work in progress left untill all variables are determined
         });
         returntomainBtn.setOnAction(e -> {
+            gameOverMusic.stop();
+            gamePlayMusic.stop();
             backToMainMenu(stage);
         });
 
 
         
 
-        Image cursor1 = new Image("file:cursor.gif");
+        Image cursor1 = new Image("file:resources/cursor.gif");
 
         ImageCursor cursor = new ImageCursor(cursor1);
 
@@ -218,16 +228,15 @@ public class GuiGamePlayView {
 
         pane.getChildren().addAll(ivBackGround, rec, scoreLabel, livesLabel, ellipse1, ellipse2, pauseBtn, timerLabel, timeplayedLabel);
 
-        Media sound = new Media(Paths.get("pomGameplay.mp3").toUri().toString());
-        mediaPlayer = new MediaPlayer(sound);
 
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
+
+        gamePlayMusic.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {
-                mediaPlayer.seek(Duration.ZERO);
+                gamePlayMusic.seek(Duration.ZERO);
             }
         });
-        mediaPlayer.play();
+        gamePlayMusic.play();
 
 
 
@@ -322,18 +331,17 @@ public class GuiGamePlayView {
 
         pauseBtn.setVisible(false);
         timer.stop();
-        mediaPlayer.stop();
+        gamePlayMusic.stop();
 
-        Media sound = new Media(Paths.get("GameOver.mp3").toUri().toString());
-        mediaPlayer = new MediaPlayer(sound);
 
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
+
+        gameOverMusic.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {
-                mediaPlayer.seek(Duration.ZERO);
+                gameOverMusic.seek(Duration.ZERO);
             }
         });
-        mediaPlayer.play();
+        gameOverMusic.play();
 
         TextField textField = new TextField();
         textField.setPromptText("Name");
@@ -362,7 +370,7 @@ public class GuiGamePlayView {
         saveBtn.setTextFill(Paint.valueOf("White"));
         //resetBtn.setVisible(true);
 
-        Image gameOver = new Image("file:GameOver.gif");
+        Image gameOver = new Image("file:resources/GameOver.gif");
         ImageView ivGameOver = new ImageView(gameOver);
         ivGameOver.setMouseTransparent(true);
         ivGameOver.setPreserveRatio(false);
@@ -391,20 +399,20 @@ public class GuiGamePlayView {
         scene.setOnKeyPressed(e->{
             if (e.getCode() == KeyCode.HOME) {
                 GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
+                gameOverMusic.stop();
                 stage.setScene(guiMainMenu.getScene());
-                mediaPlayer.stop();
             }
             if (e.getCode() == KeyCode.BACK_SPACE) {
                 gameController.resetGame();
                 GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
+                gameOverMusic.stop();
                 stage.setScene(guiGameplayView.getScene());
                 stage.centerOnScreen();
-                mediaPlayer.stop();
             }
             if (e.getCode() == KeyCode.ENTER) {
                 ScoreBoard scoreBoard = new ScoreBoard(stage);
+                gameOverMusic.stop();
                 stage.setScene(scoreBoard.getScene());
-                mediaPlayer.stop();
             }
         });
 
@@ -433,8 +441,8 @@ public class GuiGamePlayView {
                 rem.activateButton();// bisho: saves
 
                 ScoreBoard s = new ScoreBoard(stage);
+                gameOverMusic.stop();
                 stage.setScene(s.getScene());
-                mediaPlayer.stop();
 
             }
         });
@@ -469,7 +477,8 @@ public class GuiGamePlayView {
 
 
     public void backToMainMenu(Stage stage) {
-        mediaPlayer.stop();
+        gamePlayMusic.stop();
+        gameOverMusic.stop();
         GuiMainMenu g = new GuiMainMenu(stage);
         stage.setScene(g.getScene());
         stage.centerOnScreen();

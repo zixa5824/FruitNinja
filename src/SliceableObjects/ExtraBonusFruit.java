@@ -42,7 +42,7 @@ public class ExtraBonusFruit extends Fruit {
     		isSliced=true;
     	 GameController c = GameController.getInstance();
 	    	c.timeEdit(timeChange);// double current score placeholder effect
-			slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
+			slashClip = new AudioClip(Paths.get("music/slash.mp3").toUri().toString());
 
 		}
 	    	return 0;

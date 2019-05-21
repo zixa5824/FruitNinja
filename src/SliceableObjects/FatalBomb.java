@@ -35,7 +35,7 @@ public class FatalBomb extends Bomb {
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
 
-        slashClip = new AudioClip(Paths.get("grenade.wav").toUri().toString());
+        slashClip = new AudioClip(Paths.get("music/grenade.wav").toUri().toString());
 
     }
 

@@ -32,7 +32,7 @@ public class NormalFruit extends Fruit {
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
 
-        slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
+        slashClip = new AudioClip(Paths.get("music/slash.mp3").toUri().toString());
 
     }
     public Image[] getMyImage() {

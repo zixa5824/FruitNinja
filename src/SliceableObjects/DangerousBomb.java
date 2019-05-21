@@ -37,7 +37,7 @@ public class DangerousBomb extends Bomb {
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
 
-        slashClip = new AudioClip(Paths.get("bomb-small.mp3").toUri().toString());
+        slashClip = new AudioClip(Paths.get("music/bomb-small.mp3").toUri().toString());
     }
 
 

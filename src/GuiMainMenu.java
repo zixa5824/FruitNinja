@@ -29,20 +29,20 @@ import java.util.Optional;
 public class GuiMainMenu{
 
     private Scene scene;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mainMenuMusic;
    private  GameController c=GameController.getInstance();
 	    GuiMainMenu(Stage stage)
     {
 
-        Media sound = new Media(Paths.get("Shall_We_Pom.mp3").toUri().toString());
-        mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setOnEndOfMedia(new Runnable() {
+        Media sound = new Media(Paths.get("music/Shall_We_Pom.mp3").toUri().toString());
+        mainMenuMusic = new MediaPlayer(sound);
+        mainMenuMusic.setOnEndOfMedia(new Runnable() {
             @Override
             public void run() {
-                mediaPlayer.seek(Duration.ZERO);
+                mainMenuMusic.seek(Duration.ZERO);
             }
         });
-        mediaPlayer.play();
+        mainMenuMusic.play();
 
 
 
@@ -50,7 +50,7 @@ public class GuiMainMenu{
 	    	 GameController c=GameController.getInstance();
     		
         //-------
-        Image image = new Image("file:oneto.jpg");
+        Image image = new Image("file:resources/oneto.jpg");
         ImageView ivBackGround = new ImageView(image);
         ivBackGround.setPreserveRatio(false);
         ivBackGround.setFitWidth(1220);
@@ -107,6 +107,7 @@ public class GuiMainMenu{
         scoreBoardBtn.setOnAction(e->{
             // bisho; when scoreboard scene is finished should be wired later
         	ScoreBoard s = new ScoreBoard(stage);
+        	mainMenuMusic.stop();
             stage.setScene(s.getScene());
         });
         
@@ -114,7 +115,7 @@ public class GuiMainMenu{
 
         
         Pane pane = new Pane();
-        Image cursor1 = new Image("file:cursor.gif");
+        Image cursor1 = new Image("file:resources/cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200,800);
@@ -147,7 +148,7 @@ public class GuiMainMenu{
         GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
         stage.setScene(guiGameplayView.getScene());
 
-        mediaPlayer.stop();
+        mainMenuMusic.stop();
         stage.centerOnScreen();
 
     }

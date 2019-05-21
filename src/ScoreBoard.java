@@ -39,7 +39,7 @@ public class ScoreBoard{
     ScoreBoard(Stage stage)
     {
     	
-        Image bgImage = new Image("file:ScoreBoard.gif");
+        Image bgImage = new Image("file:resources/ScoreBoard.gif");
         ImageView bgIv = new ImageView(bgImage);
         bgIv.setPreserveRatio(false);
         bgIv.setFitWidth(1220);

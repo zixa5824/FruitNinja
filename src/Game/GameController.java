@@ -151,18 +151,26 @@ public class GameController implements GameActions,Serializable {
 
 	@Override
 	public void load() {
-		try {
-			
-	         FileInputStream f = new FileInputStream("ninjas.txt");
-	         ObjectInputStream o = new ObjectInputStream(f);
-	         while(f.available() > 0)
-					records.add((Player)o.readObject());
-			
-	         o.close();
-		}
-		catch(IOException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
+
+
+
+			try {
+				File temp = new File("ninjas.txt");
+				if (!temp.exists()) {
+					return;
+				}
+
+				File file = new File("ninjas.txt");
+
+				FileInputStream f = new FileInputStream(file);
+				ObjectInputStream o = new ObjectInputStream(f);
+				while (f.available() > 0)
+					records.add((Player) o.readObject());
+
+				o.close();
+			} catch (IOException | ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
 
 	}
 
