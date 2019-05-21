@@ -392,15 +392,15 @@ public class GuiGamePlayView {
         ivGameOver.setLayoutX(211);
         ivGameOver.setLayoutY(250);
 
-        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press HOME key To get back to MainMenu....\n\t BackSpace key To play Again...\n\t\tEnter to show Score Board...");
+        Label label = new Label("Your score is    "+gameController.getScore() + "!!\n" + "Press F6 key To get back to MainMenu....\nPress F5 key To play Again...\nPress F7 to show Score Board...");
         label.setTextFill(Color.WHITESMOKE);
-        label.setLayoutX(700);
+        label.setLayoutX(500);
         label.setLayoutY(400);
-        label.setPrefWidth(700);
-        label.setPrefHeight(400);
-        label.setFont(Font.font("Agency FB",28));
+        label.setPrefWidth(800);
+        label.setPrefHeight(450);
+        label.setFont(Font.font("Agency FB",30));
 
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.45), label);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.1), label);
         fadeTransition.setFromValue(1.0);
         fadeTransition.setToValue(0.1);
         fadeTransition.setCycleCount(Timeline.INDEFINITE);
@@ -408,20 +408,20 @@ public class GuiGamePlayView {
         fadeTransition.play();
         
 
-        scene.setOnKeyPressed(e->{
-            if (e.getCode() == KeyCode.HOME) {
+        textField.setOnKeyPressed(e->{
+            if (e.getCode() == KeyCode.F6) {
                 GuiMainMenu guiMainMenu = new GuiMainMenu(stage);
                 gameOverMusic.stop();
                 stage.setScene(guiMainMenu.getScene());
             }
-            if (e.getCode() == KeyCode.BACK_SPACE) {
+            if (e.getCode() == KeyCode.F5) {
                 gameController.resetGame();
                 GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
                 gameOverMusic.stop();
                 stage.setScene(guiGameplayView.getScene());
                 stage.centerOnScreen();
             }
-            if (e.getCode() == KeyCode.ENTER) {
+            if (e.getCode() == KeyCode.F7) {
                 ScoreBoard scoreBoard = new ScoreBoard(stage);
                 gameOverMusic.stop();
                 stage.setScene(scoreBoard.getScene());
@@ -460,7 +460,7 @@ public class GuiGamePlayView {
         });
 
         returntomainBtn.setOpacity(.5);
-        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn, returntomainBtn);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn);
 
 
     }

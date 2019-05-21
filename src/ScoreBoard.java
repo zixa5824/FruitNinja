@@ -142,10 +142,12 @@ public class ScoreBoard{
         //-------------------
 
         Pane pane = new Pane();
-        Image cursor1 = new Image("file:cursor.gif");
+        Image cursor1 = new Image("file:resources/cursor.gif");
         ImageCursor cursor = new ImageCursor(cursor1);
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200, 800);
+
+
 
         pane.getChildren().addAll(bgIv, ellipse, label, scoreBoardTable, exitBtn);
 
