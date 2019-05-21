@@ -284,6 +284,8 @@ public class GuiGamePlayView {
                 myObjects.removeAll(objectsToRemove);
                 moveOffScreen(objectsToRemove);
                 objectsToRemove.clear();
+                if(gameController.getScore()>gameController.getBest())//bisho: real time highest score
+                	bestLabel.setText("Highest score:  " + gameController.getScore());
                 scoreLabel.setText("Current Score: " + gameController.getScore());
                 livesLabel.setText("LIVES: " + gameController.getLives());
                 if (gameController.checkGameOver()) {// bisho: gameover check (bool return) and alert box if true
