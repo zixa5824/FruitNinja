@@ -91,13 +91,20 @@ public class GuiGamePlayView {
         }
         //------
         Label timeplayedLabel = new Label("time elapsed:       "); //bisho: new timer played for all modes
-        timeplayedLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 19));
-        timeplayedLabel.setTextFill(Color.YELLOW);
+        timeplayedLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 17));
+        timeplayedLabel.setTextFill(Color.GOLDENROD);
         timeplayedLabel.setPrefHeight(49);
         timeplayedLabel.setPrefWidth(400);
         timeplayedLabel.setLayoutX(500);
-        timeplayedLabel.setLayoutY(80);
-
+        timeplayedLabel.setLayoutY(70);
+         //---------
+        Label bestLabel = new Label("Highest score:  " + gameController.getBest()); //bisho: for best score lbl
+        bestLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
+        bestLabel.setTextFill(Color.GOLDENROD);
+        bestLabel.setPrefHeight(49);
+        bestLabel.setPrefWidth(400);
+        bestLabel.setLayoutX(500);
+        bestLabel.setLayoutY(90);
         //------
         Label timerLabel = new Label("TIME LEFT:  " + gameController.getTime()); //bisho: new timer for arcade
         timerLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 22));
@@ -166,20 +173,20 @@ public class GuiGamePlayView {
         resetBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         resetBtn.setTextFill(Paint.valueOf("White"));
 
-        Button saveBtn = new Button("SAVE");
+      /*  Button saveBtn = new Button("SAVE");
         saveBtn.setPrefWidth(134);
         saveBtn.setPrefHeight(80);
         saveBtn.setLayoutX(533);
         saveBtn.setLayoutY(500);
         saveBtn.setShape(circle);
         saveBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
-        saveBtn.setTextFill(Paint.valueOf("White"));
+        saveBtn.setTextFill(Paint.valueOf("White"));*/
         //----------
         Button returntomainBtn = new Button("RETURN TO MAIN MENU");
         returntomainBtn.setPrefWidth(200);
         returntomainBtn.setPrefHeight(80);
         returntomainBtn.setLayoutX(500);
-        returntomainBtn.setLayoutY(650);
+        returntomainBtn.setLayoutY(500);
         returntomainBtn.setShape(circle);
         returntomainBtn.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
         returntomainBtn.setTextFill(Paint.valueOf("White"));
@@ -188,15 +195,15 @@ public class GuiGamePlayView {
 
 
         resetBtn.setOnAction(e -> {
-
+        	mediaPlayer.stop(); //bisho: added to stop gameover sound on reset
             gameController.resetGame();
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
         });
-        saveBtn.setOnAction(e -> {
-            //bisho; work in progress left untill all variables are determined
-        });
+        /*saveBtn.setOnAction(e -> {
+            // cancelled
+        });*/
         returntomainBtn.setOnAction(e -> {
             backToMainMenu(stage);
         });
@@ -216,7 +223,7 @@ public class GuiGamePlayView {
         ArrayList<ISliceableObject> objectsToSlice = new ArrayList<>();
         HashMap<ImageView, ISliceableObject> objectsOnScreen = new HashMap<>();
 
-        pane.getChildren().addAll(ivBackGround, rec, scoreLabel, livesLabel, ellipse1, ellipse2, pauseBtn, timerLabel, timeplayedLabel);
+        pane.getChildren().addAll(ivBackGround, rec, scoreLabel, livesLabel,bestLabel, ellipse1, ellipse2, pauseBtn, timerLabel, timeplayedLabel);
 
         Media sound = new Media(Paths.get("pomGameplay.mp3").toUri().toString());
         mediaPlayer = new MediaPlayer(sound);

@@ -78,17 +78,6 @@ public class GameController implements GameActions,Serializable {
 		 this.timeS=timeS;
 	}
 	public void timeEdit(double change){ //bisho : in case we add a bomb/special fruit that affect time 
-//		if (now > lastTimerCall + 1_000_000_000l) {
-//			duration = duration.subtract(Duration.seconds(1));
-//
-//			int remainingSeconds = (int) duration.toSeconds();
-//
-//			int m = ((remainingSeconds % SECONDS_PER_DAY) % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE;
-//			int h = (remainingSeconds % SECONDS_PER_DAY) / SECONDS_PER_HOUR;
-//			if (m == 0 && h == 0) { endGame(); }
-//
-//			timerLabel.setText(String.format("%02d", m));
-//		}
 		timeS += change;
 	}
 
@@ -134,7 +123,7 @@ public class GameController implements GameActions,Serializable {
 
 
 	@Override
-	public void save() {
+	public void save() {//bisho: saving using objectstream/serializable interface
 
 		try {
 			 FileOutputStream f = new FileOutputStream("ninjas.txt");
@@ -150,7 +139,7 @@ public class GameController implements GameActions,Serializable {
 	}
 
 	@Override
-	public void load() {
+	public void load() {//bisho: loading using objectstream/serializable interface
 		try {
 			
 	         FileInputStream f = new FileInputStream("ninjas.txt");
@@ -198,6 +187,14 @@ public class GameController implements GameActions,Serializable {
 
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public int getBest() {//bisho: for getting the highest score for the current mode
+		int max=0;
+		for(int i=0;i<records.size();i++)
+			if(records.get(i).getPlayerScore()>max&&records.get(i).getDifficulty().equals(gameModeStrategy.toString()))
+				max=records.get(i).getPlayerScore();
+		return max;
 	}
 
 }
