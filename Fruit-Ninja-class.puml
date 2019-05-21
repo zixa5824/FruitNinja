@@ -156,4 +156,11 @@ package view {
     GuiGamePlayView --> GameActions
 
 }
+
+interface command <<interface>>{
+
+    execute()
+    unexecute()
+
+}
 @enduml

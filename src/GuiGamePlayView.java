@@ -43,9 +43,9 @@ public class GuiGamePlayView {
     //private int score = 0;
     private GameController gameController = GameController.getInstance();
     private boolean runFlag = true;
-    long startTime = System.currentTimeMillis();
-    long old = 0;
-    int secs = 0, mins = 0;
+    private long startTime = System.currentTimeMillis();
+    private long old = 0;
+    private int secs = 0, mins = 0;
     private ArrayList<Player> players = new ArrayList<>();
     private RemoteControl rem =new RemoteControl();
 	private Command comm= new FileCommand();
@@ -55,7 +55,6 @@ public class GuiGamePlayView {
     private Circle circle;
     private MediaPlayer gamePlayMusic;
     private MediaPlayer gameOverMusic;
-    private AudioClip slashClip;
     GuiGamePlayView(Stage stage) {
 
 

@@ -48,9 +48,9 @@ public abstract class SliceableObject implements ISliceableObject {
 
     @Override
     public Boolean hasMovedOffScreen() {
-        if (this.yLocation < 810) {
+        if (this.yLocation < 810)
             return true;
-        }
+
         else return false;
     }
 
