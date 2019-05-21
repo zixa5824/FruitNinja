@@ -1,10 +1,12 @@
 package SliceableObjects;
 
+import java.nio.file.Paths;
 import java.util.Random;
 
 import Game.GameController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
 public class LifeFruit extends Fruit {
 	private int lifechange=1;
@@ -31,7 +33,10 @@ public class LifeFruit extends Fruit {
 	        this.myImageView.setLayoutY(yLocation);
 	        this.myImageView.setFitWidth(localPrefSize);
 	        this.myImageView.setFitHeight(localPrefSize);
-	    }
+
+		 slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
+
+	 }
 	
 	 
 	    public int slice() {

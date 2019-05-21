@@ -22,6 +22,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
@@ -31,6 +34,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import javax.sound.midi.Sequence;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -53,7 +57,8 @@ public class GuiGamePlayView {
 	private Button resetBtn;
     private Button pauseBtn;
     private Circle circle;
-
+    private MediaPlayer mediaPlayer;
+    private AudioClip slashClip;
     GuiGamePlayView(Stage stage) {
         //BISHO: KNOW PROBS  FRUITS CUT NEEDS NEW IMAGES , TIMER IS SLIGHTLY TOO FAST AND NOT IN SYNC WITH ANIMATION TIMER
         ////////////////////////////////////////////////////
@@ -180,10 +185,6 @@ public class GuiGamePlayView {
         returntomainBtn.setTextFill(Paint.valueOf("White"));
 
 
-        //--------
-
-        //---------
-
 
 
         resetBtn.setOnAction(e -> {
@@ -201,11 +202,12 @@ public class GuiGamePlayView {
         });
 
 
-        //////////////////////////////////////////////////////////////////////
-
+        
 
         Image cursor1 = new Image("file:cursor.gif");
+
         ImageCursor cursor = new ImageCursor(cursor1);
+
         pane.setCursor(cursor);
         scene = new Scene(pane, 1200, 800);
 
@@ -216,10 +218,17 @@ public class GuiGamePlayView {
 
         pane.getChildren().addAll(ivBackGround, rec, scoreLabel, livesLabel, ellipse1, ellipse2, pauseBtn, timerLabel, timeplayedLabel);
 
-        for (ISliceableObject object : myObjects
-        ) {
-            pane.getChildren().add(object.getImageView());
-        }
+        Media sound = new Media(Paths.get("pomGameplay.mp3").toUri().toString());
+        mediaPlayer = new MediaPlayer(sound);
+
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        mediaPlayer.play();
+
 
 
         timer = new AnimationTimer() {
@@ -313,6 +322,7 @@ public class GuiGamePlayView {
 
         pauseBtn.setVisible(false);
         timer.stop();
+        mediaPlayer.stop();
         TextField textField = new TextField();
         textField.setPromptText("Name");
         textField.setFont(Font.font("Verdana", 25));
@@ -450,6 +460,7 @@ public class GuiGamePlayView {
 
 
     public void backToMainMenu(Stage stage) {
+        mediaPlayer.stop();
         GuiMainMenu g = new GuiMainMenu(stage);
         stage.setScene(g.getScene());
         stage.centerOnScreen();

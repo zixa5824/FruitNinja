@@ -2,7 +2,9 @@ package SliceableObjects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class DangerousBomb extends Bomb {
@@ -34,6 +36,8 @@ public class DangerousBomb extends Bomb {
         localPrefSize = standardPrefSize;
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
+
+        slashClip = new AudioClip(Paths.get("bomb-small.mp3").toUri().toString());
     }
 
 

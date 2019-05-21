@@ -7,7 +7,9 @@ public abstract class Bomb extends SliceableObject{
     public int slice() {
 
         this.isSliced = true;
+        slashClip.play();
         return lifeDamage;
+
     }
 
     @Override

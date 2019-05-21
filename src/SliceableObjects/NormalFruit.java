@@ -2,7 +2,9 @@ package SliceableObjects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 
+import java.nio.file.Paths;
 import java.util.Random;
 public class NormalFruit extends Fruit {
 
@@ -29,6 +31,9 @@ public class NormalFruit extends Fruit {
         localPrefSize = standardPrefSize;
         this.myImageView.setFitWidth(localPrefSize);
         this.myImageView.setFitHeight(localPrefSize);
+
+        slashClip = new AudioClip(Paths.get("slash.mp3").toUri().toString());
+
     }
     public Image[] getMyImage() {
         Image[] view= new Image[2];

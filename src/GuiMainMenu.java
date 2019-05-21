@@ -14,21 +14,40 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.nio.file.Paths;
 import java.util.Optional;
 
 
 public class GuiMainMenu{
 
     private Scene scene;
+    private MediaPlayer mediaPlayer;
    private  GameController c=GameController.getInstance();
 	    GuiMainMenu(Stage stage)
-    {       
-	    	
+    {
+
+        Media sound = new Media(Paths.get("Shall_We_Pom.mp3").toUri().toString());
+        mediaPlayer = new MediaPlayer(sound);
+
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                mediaPlayer.seek(Duration.ZERO);
+            }
+        });
+        mediaPlayer.play();
+
+
+
+
 	    	 GameController c=GameController.getInstance();
     		
         //-------
@@ -128,6 +147,8 @@ public class GuiMainMenu{
 
         GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
         stage.setScene(guiGameplayView.getScene());
+
+        mediaPlayer.stop();
         stage.centerOnScreen();
 
     }

@@ -1,12 +1,19 @@
 package SliceableObjects;
 
+import java.applet.AudioClip;
+import java.nio.file.Paths;
+
 public abstract class Fruit extends SliceableObject {
 
 
     public int slice() {
      if(!isSliced) {
         isSliced = true;
-        return associatedScore;}
+
+        slashClip.play();
+        return associatedScore;
+
+     }
    return 0;
     }
     public int offscreen() {
