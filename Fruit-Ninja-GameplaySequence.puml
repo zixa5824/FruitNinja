@@ -7,7 +7,6 @@
 loop untiGameOver
 
 
-
 alt Number of Objects < 1
     GUIGameplayView -> GameController: createObjects()
     GameController->IGameModeStrategy: newBatch()
@@ -15,13 +14,17 @@ alt Number of Objects < 1
     loop for random number
 
     IGameModeStrategy -> FruitFactory: createObject
+    activate FruitFactory
+
     FruitFactory -> ISilceableObject: create
-    ISilceableObject --> IGameModeStrategy: return object
     activate ISilceableObject
+    ISilceableObject --> IGameModeStrategy: return object
+    deactivate FruitFactory
     end
 
     IGameModeStrategy --> GUIGameplayView: List of ISliseableObjects
 end
+activate IGameModeStrategy
 
 GUIGameplayView <- GameController: updateObjectsLocation()
 
@@ -49,6 +52,7 @@ end
 end
 
 
+deactivate IGameModeStrategy
 
 
 end

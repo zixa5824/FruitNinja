@@ -208,6 +208,8 @@ public class GuiGamePlayView {
             gameController.resetGame();
             gameOverMusic.stop();
             gamePlayMusic.stop();
+            returntomainBtn.setLayoutX(500);
+            returntomainBtn.setLayoutY(500);
             GuiGamePlayView guiGameplayView = new GuiGamePlayView(stage);
             stage.setScene(guiGameplayView.getScene());
             stage.centerOnScreen();
@@ -462,8 +464,9 @@ public class GuiGamePlayView {
             }
         });
 
-        returntomainBtn.setOpacity(.5);
-        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn);
+        returntomainBtn.setLayoutX(200);
+        returntomainBtn.setLayoutY(600);
+        pane.getChildren().addAll( nameLabel, textField, saveBtn, ivGameOver, label, resetBtn, returntomainBtn);
 
 
     }
